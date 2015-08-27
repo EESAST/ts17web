@@ -49,9 +49,18 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        /*
+        if(Yii::$app->user->isGuest){
+        */
+            return $this->render('index');
+        /*
+        }
+        else{
+            return $this->render('/dashboard/index');
+        }
+        */
     }
-
+/*
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
@@ -73,7 +82,8 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
-
+*/
+    /*
     public function actionContact()
     {
         $model = new ContactForm();
@@ -86,9 +96,11 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    
 
     public function actionAbout()
     {
         return $this->render('about');
     }
+    */
 }

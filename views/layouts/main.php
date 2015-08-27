@@ -40,15 +40,8 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Forum', 'url' => ['/forum']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
-
-            Yii::$app->user->isGuest ?
-            ['label' => 'Login', 'url' => ['/site/login']]:
+            ['label' => 'Login', 'url' => ['/login']],
             
-                [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ],
         ],
     ]);
 
@@ -71,8 +64,8 @@ AppAsset::register($this);
             ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
             ['label' => 'Forum', 'url' => ['/forum']],
                 [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
+                    'label' => 'Logout ('.Yii::$app->user->identity->teamname.')',
+                    'url' => ['/login/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ],
         ],
