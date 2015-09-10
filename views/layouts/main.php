@@ -38,9 +38,10 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Forum', 'url' => ['/forum']],
+            ['label' => 'Forum', 'url' => ['/forum/index']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Login', 'url' => ['/login']],
+	    //['lable'=>'OnlineTest','url'=>['online-test/index']],
+            ['label' => 'Login', 'url' => ['/login/index']],
             
         ],
     ]);
@@ -51,7 +52,7 @@ AppAsset::register($this);
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
             'items' => [
-            
+
             ['label' => 'DashBoard', 'url' => ['/dashboard']],
             
         ],
@@ -64,7 +65,10 @@ AppAsset::register($this);
             ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
             ['label' => 'Forum', 'url' => ['/forum']],
                 [
-                    'label' => 'Logout ('.Yii::$app->user->identity->teamname.')',
+		    //'label' => 'Logout('.Yii::$app->user->identity->teamname.'),
+                    'label' => 'Logout'.(Yii::$app->user->identity->teamname!=''?'('.$app->user->identity->teamname.')':''),
+		    	
+		
                     'url' => ['/login/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ],
