@@ -7,7 +7,7 @@ $this->title = 'Eat In Tsinghua';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Eat In Tsinghua</h1>
+        <h1>Eat At Tsinghua</h1>
         <h2>TeamStyle 17</h2>
         <br>
         <!--
