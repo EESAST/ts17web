@@ -41,6 +41,7 @@ AppAsset::register($this);
             ['label' => 'Forum', 'url' => ['/forum']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Login', 'url' => ['/login']],
+            ['label' => 'Register', 'url' => ['/register'],]
             
         ],
     ]);
@@ -64,7 +65,7 @@ AppAsset::register($this);
             ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
             ['label' => 'Forum', 'url' => ['/forum']],
                 [
-                    'label' => 'Logout ('.Yii::$app->user->identity->teamname.')',
+                    'label' => 'Logout ('.Yii::$app->user->identity->username.')',
                     'url' => ['/login/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ],
