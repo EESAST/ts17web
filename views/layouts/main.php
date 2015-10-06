@@ -39,7 +39,7 @@ AppAsset::register($this);
             'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Forum', 'url' => ['/forum']],
-            //['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
                 ['label' => 'Team', 'url' => ['/team']],
                 ['label' => 'Login', 'url' => ['/login']],
             ['label' => 'Register', 'url' => ['/register'],]
@@ -66,6 +66,8 @@ AppAsset::register($this);
                 ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
                 ['label' => 'Team', 'url' => ['/team']],
             ['label' => 'Forum', 'url' => ['/forum']],
+                ['label' => 'Contact', 'url' => ['/site/contact']],
+        
                 [
                     'label' => 'Logout ('.Yii::$app->user->identity->username.')',
                     'url' => ['/login/logout'],
