@@ -18,9 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'key')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->hiddenInput(['value'=>1]) ?>
-
-    <div class="form-group">Yii::t('app', 'Update')
+    <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 

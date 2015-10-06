@@ -78,10 +78,10 @@ class TeamController extends Controller
             $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
             $user->teamname = $model->teamname;//更改user的team
             $user->updated_at = date("Y-m-d H:i:s");//更改user的update时间
-            $user->update();
+            $user->save();
             if($model->save())
                 return $this->redirect(['view', 'id' => $model->id]);
-            else return $this->render('error',['message'=>'Please check if your team infomation is unique.']);
+            else return $this->render('error',['message'=>'Please check if your team infomation is unique or if you have joined another team.']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -99,6 +99,7 @@ class TeamController extends Controller
     {
         $model = $this->findModel($id);
         $user = User::findByUsername(Yii::$app->user->identity->username);
+        if ($model->leadername!=$user->username) return $this->render('error',['message'=>'Error:Only Team leader can update status.']);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
            $user->teamname = $model->teamname;
           $user->update();
@@ -110,10 +111,30 @@ class TeamController extends Controller
         }
     }
     public function actionJoin(){
-    $user = Yii::$app->user->identity;
-        if ($user->teamname!=null)
-            return $this->render('error',['message'=>'Error:<br>You have already joined another team.']);
-
+        $input  = new Team;
+        if($input->load(Yii::$app->request->post())) {
+            $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
+            if ($user->teamname != null)
+                return $this->render('error', ['message' => 'Error:<br>You have already joined another team.']);
+            $team = Team::findOne(['teamname' => $input->teamname]);
+            if ($team != null && $team->key == $input->key) {
+                if ($team->member1name == '') {
+                    $team->member1name = $user->username;
+                    $user->teamname = $team->teamname;
+                } elseif ($team->member2name == '') {
+                    $team->member2name = $user->username;
+                    $user->teamname = $team->teamname;
+                } elseif ($team->member3name == '') {
+                    $team->member3name = $user->username;
+                    $user->teamname = $team->teamname;
+                } else return $this->render('error', ['message' => 'Error:<br>This team has already 4 members.']);
+                $team->save();
+                $user->save();
+                return $this->redirect(['view', 'id' => $team->id]);
+            } else return $this->render('error', ['message' => 'Error:<br>Team name and key do not match.']);
+        }
+        else return $this->render('join', [
+            'model' => $input]);
 
 //        return $this->render('join',['user'=>$user]);
 
@@ -132,9 +153,12 @@ class TeamController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $user = User::findByUsername(Yii::$app->user->identity->username);
+        if ($model->leadername!=$user->username) return $this->render('error',['message'=>'Error:Only Team leader can update status.']);
+        $model->delete();
         Yii::$app->user->identity->teamname = null;
-        Yii::$app->user->identity->update();
+        Yii::$app->user->identity->save();
         return $this->redirect(['index']);
     }
 

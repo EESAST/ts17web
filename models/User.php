@@ -40,7 +40,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return
 [
-[['id', 'username', 'password', 'email', 'realname', 'school', 'class', 'studentnumber', 'authKey', 'accessToken', 'teamname', 'status', 'created_at', 'updated_at', 'group'], 'required'],
+[['id', 'username', 'password', 'email', 'realname', 'school', 'class', 'studentnumber', 'status', 'created_at', 'updated_at', 'group'], 'required'],
 [['id', 'studentnumber', 'teamname', 'status'], 'integer'],
 [['username', 'password', 'realname', 'school', 'class', 'authKey', 'accessToken', 'group'], 'string'],
 [['created_at', 'updated_at'], 'safe'],
