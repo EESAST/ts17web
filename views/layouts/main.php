@@ -41,8 +41,9 @@ AppAsset::register($this);
             ['label' => 'Forum', 'url' => ['/forum']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Login', 'url' => ['/login']],
+            ['label' => 'Team', 'url' => ['/team']],
             ['label' => 'Register', 'url' => ['/register'],]
-            
+
         ],
     ]);
 
@@ -62,6 +63,7 @@ AppAsset::register($this);
             'items' => [
             ['label' => 'OnlineCompile', 'url' => ['/online-compile']],
             ['label' => 'News', 'url' => ['/news']],
+            ['label' => 'Team', 'url' => ['/team']],
             ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
             ['label' => 'Forum', 'url' => ['/forum']],
                 [
