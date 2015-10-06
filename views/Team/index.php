@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
+        <?= Html::a(Yii::t('app', 'Join Team'), ['join'], ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Create Team'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
@@ -33,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
             'teamname',
             'leadername',
              'slogan:ntext',

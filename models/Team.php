@@ -36,6 +36,7 @@ class Team extends \yii\db\ActiveRecord
             [['teamname', 'leadername','slogan', 'key', 'status'], 'required'],
             [['slogan', 'key'], 'string'],
             [['status'], 'integer'],
+            [['leadername'], 'unique'],
             [['teamname', 'leadername', 'member1name', 'member2name', 'member3name'], 'string', 'max' => 128]
         ];
     }

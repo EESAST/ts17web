@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\User;
 use app\models\Team;
 use app\models\TeamSearch;
 use yii\web\Controller;
@@ -64,15 +65,23 @@ class TeamController extends Controller
         $searchModel = new TeamSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         if (Yii::$app->user->identity->teamname!=null){//如果该用户加入队伍，则返回主页
-            $team = team::findone(['teamname'=>Yii::$app->user->identity->teamname]);
-            return $this->render('index', [
-                'myTeamInfo' => $team,
-                'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider]);
+//            $team = team::findone(['teamname'=>Yii::$app->user->identity->teamname]);
+//            return $this->render('index', [
+//                'myTeamInfo' => $team,
+//                'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider]);
+        return $this->render('error',['message'=>'You have already in another team.']);
         }
         $model = new Team();
-        if ($model->load(Yii::$app->request->post()) && $model->leadername=Yii::$app->user->identity->username && $model->save(false)) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) ) {
+            $model->leadername=Yii::$app->user->identity->username;//更改team的leader
+            $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
+            $user->teamname = $model->teamname;//更改user的team
+            $user->updated_at = date("Y-m-d H:i:s");//更改user的update时间
+            $user->update();
+            if($model->save())
+                return $this->redirect(['view', 'id' => $model->id]);
+            else return $this->render('error',['message'=>'Please check if your team infomation is unique.']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -89,8 +98,10 @@ class TeamController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $user = User::findByUsername(Yii::$app->user->identity->username);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           $user->teamname = $model->teamname;
+          $user->update();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -98,6 +109,20 @@ class TeamController extends Controller
             ]);
         }
     }
+    public function actionJoin(){
+    $user = Yii::$app->user->identity;
+        if ($user->teamname!=null)
+            return $this->render('error',['message'=>'Error:<br>You have already joined another team.']);
+
+
+//        return $this->render('join',['user'=>$user]);
+
+
+
+
+    }
+
+
 
     /**
      * Deletes an existing Team model.
@@ -108,7 +133,8 @@ class TeamController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Yii::$app->user->identity->teamname = null;
+        Yii::$app->user->identity->update();
         return $this->redirect(['index']);
     }
 

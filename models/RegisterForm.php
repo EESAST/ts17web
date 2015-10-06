@@ -78,7 +78,7 @@ class RegisterForm extends Model
 //                'realname'=>$this->realname,
 //                'teamname'=>'',
 //            ])->execute();
-            $user->save(false);
+            $user->save();
             return $user;
         }
         return null;
