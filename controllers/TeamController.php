@@ -70,16 +70,16 @@ class TeamController extends Controller
 //                'myTeamInfo' => $team,
 //                'searchModel' => $searchModel,
 //            'dataProvider' => $dataProvider]);
-        return $this->render('error',['message'=>'You have already in another team.']);
+        return $this->render('error',['message'=>'You have already been in another team.']);
         }
         $model = new Team();
         if ($model->load(Yii::$app->request->post()) ) {
-            $model->leadername=Yii::$app->user->identity->username;//更改team的leader
             $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
+            $model->leadername=$user->username;//更改team的leader
+            $model->status = 1;
             $user->teamname = $model->teamname;//更改user的team
             $user->updated_at = date("Y-m-d H:i:s");//更改user的update时间
-            $user->save();
-            if($model->save())
+            if($model->save()&& $user->save(false))
                 return $this->redirect(['view', 'id' => $model->id]);
             else return $this->render('error',['message'=>'Please check if your team infomation is unique or if you have joined another team.']);
         } else {
@@ -99,7 +99,7 @@ class TeamController extends Controller
     {
         $model = $this->findModel($id);
         $user = User::findByUsername(Yii::$app->user->identity->username);
-        if ($model->leadername!=$user->username) return $this->render('error',['message'=>'Error:Only Team leader can update status.']);
+        if ($model->leadername!=$user->username&&$user->group!='admin') return $this->render('error',['message'=>'Error:Only Team leader can update status.']);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
            $user->teamname = $model->teamname;
           $user->update();
@@ -128,37 +128,25 @@ class TeamController extends Controller
                     $team->member3name = $user->username;
                     $user->teamname = $team->teamname;
                 } else return $this->render('error', ['message' => 'Error:<br>This team has already 4 members.']);
-                $team->save();
-                $user->save();
+                if($team->save()&&$user->save(false ))
                 return $this->redirect(['view', 'id' => $team->id]);
             } else return $this->render('error', ['message' => 'Error:<br>Team name and key do not match.']);
         }
         else return $this->render('join', [
             'model' => $input]);
-
-//        return $this->render('join',['user'=>$user]);
-
-
-
-
     }
 
 
-
-    /**
-     * Deletes an existing Team model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $user = User::findByUsername(Yii::$app->user->identity->username);
-        if ($model->leadername!=$user->username) return $this->render('error',['message'=>'Error:Only Team leader can update status.']);
+        $user = User::findone(['username'=>Yii::$app->user->identity->username]);
+        if ($model->leadername!=$user->username&&$user->group!='admin') return $this->render('error',['message'=>'Error:Only Team leader can DELETE a team.']);
+        $user = User::findOne(['username'=>$model->leadername]); if  ($user){ $user->teamname = null;$user->save(false);}
+        $user = User::findOne(['username'=>$model->member1name]); if  ($user) {$user->teamname = null;$user->save(false);}
+        $user = User::findOne(['username'=>$model->member2name]); if  ($user) {$user->teamname = null;$user->save(false);}
+        $user = User::findOne(['username'=>$model->member3name]); if  ($user) {$user->teamname = null;$user->save(false);}
         $model->delete();
-        Yii::$app->user->identity->teamname = null;
-        Yii::$app->user->identity->save();
         return $this->redirect(['index']);
     }
 

@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'member2name',
             'member3name',
             'slogan:ntext',
-            'key:ntext',
+//            'key:ntext',
             'status',
         ],
     ]) ?>

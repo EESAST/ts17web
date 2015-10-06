@@ -67,7 +67,7 @@ AppAsset::register($this);
                 ['label' => 'Team', 'url' => ['/team']],
             ['label' => 'Forum', 'url' => ['/forum']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
-        
+
                 [
                     'label' => 'Logout ('.Yii::$app->user->identity->username.')',
                     'url' => ['/login/logout'],
