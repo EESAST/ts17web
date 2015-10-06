@@ -19,17 +19,24 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Team'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php if (!empty($teamname))//如果有team，则输出myteaminfo
+        echo
+        ' <table><caption><h2>My Team Info</h2></caption><tr></tr><td>Team Name</td><td>Leader</td><td>Member</td><td>Slogan</td>
+        <tr><td><?php echo $myTeamInfo->teamname?></td><td><?php echo $myTeamInfo->leadername?></td><td>
+                <?php echo $myTeamInfo->member1name.$myTeamInfo->member2name.$myTeamInfo->member3name?></td><td><?php echo $myTeamInfo->slogan?></td></tr></table>'
+    ?>
+
+
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'teamname',
             'leadername',
              'slogan:ntext',
-            // 'key:ntext',
              'status',
 
             ['class' => 'yii\grid\ActionColumn'],

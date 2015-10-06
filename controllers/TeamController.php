@@ -61,9 +61,17 @@ class TeamController extends Controller
      */
     public function actionCreate()
     {
+        $searchModel = new TeamSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->identity->teamname!=null){//如果该用户加入队伍，则返回主页
+            $team = team::findone(['teamname'=>Yii::$app->user->identity->teamname]);
+            return $this->render('index', [
+                'myTeamInfo' => $team,
+                'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider]);
+        }
         $model = new Team();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->leadername=Yii::$app->user->identity->username && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

@@ -14,21 +14,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'teamname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'leadername')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'member1name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'member2name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'member3name')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'slogan')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'key')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->hiddenInput(['value'=>1]) ?>
 
-    <div class="form-group">
+    <div class="form-group">Yii::t('app', 'Update')
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
