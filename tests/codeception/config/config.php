@@ -21,6 +21,11 @@ return [
         ],
         'urlManager' => [
             'showScriptName' => true,
+//            'urlSuffix' => '.html',
+//            'urlFormat' => 'path',
+//            'rules' =>array(
+//                '<controller:\w+>/<action:\w+>/<sld:\d+>'=>'<controller>/<action>'
+//            )
         ],
     ],
 ];

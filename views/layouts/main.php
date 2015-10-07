@@ -39,9 +39,11 @@ AppAsset::register($this);
             'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Forum', 'url' => ['/forum']],
-            //['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Login', 'url' => ['/login']],
-            
+            ['label' => 'Contact', 'url' => ['/site/contact']],
+                ['label' => 'Team', 'url' => ['/team']],
+                ['label' => 'Login', 'url' => ['/login']],
+            ['label' => 'Register', 'url' => ['/register'],]
+
         ],
     ]);
 
@@ -61,10 +63,13 @@ AppAsset::register($this);
             'items' => [
             ['label' => 'OnlineCompile', 'url' => ['/online-compile']],
             ['label' => 'News', 'url' => ['/news']],
-            ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
+                ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
+                ['label' => 'Team', 'url' => ['/team']],
             ['label' => 'Forum', 'url' => ['/forum']],
+                ['label' => 'Contact', 'url' => ['/site/contact']],
+
                 [
-                    'label' => 'Logout ('.Yii::$app->user->identity->teamname.')',
+                    'label' => 'Logout ('.Yii::$app->user->identity->username.')',
                     'url' => ['/login/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ],
