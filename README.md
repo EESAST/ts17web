@@ -1,7 +1,11 @@
 #Log
 --------------------
-###9-10 by XgDuan
-仅仅修改了没有队伍时显示logout()的bug
+
+###10-7 by 范承泽
+完善了注册登陆功能，增加user属性，实现组队功能。
+
+###9-16 by XgDuan & Brian
+完成注册功能。
 
 ###8-27 by Brian  
 完成登录功能。
@@ -33,7 +37,14 @@ return [
 然后创建一个table叫'user'
 
 设置成下面这样：
-![db.png](https://github.com/EESAST/ts17web/blob/master/db.png)
+![user.png](https://github.com/EESAST/ts17web/blob/master/db.png)
+
+
+
+同一个db下创建另一个一个table叫'user'
+
+设置成下面这样：
+![team.png](https://github.com/EESAST/ts17web/blob/master/db.png)
 
 #Installation
 -----------------
