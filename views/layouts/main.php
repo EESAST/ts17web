@@ -63,6 +63,7 @@ AppAsset::register($this);
             ['label' => 'OnlineCompile', 'url' => ['/online-compile']],
             ['label' => 'News', 'url' => ['/news']],
             ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
+            ['label' => 'Team', 'url' => ['/team']],
             ['label' => 'Forum', 'url' => ['/forum']],
                 [
                     'label' => 'Logout ('.Yii::$app->user->identity->username.')',
