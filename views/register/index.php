@@ -34,6 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'realname') ?>
 
+        <?= $form->field($model, 'school') ?>
+
+        <?= $form->field($model, 'class') ?>
+
+        <?= $form->field($model, 'studentnumber') ?>
+
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">

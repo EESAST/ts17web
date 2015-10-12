@@ -3,42 +3,83 @@
 namespace app\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
-class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+/**
+ * This is the model class for table "User".
+ *
+ * @property integer $id
+ * @property string $username
+ * @property string $password
+ * @property string $email
+ * @property string $realname
+ * @property string $school
+ * @property string $class
+ * @property string $studentnumber
+ * @property string $authKey
+ * @property string $accessToken
+ * @property integer $teamname
+ * @property integer $status
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $group
+ */
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $email;
-    public $username;
-    public $password;
-    public $realname;
-    public $teamname;
-    public $authKey;
-    public $accessToken;
-
-    public static function tableName() 
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
     {
-        return 'user';
-    }
-
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'email' => 'Email',
-            'username' => 'Username',
-            'password' => 'Password',
-            'realname' => 'Real Name',
-            'teamname' => 'Team Name',
-            'authKey' => 'AuthKey',
-            'accessToken' => 'AccessToken',
-
-        ];
+        return 'User';
     }
 
     /**
      * @inheritdoc
      */
+    public function rules()
+    {
+        return
+[
+[['id', 'username', 'password', 'email', 'realname', 'school', 'class', 'studentnumber', 'status', 'created_at', 'updated_at', 'group'], 'required'],
+[['id', 'studentnumber', 'teamname', 'status'], 'integer'],
+[['username', 'password', 'realname', 'school', 'class', 'authKey', 'accessToken', 'group'], 'string'],
+[['created_at', 'updated_at'], 'safe'],
+['username', 'filter', 'filter' => 'trim'],
+['username', 'required','message' => 'ÓÃ»§Ãû²»ÄÜÎª¿Õ'],
+['username', 'unique', 'targetClass' => 'app\models\User', 'message' => 'ÓÃ»§ÃûÒÑ´æÔÚ'],
+['username', 'string', 'min' => 2, 'max' => 255],
+['password', 'required','message' => 'ÃÜÂë²»ÄÜÎª¿Õ'],
+['password', 'string', 'min' => 6],
+['email','string'],
+['email', 'unique', 'targetClass' => 'app\models\User', 'message' => 'ÓÊÏäÒÑ´æÔÚ'],
+['realname','string'],
+];
+}
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'username' => Yii::t('app', 'Username'),
+            'password' => Yii::t('app', 'Password'),
+            'email' => Yii::t('app', 'Email'),
+            'realname' => Yii::t('app', 'Realname'),
+            'school' => Yii::t('app', 'School'),
+            'class' => Yii::t('app', 'Class'),
+            'studentnumber' => Yii::t('app', 'Studentnumber'),
+            'authKey' => Yii::t('app', 'Auth Key'),
+            'accessToken' => Yii::t('app', 'Access Token'),
+            'teamname' => Yii::t('app', 'Teamname'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'group' => Yii::t('app', 'Group'),
+        ];
+    }
+
+
     public static function findIdentity($id)
     {
         /*
@@ -49,10 +90,9 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
         if ($user) {
             return new static($user);
         }
- 
+
         return null;
     }
-
     /**
      * @inheritdoc
      */
@@ -64,7 +104,6 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
                 return new static($user);
             }
         }
-
         return null;
         */
         //return static::findOne(['access_token' => $token]);
@@ -74,7 +113,6 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
         }
         return null;
     }
-
     /**
      * Finds user by username
      *
@@ -89,19 +127,15 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
                 return new static($user);
             }
         }
-
         return null;
         */
-
         $user = User::find()->where(array('username' => $username))->asArray()->one();
         if ($user) {
             return new static($user);
         }
- 
+
         return null;
     }
-
-
     /**
      * @inheritdoc
      */
@@ -109,8 +143,6 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
     {
         return $this->id;
     }
-
-
     /**
      * @inheritdoc
      */
@@ -118,7 +150,6 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
     {
         return $this->email;
     }
-
     /**
      * @inheritdoc
      */
@@ -126,7 +157,6 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
     {
         return $this->realname;
     }
-
     /**
      * @inheritdoc
      */
@@ -134,7 +164,6 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
     {
         return $this->teamname;
     }
-
     /**
      * @inheritdoc
      */
@@ -142,7 +171,6 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
     {
         return $this->authKey;
     }
-
     /**
      * @inheritdoc
      */
@@ -150,7 +178,6 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
     {
         return $this->authKey === $authKey;
     }
-
     /**
      * Validates password
      *
@@ -159,7 +186,24 @@ class User extends /* \yii\base\Object */ \yii\db\ActiveRecord implements \yii\w
      */
     public function validatePassword($password)
     {
-        
+
         return $this->password === $password;
     }
+
+    public function login()
+    {
+
+        return Yii::$app->user->login($this->getUser(), 0);
+
+        return false;
+    }
+    public function getUser()
+    {
+        if ($this->_user === false) {
+            $this->_user = User::findByUsername($this->username);
+        }
+        return $this->_user;
+    }
+
 }
+
