@@ -37,14 +37,14 @@ return [
 然后创建一个table叫'user'
 
 设置成下面这样：
-![user.png](https://github.com/EESAST/ts17web/blob/master/db.png)
+![user.png](https://github.com/EESAST/ts17web/blob/master/user.png)
 
 
 
-同一个db下创建另一个一个table叫'user'
+同一个db下创建另一个一个table叫'team'
 
 设置成下面这样：
-![team.png](https://github.com/EESAST/ts17web/blob/master/db.png)
+![team.png](https://github.com/EESAST/ts17web/blob/master/team.png)
 
 #Installation
 -----------------
