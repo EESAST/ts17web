@@ -6,10 +6,12 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
+use app\assets\MyAppAsset;
+MyAppAsset::register($this);
 AppAsset::register($this);
+$target='#doc-oc-demo2';
+$offset='push';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Eat In Tsinghua',
+        'brandLabel' => "Eating In Tsinghua",
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,57 +39,58 @@ AppAsset::register($this);
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Forum', 'url' => ['/forum']],
-            //['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Login', 'url' => ['/login']],
+                [   'label' => 'Login',
+                'url' => ['/login']
+                ],
             ['label' => 'Register', 'url' => ['/register'],]
-            
-        ],
-    ]);
-
+            ],
+        ]);
     }
 
     else{
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
             'items' => [
-            
-            ['label' => 'DashBoard', 'url' => ['/dashboard']],
-            
         ],
     ]);
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-            ['label' => 'OnlineCompile', 'url' => ['/online-compile']],
-            ['label' => 'News', 'url' => ['/news']],
-            ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
-            ['label' => 'Team', 'url' => ['/team']],
-            ['label' => 'Forum', 'url' => ['/forum']],
-                [
-                    'label' => 'Logout ('.Yii::$app->user->identity->username.')',
-                    'url' => ['/login/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ],
+            [
+                'label' => 'Logout ('.Yii::$app->user->identity->username.')',
+                'url' => ['/login/logout'],
+                'linkOptions' => ['data-method' => 'post']
+            ],
         ],
     ]);
-
-
     }
-
-
-        NavBar::end();
+    NavBar::end();
     ?>
-
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        <button class="am-btn-primary am-btn " data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}">点击显示侧边栏</button>
+
+        <!-- 侧边栏内容 -->
+        <div id="doc-oc-demo2" class="am-offcanvas">
+            <div class="am-offcanvas-bar">
+                <div class="am-offcanvas-content">
+                    <ul class="am-nav">
+                        <li><?= Html::a(Yii::t('app', 'Dashboard'), ['/dashboard'], ['class' => 'am-btn']) ?></li>
+                        <li><?= Html::a(Yii::t('app', 'Login'), ['/login'], ['class' => ' am-btn']) ?></li>
+                        <li><?= Html::a(Yii::t('app', 'Register'), ['/register'], ['class' => ' am-btn']) ?></li>
+                        <li><?= Html::a(Yii::t('app', 'Team'), ['/team'], ['class' => 'am-btn']) ?></li>
+                        <li><?= Html::a(Yii::t('app', 'Supporting-files'), ['/supporting-files'], ['class' => ' am-btn']) ?></li>
+                        <li><?= Html::a(Yii::t('app', 'Forum'), ['/forum'], ['class' => 'am-btn']) ?></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script>
+            $('#my-offcanvas').offCanvas(options);
+        </script>
+
         <?= $content ?>
     </div>
 </div>
-
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; TeamStyle 17 <?= date('Y') ?></p>
@@ -95,7 +98,6 @@ AppAsset::register($this);
         <p class="pull-right">Powered by TeamStyle 17 Web</p>
     </div>
 </footer>
-
 <?php $this->endBody() ?>
 </body>
 </html>

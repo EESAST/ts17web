@@ -8,23 +8,20 @@
 namespace app\assets;
 use yii\web\AssetBundle;
 
-/**
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
-class AppAsset extends AssetBundle
+class MyAppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'AmazeUI-2.4.2/assets/css/amazeui.css',
+         "AmazeUI-2.4.2/assets/css/app.css",
     ];
     public $js = [
+        "AmazeUI-2.4.2/assets/js/jquery.min.js",
+        'AmazeUI-2.4.2/assets/js/amazeui.min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
     ];
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 }
-
 ?>

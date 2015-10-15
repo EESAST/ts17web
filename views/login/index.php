@@ -6,10 +6,12 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+use app\assets\MyAppAsset;
+MyAppAsset::register($this);
 ?>
+
+
+
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -34,8 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                <?= Html::a(Yii::t('app', 'Register'), ['/register'], ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Login', ['class' => 'am-btn-primary am-btn', 'name' => 'login-button']) ?>
+                <?= Html::a(Yii::t('app', 'Register'), ['/register'], ['class' => 'am-btn-primary am-btn']) ?>
             </div>
         </div>
     <?php ActiveForm::end(); ?>
