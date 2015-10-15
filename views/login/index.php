@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use app\assets\MyAppAsset;
 MyAppAsset::register($this);
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
