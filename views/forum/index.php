@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 $this->title = 'Forum';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>forum/index</h1>
 

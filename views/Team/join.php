@@ -8,7 +8,8 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Team */
 
 $this->title = Yii::t('app', 'Join Team');
-
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Teams'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="team-create">
 

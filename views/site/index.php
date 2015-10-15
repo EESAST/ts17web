@@ -3,54 +3,43 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Eat At Tsinghua';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Eat At Tsinghua</h1>
-        <h2>TeamStyle 17</h2>
-        <br>
-        <!--
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-        -->
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiichina.com/doc/guide/2.0">Yii guide in Chinese</a></p>
+<div>
+    <br/>
+    <div class="am-slider am-slider-default" style="height: 50%;width: 70%;margin: auto" data-am-flexslider id="demo-slider-0">
+        <ul class="am-slides">
+            <li><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" /></li>
+            <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
+            <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
+            <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
+            <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
+        </ul>
     </div>
+    <script>
+        $('.am-slider').flexslider();
+        $(function() {
+            var $slider = $('#demo-slider-0');
+            var counter = 0;
+            var getSlide = function() {
+                counter++;
+                return '<li><img src="http://s.amazeui.org/media/i/demos/bing-' +
+                    (Math.floor(Math.random() * 4) + 1) + '.jpg" />' +
+                    '<div class="am-slider-desc">动态插入的 slide ' + counter + '</div></li>';
+            };
 
-    <div class="body-content">
+            $('.js-demo-slider-btn').on('click', function() {
+                var action = this.getAttribute('data-action');
+                if (action === 'add') {
+                    $slider.flexslider('addSlide', getSlide());
+                } else {
+                    var count = $slider.flexslider('count');
+                    count > 1 && $slider.flexslider('removeSlide', $slider.flexslider('count') - 1);
+                }
+            });
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
+        });
+    </script>
 </div>

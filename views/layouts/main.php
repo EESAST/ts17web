@@ -66,9 +66,9 @@ AppAsset::register($this);
     NavBar::end();
     ?>
     <div class="container">
-        <button class="am-btn-primary am-btn " data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}">点击显示侧边栏</button>
-
-        <!-- 侧边栏内容 -->
+        <div style="float: left;width:10%"><button class="am-btn-primary am-btn " data-am-popover="{content: 'Click me for mavigation!', trigger: 'hover focus'}" data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}">Navigation</button></div>
+        <div style="float: left; width:90%"><?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],],['class'=>'am-breadcrumb']) ?></div>
+        <br/><br/><!-- 侧边栏内容 -->
         <div id="doc-oc-demo2" class="am-offcanvas">
             <div class="am-offcanvas-bar">
                 <div class="am-offcanvas-content">
@@ -86,11 +86,10 @@ AppAsset::register($this);
         <script>
             $('#my-offcanvas').offCanvas(options);
         </script>
-
         <?= $content ?>
     </div>
 </div>
-<footer class="footer">
+<footer class="am-footer am-footer-default">
     <div class="container">
         <p class="pull-left">&copy; TeamStyle 17 <?= date('Y') ?></p>
 
