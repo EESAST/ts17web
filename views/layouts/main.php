@@ -10,8 +10,6 @@ use app\assets\AppAsset;
 use app\assets\MyAppAsset;
 MyAppAsset::register($this);
 AppAsset::register($this);
-$target='#doc-oc-demo2';
-$offset='push';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
