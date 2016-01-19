@@ -45,7 +45,7 @@ return [
 ```
 然后创建四个table：user,team,forum(大的主题),detailforum(主题下的回复)
 
-![db.png](https://github.com/EESAST/ts17web/blob/lzhbrian/db.png)
+![db.png](https://github.com/EESAST/ts17web/blob/lzhbrian/user.png)
 
 ![team.png](https://github.com/EESAST/ts17web/blob/lzhbrian/team.png)
 
