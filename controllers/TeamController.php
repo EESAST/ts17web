@@ -9,7 +9,7 @@ use app\models\TeamSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+/*error_reporting(E_ALL^E_NOTICE);
 /**
  * TeamController implements the CRUD actions for Team model.
  */
@@ -35,7 +35,7 @@ class TeamController extends Controller
     {
         $searchModel = new TeamSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        if (Yii::$app->user->isGuest) //Èç¹ûÎ´µÇÂ¼ÔòÌø×ªÖÁµÇÂ¼½çÃæ
+        if (Yii::$app->user->isGuest) //ÃˆÃ§Â¹Ã»ÃÂ´ÂµÃ‡Ã‚Â¼Ã”Ã²ÃŒÃ¸Ã—ÂªÃ–ÃÂµÃ‡Ã‚Â¼Â½Ã§ÃƒÃ¦
             return $this->redirect(array('/login'));
         else return $this->render('index', [
             'searchModel' => $searchModel,
@@ -64,7 +64,7 @@ class TeamController extends Controller
     {
         $searchModel = new TeamSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        if (Yii::$app->user->identity->teamname!=null){//Èç¹û¸ÃÓÃ»§¼ÓÈë¶ÓÎé£¬Ôò·µ»ØÖ÷Ò³
+        if (Yii::$app->user->identity->teamname!=null){//ÃˆÃ§Â¹Ã»Â¸ÃƒÃ“ÃƒÂ»Â§Â¼Ã“ÃˆÃ«Â¶Ã“ÃÃ©Â£Â¬Ã”Ã²Â·ÂµÂ»Ã˜Ã–Ã·Ã’Â³
 //            $team = team::findone(['teamname'=>Yii::$app->user->identity->teamname]);
 //            return $this->render('index', [
 //                'myTeamInfo' => $team,
@@ -75,10 +75,10 @@ class TeamController extends Controller
         $model = new Team();
         if ($model->load(Yii::$app->request->post()) ) {
             $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
-            $model->leadername=$user->username;//¸ü¸ÄteamµÄleader
+            $model->leadername=$user->username;//Â¸Ã¼Â¸Ã„teamÂµÃ„leader
             $model->status = 1;
-            $user->teamname = $model->teamname;//¸ü¸ÄuserµÄteam
-            $user->updated_at = date("Y-m-d H:i:s");//¸ü¸ÄuserµÄupdateÊ±¼ä
+            $user->teamname = $model->teamname;//Â¸Ã¼Â¸Ã„userÂµÃ„team
+            $user->updated_at = date("Y-m-d H:i:s");//Â¸Ã¼Â¸Ã„userÂµÃ„updateÃŠÂ±Â¼Ã¤
             if($model->save()&& $user->save(false))
                 return $this->redirect(['view', 'id' => $model->id]);
             else return $this->render('error',['message'=>'Please check if your team infomation is unique or if you have joined another team.']);
@@ -142,10 +142,10 @@ class TeamController extends Controller
         $model = $this->findModel($id);
         $user = User::findone(['username'=>Yii::$app->user->identity->username]);
         if ($model->leadername!=$user->username&&$user->group!='admin') return $this->render('error',['message'=>'Error:Only Team leader can DELETE a team.']);
-        $user = User::findOne(['username'=>$model->leadername]); if  ($user){ $user->teamname = null;$user->save(false);}
-        $user = User::findOne(['username'=>$model->member1name]); if  ($user) {$user->teamname = null;$user->save(false);}
-        $user = User::findOne(['username'=>$model->member2name]); if  ($user) {$user->teamname = null;$user->save(false);}
-        $user = User::findOne(['username'=>$model->member3name]); if  ($user) {$user->teamname = null;$user->save(false);}
+        $user = User::findOne(['username'=>$model->leadername]); if  ($user){ $user->teamname = '';$user->save(false);}
+        $user = User::findOne(['username'=>$model->member1name]); if  ($user) {$user->teamname = '';$user->save(false);}
+        $user = User::findOne(['username'=>$model->member2name]); if  ($user) {$user->teamname = '';$user->save(false);}
+        $user = User::findOne(['username'=>$model->member3name]); if  ($user) {$user->teamname = '';$user->save(false);}
         $model->delete();
         return $this->redirect(['index']);
     }

@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Eat In Tsinghua';
+$this->title = 'Eat At Tsinghua';
 ?>
 <div class="site-index">
 
@@ -54,3 +54,4 @@ $this->title = 'Eat In Tsinghua';
 
     </div>
 </div>
+

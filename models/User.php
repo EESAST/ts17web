@@ -206,3 +206,4 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
 }
+
