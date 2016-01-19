@@ -7,16 +7,14 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Register';
+$this->title = '发起新话题';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-register">
+<div class="site-forum">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to Register:</p>
-
     <?php $form = ActiveForm::begin([
-        'id' => 'register-form',
+        'id' => 'forum-form',
         'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
             'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
@@ -24,26 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-        <?= $form->field($model, 'username') ?>
+        <?= $form->field($model, 'theme') ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?= $form->field($model, 'password2')->passwordInput() ?>
-
-        <?= $form->field($model, 'email') ?>
-
-        <?= $form->field($model, 'realname') ?>
-
-        <?= $form->field($model, 'school') ?>
-
-        <?= $form->field($model, 'class') ?>
-
-        <?= $form->field($model, 'studentnumber') ?>
-
+        <?= $form->field($model, 'content')->textarea(['rows' => 6])?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
+                <?= Html::submitButton('提交', ['class' => 'btn btn-primary', 'name' => 'submit-button']) ?>
             </div>
         </div>
 
