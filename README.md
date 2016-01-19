@@ -28,6 +28,8 @@
 
 /views/forum/index.php里面的第44行也是上述的问题
 
+####3.web下面有一个文件夹images放图片
+
 
 #Settings
 --------------------
