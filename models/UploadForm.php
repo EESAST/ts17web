@@ -21,7 +21,9 @@ class UploadForm extends Model
     public function indextoadd(){
         $connection = \Yii::$app->db;
         $command = $connection->createCommand('SELECT max(id) FROM sourcecodes');
-        return array_values($nextindex = $command->queryOne())[0];
+        if (array_values($nextindex = $command->queryOne())[0]!="")
+            return array_values($nextindex = $command->queryOne())[0];
+        else return 0;
     }
 
     public function upload()
