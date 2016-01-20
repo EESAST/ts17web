@@ -1,6 +1,4 @@
-
 <?php
-
 namespace app\controllers;
 use Yii;
 use yii\data\Pagination;
@@ -28,7 +26,7 @@ class ForumController extends \yii\web\Controller
                     'asc' => ['author' => SORT_ASC],
                     'desc' => ['author' => SORT_DESC],
                     'default' => SORT_DESC,
-                    'label' => '作者',
+                    'label' => '作�??',
                 ],
                 'reply' => [
                     'asc' => ['reply' => SORT_ASC],
@@ -40,7 +38,7 @@ class ForumController extends \yii\web\Controller
                     'asc' => ['updated_at' => SORT_ASC],
                     'desc' => ['updated_at' => SORT_DESC],
                     'default' => SORT_DESC,
-                    'label' => '最后更新',
+                    'label' => '�?后更�?',
                 ],
 
             ],
@@ -68,7 +66,7 @@ class ForumController extends \yii\web\Controller
         ]);
     }
 
-    //发新的帖子
+    //发新的帖�?
    	public function actionNewForum(){
 
         if (Yii::$app->user->isGuest) {
@@ -95,7 +93,7 @@ class ForumController extends \yii\web\Controller
    	}
 
 
-    //点入查看帖子的回复
+    //点入查看帖子的回�?
     public function actionDetailForum($id)
     {
         
@@ -117,8 +115,8 @@ class ForumController extends \yii\web\Controller
             $fathermodel->updated_at=$forum->created_at;
             $fathermodel->save(false);
             
-            return $this->redirect('http://192.168.7.51/~Brian/ts17web/web/index.php?r=forum/detail-forum&id='
-                .$fathermodel->index);//应该成服务器对应的网址
+            return $this->redirect('http://localhost:5656/ts17web/web/index.php?r=forum/detail-forum&id='
+                .$fathermodel->index);//应该成服务器对应的网�?
         } else {
             return $this->render('detailforum', [
             'forum' => $fathermodel, 'detailforums'=>$this->findReplies($id),'model'=>$model
