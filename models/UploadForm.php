@@ -35,7 +35,7 @@ class UploadForm extends Model
             $user = User::findByUsername(Yii::$app->user->identity->username);
             $newsourcecode->team = $user->teamname;
             $newsourcecode->uploadedby = $user->username;
-            $newsourcecode->uploadedat = date("Y/m/d h:i:sa");
+            $newsourcecode->uploadedat = date("Y/m/d h:i:s");
             $newsourcecode->save();
             return true;
         } else {

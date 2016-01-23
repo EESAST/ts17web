@@ -115,7 +115,7 @@ class ForumController extends \yii\web\Controller
             $fathermodel->updated_at=$forum->created_at;
             $fathermodel->save(false);
             
-            return $this->redirect('http://localhost:5656/ts17web/web/index.php?r=forum/detail-forum&id='
+            return $this->redirect('http://localhost/~Brian/ts17web/web/index.php?r=forum/detail-forum&id='
                 .$fathermodel->index);//应该成服务器对应的网�?
         } else {
             return $this->render('detailforum', [

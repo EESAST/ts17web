@@ -41,7 +41,7 @@ if (!\Yii::$app->user->isGuest) { ?>
 <?php foreach ($forums as $forum): ?>
     	<tr>
     		<td><img align="center" width="15" height="15" src="images/folder.gif"/> 
-    				<a href="<?php echo 'http://localhost:5656/ts17web/web/index.php?r=forum/detail-forum&id='.$forum->index
+    				<a href="<?php echo 'http://localhost/~Brian/ts17web/web/index.php?r=forum/detail-forum&id='.$forum->index
     				//这里之后改成服务器的网址,现在是localhost?>" >
     				<?= $forum->theme?>
     				</a>
