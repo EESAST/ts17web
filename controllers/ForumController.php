@@ -26,19 +26,19 @@ class ForumController extends \yii\web\Controller
                     'asc' => ['author' => SORT_ASC],
                     'desc' => ['author' => SORT_DESC],
                     'default' => SORT_DESC,
-                    'label' => '作�??',
+                    'label' => '作者',
                 ],
                 'reply' => [
                     'asc' => ['reply' => SORT_ASC],
                     'desc' => ['reply' => SORT_DESC],
                     'default' => SORT_DESC,
-                    'label' => '回复',
+                    'label' => '回复',
                 ],
                 'updated_at' => [
                     'asc' => ['updated_at' => SORT_ASC],
                     'desc' => ['updated_at' => SORT_DESC],
                     'default' => SORT_DESC,
-                    'label' => '�?后更�?',
+                    'label' => '最后更新',
                 ],
 
             ],
@@ -66,7 +66,7 @@ class ForumController extends \yii\web\Controller
         ]);
     }
 
-    //发新的帖�?
+    //发布新帖子
    	public function actionNewForum(){
 
         if (Yii::$app->user->isGuest) {
@@ -93,7 +93,7 @@ class ForumController extends \yii\web\Controller
    	}
 
 
-    //点入查看帖子的回�?
+    //点入查看帖子的回复
     public function actionDetailForum($id)
     {
         
@@ -116,7 +116,7 @@ class ForumController extends \yii\web\Controller
             $fathermodel->save(false);
             
             return $this->redirect('http://localhost/~Brian/ts17web/web/index.php?r=forum/detail-forum&id='
-                .$fathermodel->index);//应该成服务器对应的网�?
+                .$fathermodel->index);//应该成服务器对应的网址
         } else {
             return $this->render('detailforum', [
             'forum' => $fathermodel, 'detailforums'=>$this->findReplies($id),'model'=>$model

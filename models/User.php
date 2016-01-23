@@ -45,13 +45,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 [['username', 'password', 'realname', 'school', 'class', 'authKey', 'accessToken', 'group'], 'string'],
 [['created_at', 'updated_at'], 'safe'],
 ['username', 'filter', 'filter' => 'trim'],
-['username', 'required','message' => '用户名不能为空'],
-['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已存在'],
+['username', 'required','message' => '脫脙禄搂脙没虏禄脛脺脦陋驴脮'],
+['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '脫脙禄搂脙没脪脩麓忙脭脷'],
 ['username', 'string', 'min' => 2, 'max' => 255],
-['password', 'required','message' => '密码不能为空'],
+['password', 'required','message' => '脙脺脗毛虏禄脛脺脦陋驴脮'],
 ['password', 'string', 'min' => 6],
 ['email','string'],
-['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已存在'],
+['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '脫脢脧盲脪脩麓忙脭脷'],
 ['realname','string'],
 ];
 }

@@ -17,7 +17,7 @@ class OnlineCompileController extends Controller
         if (Yii::$app->request->isPost) {
             $model->sourcecode = UploadedFile::getInstance($model, 'sourcecode');
             if ($model->upload()) {
-                // 文件上传成功
+                // 脦脛录镁脡脧麓芦鲁脡鹿娄
                 return $this->render('uploadsuccess', ['model' => $model]);
             }
         }

@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Team'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php if (!empty($teamname))//如果有team，则输出myteaminfo
+    <?php if (!empty($teamname))//脠莽鹿没脫脨team拢卢脭貌脢盲鲁枚myteaminfo
         echo
         ' <table><caption><h2>My Team Info</h2></caption><tr></tr><td>Team Name</td><td>Leader</td><td>Member</td><td>Slogan</td>
         <tr><td><?php echo $myTeamInfo->teamname?></td><td><?php echo $myTeamInfo->leadername?></td><td>
