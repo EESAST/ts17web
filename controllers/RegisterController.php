@@ -15,14 +15,14 @@ class RegisterController extends \yii\web\Controller
     public function actionIndex()
     {
         if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->render('/dashboard/index');
         }
 
         $model = new RegisterForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->register()) 
+        if ($model->load(Yii::$app->request->post()) && $user=$model->register()) 
         {
-            $model->login();//登陆
+            Yii::$app->user->login($user, 0);
             return $this->render('/dashboard/index');
             //注册成功后登陆并直接跳转到dashboard
         }

@@ -33,7 +33,8 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            ['username', 'required', 'message'=>'用户名不能为空'],
+            ['password', 'required', 'message'=>'密码不能为空'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -52,9 +53,10 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+            $hash = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+            //使用Yii自带的hash密码函数处理
+            if (!$user || !Yii::$app->getSecurity()->validatePassword($this->password, $hash)) {
+                $this->addError($attribute, '用户名或密码错误');
             }
         }
     }
@@ -65,7 +67,7 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {/*validate()*/
+        if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
