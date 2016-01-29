@@ -2,44 +2,70 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Eat At Tsinghua';
-$this->params['breadcrumbs'][] = $this->title;
-?>
+$this->title = 'Eatting in Tsinghua';?>
 
-<div>
-    <br/>
-    <div class="am-slider am-slider-default" style="height: 50%;width: 70%;margin: auto" data-am-flexslider id="demo-slider-0">
-        <ul class="am-slides">
-            <li><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" /></li>
-            <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
-            <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
-            <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
-            <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
-        </ul>
+
+<div class="get">
+  <div class="am-g">
+    <div class="am-u-lg">
+      <h1 class="get-title"><?php echo $this->title;?> 队式开发大赛</h1>
+      <p>
+        <a href="#" class="am-btn am-btn-sm get-btn">获取更多信息？</a>
+      </p>
     </div>
-    <script>
-        $('.am-slider').flexslider();
-        $(function() {
-            var $slider = $('#demo-slider-0');
-            var counter = 0;
-            var getSlide = function() {
-                counter++;
-                return '<li><img src="http://s.amazeui.org/media/i/demos/bing-' +
-                    (Math.floor(Math.random() * 4) + 1) + '.jpg" />' +
-                    '<div class="am-slider-desc">动态插入的 slide ' + counter + '</div></li>';
-            };
-
-            $('.js-demo-slider-btn').on('click', function() {
-                var action = this.getAttribute('data-action');
-                if (action === 'add') {
-                    $slider.flexslider('addSlide', getSlide());
-                } else {
-                    var count = $slider.flexslider('count');
-                    count > 1 && $slider.flexslider('removeSlide', $slider.flexslider('count') - 1);
-                }
-            });
-
-
-        });
-    </script>
+  </div>
 </div>
+
+  
+<div class="detail">
+  <div class="am-g am-container">
+    <div class="am-u-lg-12">
+      <h2 class="detail-h2">第17届队式程序开发大赛，有你精彩!</h2>
+
+      <div class="am-g">
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
+
+          <h3 class="detail-h3">
+            <i class="am-icon-mobile am-icon-sm"></i>
+            为移动而生
+          </h3>
+          <p class="detail-p">
+           队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛
+          </p>
+        </div>
+
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
+          <h3 class="detail-h3">
+            <i class="am-icon-cogs am-icon-sm"></i>
+            组件丰富，模块化
+          </h3>
+
+          <p class="detail-p">
+          队式开发大赛队式开发大赛队式开发大赛队式开发大赛
+          </p>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
+          <h3 class="detail-h3">
+            <i class="am-icon-check-square-o am-icon-sm"></i>
+            本地化支持
+          </h3>
+
+          <p class="detail-p">
+           队式开发大赛队式开发大赛队式开发大赛队式开发大赛
+          </p>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
+          <h3 class="detail-h3">
+            <i class="am-icon-send-o am-icon-sm"></i>
+            轻量级，高性能
+          </h3>
+
+          <p class="detail-p">
+          队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛    
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

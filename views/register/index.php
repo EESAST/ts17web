@@ -8,18 +8,17 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Register';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-register">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to Register:</p>
-
+<div class="site-register" style="width:90%">
+<br/>
     <?php $form = ActiveForm::begin([
         'id' => 'register-form',
         'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+            'template' => "{label}\n<div class=\"col-lg-5 am-form \">{input}</div>\n<div class=\"col-lg-5 am-form\">{error}</div>",
+            'labelOptions' => ['class' => 'col-lg-1 control-label am-song'],
+            'errorOptions'=>['']
         ],
     ]); ?>
 
@@ -42,7 +41,7 @@ $this->title = 'Register';
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
+                <?= Html::submitButton('Register', ['class' => 'am-btn am-btn-success', 'name' => 'register-button']) ?>
             </div>
         </div>
 

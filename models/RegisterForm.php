@@ -34,7 +34,7 @@ class RegisterForm extends Model
             'realname' => '真实姓名',
             'school'=>'学校',
             'class'=>'班级',
-            'studentnumber' => '学生证号（如果有）'
+            'studentnumber' => '学生证号'
         ];
     }
 
@@ -42,7 +42,7 @@ class RegisterForm extends Model
     {
         return
             [
-                [['username', 'password', 'email', 'realname', 'school', 'class', 'studentnumber',], 'required'],
+                [['username', 'password', 'email', 'realname', 'school', 'class', 'studentnumber',], 'required','message'=>'该栏目不能为空'],
                 [['username', 'password', 'realname', 'school', 'class'], 'string'],
                 ['username', 'filter', 'filter' => 'trim'],
                 ['username', 'required','message' => '用户名不能为空'],

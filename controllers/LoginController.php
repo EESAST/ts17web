@@ -16,13 +16,12 @@ class LoginController extends \yii\web\Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->render('/dashboard/index');
+       if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->render('/site/index');
             //登陆之后直接跳转到dashboard
         }
-        return $this->render('index', [
-            'model' => $model,
-        ]);
+        return $this->redirect(['/site/index']);  
+
     }
 
     public function actionLogout()
