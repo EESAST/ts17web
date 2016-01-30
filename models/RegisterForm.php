@@ -33,8 +33,8 @@ class RegisterForm extends Model
             'password2' => '确认密码',
             'realname' => '真实姓名',
             'school'=>'学校',
-            'class'=>'班级',
-            'studentnumber' => '学生证号'
+            'class'=>'院系班级',
+            'studentnumber' => '学生证号(如果有)'
         ];
     }
 
@@ -42,15 +42,28 @@ class RegisterForm extends Model
     {
         return
             [
-                [['username', 'password', 'email', 'realname', 'school', 'class', 'studentnumber',], 'required','message'=>'该栏目不能为空'],
-                [['username', 'password', 'realname', 'school', 'class'], 'string'],
-                ['username', 'filter', 'filter' => 'trim'],
                 ['username', 'required','message' => '用户名不能为空'],
-                ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已存在'],
-                ['username', 'string', 'min' => 2, 'max' => 32],
                 ['password', 'required','message' => '密码不能为空'],
+                ['password2', 'required','message' => '确认密码不能为空'],
+                ['email', 'required','message' => '邮箱不能为空'],
+                ['realname', 'required','message' => '真实姓名不能为空'],
+                ['school', 'required','message' => '学校不能为空'],
+                ['class', 'required','message' => '院系班级不能为空'],
+                ['studentnumber', 'required','message' => '学生证号不能为空'],
+
+                //unique
+                ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已被注册'],
+                ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已被注册'],
+
+                //double check password
+                ['password2','compare','compareAttribute'=>'password','message'=>'两次输入的密码不一致'],
+
+                //data type and requirements
+                ['username', 'filter', 'filter' => 'trim'],
+                ['username', 'string', 'length' => [5, 12]],
                 ['password', 'string', 'min' => 6],
-                ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已存在'],
+                ['school', 'string', 'min'=>2, 'max'=>10],
+                ['email', 'email', 'message'=>'请检查您的电子邮件地址'],
             ];
     }
 
@@ -59,7 +72,9 @@ class RegisterForm extends Model
         if ($this->validate()) {
                 $user = new User();
                 $user->username = $this->username;
-                $user->password = $this->password;
+
+                //密码用Yii自带的hash密码函数处理
+                $user->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
                 $user->realname = $this->realname;
                 $user->email = $this->email;
                 $user->school = $this->school;
@@ -69,22 +84,13 @@ class RegisterForm extends Model
                 $user->updated_at = date("Y-m-d H:i:s");
                 $user->status = 1;
                 $user->group = 'player';
-            $connection = \Yii::$app->db;
-//            $connection->createCommand()->insert('user',
-//                [
-//                'username'=>$this->username,
-//                'password'=>$this->password,
-//                'email'=>$this->email,
-//                'realname'=>$this->realname,
-//                'teamname'=>'',
-//            ])->execute();
-            $user->save(false);
-            return $user;
+                if ($user->save(true)){//true调用User里的rules方法进行二次验证
+                    return $user;
+                }
+            
         }
-        return null;
-        
+        return null;       
     }
-
     //实现注册之后直接登录
     public function login()
     {

@@ -1,7 +1,7 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-
+date_default_timezone_set("Asia/Shanghai");
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),

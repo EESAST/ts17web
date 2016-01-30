@@ -1,5 +1,4 @@
 <?php
-
 namespace app\controllers;
 use Yii;
 use yii\data\Pagination;
@@ -34,6 +33,7 @@ class ForumController extends \yii\web\Controller
                     'desc' => ['reply' => SORT_DESC],
                     'default' => SORT_DESC,
                     'label' => '回复',
+
                 ],
                 'updated_at' => [
                     'asc' => ['updated_at' => SORT_ASC],
@@ -66,8 +66,6 @@ class ForumController extends \yii\web\Controller
             'sort' => $sort,
         ]);
     }
-
-    //发新的帖子
    	public function actionNewForum(){
 
         if (Yii::$app->user->isGuest) {
@@ -115,9 +113,9 @@ class ForumController extends \yii\web\Controller
             $fathermodel->reply=$fathermodel->reply+1;
             $fathermodel->updated_at=$forum->created_at;
             $fathermodel->save(false);
-            
             return $this->redirect(['forum/detail-forum','id'=>$forum->index]);//应该  成服务器对应的网址
-        } else {
+        } 
+        else {
             return $this->render('detailforum', [
             'forum' => $fathermodel, 'detailforums'=>$this->findReplies($id),'model'=>$model
         ]);
