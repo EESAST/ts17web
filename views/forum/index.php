@@ -1,61 +1,66 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\LinkPager;
-
 $this->title = 'Forum';
-$this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<h1 align = "center" >Forums</h1>
+<a href="<?php echo Url::toRoute('forum/new-forum') ;?>"><button class="am-btn am-btn-primary am-btn-block"><br/><span class="am-text-lg"><i class="am-icon-th-large"></i>发帖</span><br/><br/></button></a>
+<hr data-am-widget="divider" class="am-divider am-divider-default" />
+<div class="am-g">
+    <div class="am-u-sm-9">
+        <table class="am-table am-table-striped am-table-hover table-main">
+            <button class="am-btn am-btn-default am-btn-block"><span class="am-text-lg">全部帖子</span></button>
+            <thead>
+              <tr>
+                <th class="table-title" width="30%"><?php echo $sort->link('theme')?></th>
+                <th class="table-auther" width="10%"><?php echo $sort->link('author')?></th>
+                <th class="table-date" width="9%"><?php echo $sort->link('reply')?></th>
+                <th class="table-date" width="20%"><?php echo $sort->link('updated_at')?></th>
+                <th class="table-set" width="20%" ><a href="#" class="am-disabled">操作</a></th>
+              </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($forums as $forum): ?>
+              <tr>
+                <td >
+                    <i class='am-icon-book'></i>
+                    <a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->index])?>" >
+                    <?= $forum->theme?>
+                    </a>
+                </td>
+                <td><?= $forum->author?></td>
+                <td><?= $forum->reply?></td>
+                <td><?= $forum->updated_at?></td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-disabled"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only am-disabled"><span class="am-icon-trash-o"></span> 删除</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+           </tbody>
+        </table>
+        <br/>
+        <br/>
+        <br/>
+    </div>
 
 
 
-<?php //若没登陆，就不能发布新的帖子
-if (!\Yii::$app->user->isGuest) { ?>
-		<p align = "center"><?= Html::a(Yii::t('app', '发帖'), ['new-forum'], ['class' => 'btn btn-success']) ?></p>
-<?php } ?>
 
+    <div class="am-u-sm-3 ">
+        要不这里讲笑话？或者写论坛守则2333<br/><br/>
+        主要是整个页面都搞论坛页面不好看<br/>
+        <br/>
+        然后你们后端貌似没有实现分页功能，所以前端也先不写了哈……
 
+    </div>
 
-
-
-<?php //好像Yii的自带css将padding设置成了0px 所以就设置回来。。。?>
-<style>
-.padding0
-    td{
-        padding:5px;
-        border-radius: 10px;
-    }
-
-
-</style>
-
-<table border="1" width="100%" align ="center" class="padding0">
-<tr>
-	<td align="center" width="60%"><b><?php echo $sort->link('theme')?></b></td>
-	<td align="center" width="15%"><b><?php echo $sort->link('author')?></b></td>
-	<td align="center" width="8%"><b><?php echo $sort->link('reply')?></b></td>
-	<td align="center" width="17%"><b><?php echo $sort->link('updated_at')?></b></td>
-</tr>
-<?php foreach ($forums as $forum): ?>
-    	<tr>
-    		<td><img align="center" width="15" height="15" src="images/folder.gif"/> 
-    				<a href="<?php echo 'index.php?r=forum/detail-forum&id='.$forum->index
-    				//这里之后改成服务器的网址,现在是localhost?>" >
-    				<?= $forum->theme?>
-    				</a>
-    		</td>
-    		<td align="center"><?= $forum->author?></td>
-    		<td align="center"><?= $forum->reply?></td>
-			<td align="center"><?= $forum->updated_at?></td>
-    	</tr>
-<?php endforeach; ?>
-</table>
-
-
-
-<div align="center">
-<?= LinkPager::widget(['pagination' => $pagination]) 
-//pagination 自动换页?>
 </div>
+
+

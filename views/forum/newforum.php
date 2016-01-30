@@ -6,35 +6,39 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-
-$this->title = '发起新话题';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-forum">
-    <h1><?= Html::encode($this->title) ?></h1>
-
+<br/>
+<br/>
+<div class="am-g">
+<div class="am-u-sm-8">
     <?php $form = ActiveForm::begin([
         'id' => 'forum-form',
-        'options' => ['class' => 'form-horizontal'],
+        'options' => ['class' => 'am-form'],
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+            'template' => "{label}\n<div>{input}</div>\n",
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>
-
         <?= $form->field($model, 'theme') ?>
-
         <?= $form->field($model, 'content')->textarea(['rows' => 6])?>
-
         <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('提交', ['class' => 'btn btn-primary', 'name' => 'submit-button']) ?>
-            </div>
+            <br/>
+            <?= Html::submitButton('提交', ['class' => 'am-btn am-btn-default am-btn-block', 'name' => 'submit-button']) ?>
         </div>
 
     <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        
-    </div>
+</div>
+<div class="am-u-sm-4 ">
+      <section class="am-panel am-panel-default">
+        <div class="am-panel-hd">热门讨论帖</div>
+        <ul class="am-list blog-list">
+          <li><a href="#">你真的愿意写热门么？</a></li>
+          <li><a href="#">我再问一次，你们真的写么</a></li>
+          <li><a href="#">还有啥啥啥的</a></li>
+          <li><a href="#">然后帖主有删帖子的权利，评论者有扯评论的权利</a></li>
+          <li><a href="#">点赞、评论其他人的帖子，@</a></li>
+          <li><a href="#">到底写不写嘛</a></li>          
+        </ul>
+        </section>
+</div>
 </div>

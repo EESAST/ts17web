@@ -12,15 +12,17 @@ $this->title = $forum->theme;
 <br/>
 <div class="am-g">
 <div class="am-u-sm-8">
-
+      <section class="am-panel am-panel-default">
+        <div class="am-panel-hd"><span class="am-text-lg am-text-warning">话题： </span><?=$forum->content ?></div>
+       </section>
 <article class="am-comment-success">
-<img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48">
+<img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48">	
 <div class="am-comment-main">
   <header class="am-comment-hd">
      <div class="am-comment-meta"><a href="#" class="am-comment-author"><span class="am-text-lg am-text-success"><?=$forum->author?></span></a>发帖于<time><?=$forum->created_at ?></time></div>
   </header>
   <div class="am-comment-bd">
-  	<p><?=$forum->author?></p>
+  	<p><?=$forum->content ?></p>
   </div>
 </div>
 <br/>
@@ -28,7 +30,7 @@ $this->title = $forum->theme;
 
 
  <div class="am-panel am-panel-default">
-      <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-3'}">评论<span class="am-icon-chevron-down am-fr" ></span></div>
+      <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-3'}"><span class="am-text-lg am-text-warning">评论： </span><span class="am-icon-chevron-down am-fr" ></span><?=$forum->reply?></div>
       
       <div class="am-panel-bd am-collapse am-in am-cf" id="collapse-panel-3">
         <ul class="am-comments-list">
@@ -38,22 +40,24 @@ $this->title = $forum->theme;
             <a href="#"><img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48"></a>
              <div class="am-comment-main">
               <header class="am-comment-hd">
-                   <div class="am-comment-meta"><a href="#" class="am-comment-author"><span class="am-comment-author am-text-lg am-text-warning"><?=$detailforum->author?></span></a> 评论于 <time><?=$detailforum->created_at?></time></div>
+                   <div class="am-comment-meta"><a href="#" class="am-comment-author"><span class="am-comment-author am-text-lg "><?=$detailforum->author?></span></a> 评论于 <time><?=$detailforum->created_at?></time></div>
                </header>
               <div class="am-comment-bd">
               		<p><?=$detailforum->reply?></p>
               </div>
             </div>
-           <?php if(\Yii::$app->user->identity->username===$detailforum->author):?>
+           <?php if(!\Yii::$app->user->isGuest&&\Yii::$app->user->identity->username===$detailforum->author):?>
            			<script type="text/javascript">
-           					$('#<?=$detailforum->author ?>').addClass('am-comment-flip am-comment-warning');
+           					$('li#<?=$detailforum->author ?>').addClass('am-comment-flip am-comment-warning')
+           													  .find('span').addClass('am-text-warning');
+           				
            			</script>
            	<?php endif; ?>
           </li>
           
          <?php endforeach; ?>
          <?php else: ?>
-          <p>这连一只会拉屎的鸟都没有</p>
+          <p>这连一只会拉屎的鸟都没有，更别提评论了</p>
           <br/>
          <?php endif; ?>
         </ul>
@@ -78,7 +82,7 @@ $this->title = $forum->theme;
     ]); 
 ?>
 		
-        <?= $form->field($model, 'reply')->textarea(['rows' => 6])?>
+        <?= $form->field($model, 'reply')->textarea(['rows' => 4])?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">

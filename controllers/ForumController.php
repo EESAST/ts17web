@@ -116,8 +116,7 @@ class ForumController extends \yii\web\Controller
             $fathermodel->updated_at=$forum->created_at;
             $fathermodel->save(false);
             
-            return $this->redirect('index.php?r=forum/detail-forum&id='
-                .$fathermodel->index);//应该  成服务器对应的网址
+            return $this->redirect(['forum/detail-forum','id'=>$forum->index]);//应该  成服务器对应的网址
         } else {
             return $this->render('detailforum', [
             'forum' => $fathermodel, 'detailforums'=>$this->findReplies($id),'model'=>$model

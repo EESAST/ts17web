@@ -88,10 +88,7 @@ class RegisterForm extends Model
     //实现注册之后直接登录
     public function login()
     {
-       
         return Yii::$app->user->login($this->getUser(), 0);
-        
-        return false;
     }
 
     public function getUser()
@@ -102,7 +99,4 @@ class RegisterForm extends Model
 
         return $this->_user;
     }
-
-
-
 }
