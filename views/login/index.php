@@ -73,4 +73,8 @@ echo \Yii::$app->view->renderFile('@app/views/site/index.php');
             </div>
         </div>
     <?php ActiveForm::end(); ?>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> lzhbrian

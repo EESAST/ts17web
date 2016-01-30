@@ -31,7 +31,6 @@ $title='Eatting in Tsinghua'
       text-align: center;
       padding: 100px 0;
     }
-
     .get-title {
       font-size: 200%;
       border: 2px solid #fff;
@@ -52,7 +51,6 @@ $title='Eatting in Tsinghua'
       font-size: 150%;
       margin: 40px 0;
     }
-
     .detail-h3 {
       color: #1f8dd6;
     }
