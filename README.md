@@ -1,6 +1,10 @@
 
 #Log
 --------------------
+###31-1 by 段续光	
+我们是不是以后吧log都merge到master上去啊。
+
+
 ###1-28 by 林子恒
 修改了user属性，加入passwordhash，还有生成authkey（资料库里的user表已有的数据要删掉重新加入）
 文件下载（supporting files写了一点东西），文件存在web/files下面（这部分一点技术含量都没有。。。）
