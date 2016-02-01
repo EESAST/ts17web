@@ -14,11 +14,11 @@ $this->title = 'Forum';
             <button class="am-btn am-btn-default am-btn-block"><span class="am-text-lg">全部帖子</span></button>
             <thead>
               <tr>
-                <th class="table-title" width="30%"><?php echo $sort->link('theme')?></th>
-                <th class="table-auther" width="10%"><?php echo $sort->link('author')?></th>
-                <th class="table-date" width="9%"><?php echo $sort->link('reply')?></th>
-                <th class="table-date" width="20%"><?php echo $sort->link('updated_at')?></th>
-                <th class="table-set" width="20%" ><a href="#" class="am-disabled">操作</a></th>
+                <th width="30%"><?php echo $sort->link('theme')?></th>
+                <th width="10%"><?php echo $sort->link('author')?></th>
+                <th width="9%"><?php echo $sort->link('reply')?></th>
+                <th width="20%"><?php echo $sort->link('updated_at')?></th>
+                <th width="20%" ><a href="#" class="am-disabled">操作</a></th>
               </tr>
           </thead>
           <tbody>
