@@ -13,18 +13,19 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class MyAppAsset1 extends AssetBundle
+class MyAppAsset2 extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'UI/assets/css/admin.css',
         
     ];
     public $js = [
-        'UI/assets/js/jquery.min.js',
+        'UI/assets/js/app.js',
     ];
 
     public $depends = [
     ];
-    public $jsOptions=['position'=>\yii\web\View::POS_HEAD];
+    //public $jsOptions=['position'=>\yii\web\View::POS_HEAD];
 }
