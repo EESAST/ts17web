@@ -49,18 +49,17 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
+    
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-            $hash = Yii::$app->getSecurity()->generatePasswordHash($this->password);
             //使用Yii自带的hash密码函数处理
-            if (!$user || !Yii::$app->getSecurity()->validatePassword($this->password, $hash)) {
+            if (!$user || !Yii::$app->getSecurity()->validatePassword($this->password, $user->password)) {
                 $this->addError($attribute, '用户名或密码错误');
             }
         }
     }
-
     /**
      * Logs in a user using the provided username and password.
      * @return boolean whether the user is logged in successfully
@@ -72,6 +71,7 @@ class LoginForm extends Model
         }
         return false;
     }
+
 
     /**
      * Finds user by [[username]]
