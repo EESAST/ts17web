@@ -32,7 +32,7 @@ class Forum extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['theme', 'content','author', 'created_at'], 'required'],
+            [['theme', 'content','author', 'kinds', 'created_at'], 'required'],
         ];
     }
 
@@ -46,6 +46,7 @@ class Forum extends \yii\db\ActiveRecord
             'author' => 'author',
             'theme' => 'Theme',
             'content' => 'Content',
+            'kinds'=> 'Kinds',
             'created_at' => 'Created At',
             'updated_at' =>'updated_at',
         ];

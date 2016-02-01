@@ -17,6 +17,7 @@ class ForumForm extends Model
     public $index;
     public $theme;
     public $content;
+    public $kinds;
     public $created_at;
 
 /*
@@ -35,7 +36,7 @@ class ForumForm extends Model
     {
         return [
             // username and password are both required
-            [['theme', 'content','created_at'], 'required'],
+            [['theme', 'content','created_at','kinds'], 'required'],
             
         ];
     }

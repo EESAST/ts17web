@@ -25,6 +25,7 @@ $this->title = 'Forum';
             <?php foreach ($forums as $forum): ?>
               <tr>
                 <td >
+                    <?= '['.$forum->kinds.']' ?>
                     <i class='am-icon-book'></i>
                     <a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->index])?>" >
                     <?= $forum->theme?>
@@ -63,4 +64,10 @@ $this->title = 'Forum';
 
 </div>
 
+<div>
+<?php echo LinkPager::widget([
+    'pagination' => $pagination,
+]);
+?>
+</div>
 
