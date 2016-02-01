@@ -129,7 +129,7 @@ $title='Eatting in Tsinghua'
         <li id='News'><a href="<?php echo Url::toRoute('news/index') ;?>" >news</a></li>
         <li id='Dashboard'><a href="<?php echo Url::toRoute('dashboard/index') ;?>">dashboard</a></li>
         <li id='Forum'><a href="<?php echo Url::toRoute('forum/index') ;?>">forum</a></li>
-        <li id='Supporting Files'><a href="<?php echo Url::toRoute('supporting-files/index') ;?>">files</a></li>
+        <li id='Supporting-files'><a href="<?php echo Url::toRoute('supporting-files/index') ;?>">supporting-files</a></li>
         <li id='more' class="am-disabled"><a href="#">more</a></li>
       </ul>
       
