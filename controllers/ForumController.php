@@ -51,7 +51,7 @@ class ForumController extends \yii\web\Controller
         $query = Forum::find();
 
         $pagination = new Pagination([
-            'defaultPageSize' => 20,
+            'defaultPageSize' => 5,
             'totalCount' => $query->count(),
         ]);
 
@@ -79,9 +79,10 @@ class ForumController extends \yii\web\Controller
             $forum->author = Yii::$app->user->identity->username;
             $forum->theme = $model->theme;
             $forum->content = $model->content;
+            $forum->kinds = $model->kinds;
             $forum->created_at = $model->created_at;
             $forum->updated_at = $model->created_at;
-			$forum->save(false);
+			$forum->save(true);
 
             return $this->redirect(['index']);
 
@@ -108,12 +109,12 @@ class ForumController extends \yii\web\Controller
             $forum->fatherindex = $id;
             $forum->reply = $model->reply;
             $forum->created_at = $model->created_at;
-            $forum->save(false);
+            $forum->save(true);
 
             $fathermodel->reply=$fathermodel->reply+1;
             $fathermodel->updated_at=$forum->created_at;
-            $fathermodel->save(false);
-            return $this->redirect(['forum/detail-forum','id'=>$forum->index]);//应该  成服务器对应的网址
+            $fathermodel->save(true);
+            return $this->redirect(['forum/detail-forum','id'=>$fathermodel->index]);//应该  成服务器对应的网址
         } 
         else {
             return $this->render('detailforum', [

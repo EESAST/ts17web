@@ -19,6 +19,8 @@ use yii\bootstrap\ActiveForm;
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>
+        <?= $form->field($model, 'kinds')->radioList(['tucao'=>'吐槽灌水','tactic'=>'战术讨论',
+            'rule'=>'规则询问','bug'=>'平台报错']) ?>
         <?= $form->field($model, 'theme') ?>
         <?= $form->field($model, 'content')->textarea(['rows' => 6])?>
         <div class="form-group">
