@@ -1,37 +1,129 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = 'Supporting Files';
+$this->title = 'Supporting-files';
+function list_file($dir){
+	$list=scandir($dir);
+	foreach ($list as $file) {
+		$file_url=$dir.'/'.$file;
+		$update_time=filectime($file_url);
+		$file_size=round(filesize($file_url)/1024);
+		if(!is_dir($file_url))echo "<tr><td>$file</td><td>".date('M,d,Y G:i',$update_time)."</td><td>$file_size KB</td><td><a href='$file_url'><i class='am-icon-download'></i></a></td></tr>";
+	}
+}
 ?>
-<h1 align="center">文件下载</h1>
-<br/><br/>
+<div class="admin-content">
 
-<h4>&nbsp&nbsp&nbsp选手包</h4>
-<hr/>
-<ul>
-	<li><a href="files/ts17_competitors.zip">ts17_competitors.zip</a></li>
-</ul>
-<br/>
+  <div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">文件支持</strong> / <small>在文件使用过程中遇到bug请通知向开发组相关人员，文件最终解释权归第十七届队式程序开发组所有</small></div>
+  </div>
 
-<h4>&nbsp&nbsp&nbsp3D回放器</h4>
-<hr/>
-<ul>
-	<li>Windows版本：<a href="files/ts17_win.exe">ts17_win.exe</a></li>
-	<li>Mac版本：<a href="files/ts17_mac.app">ts17_mac.app</a></li>
-</ul>
-<br/>
+  <div class="am-tabs am-margin" data-am-tabs>
+    <ul class="am-tabs-nav am-nav am-nav-tabs">
+      <li class="am-active"><a href="#tab1">选手包</a></li>
+      <li><a href="#tab2">3D回放器</a></li>
+      <li><a href="#tab3">游戏规则</a></li>
+      <li><a href="#tab4">Sample Ai</a></li>
+    </ul>
+    <div class="am-tabs-bd">
+      <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+      	<div class="am-g">
+      	<div class="am-u-lg-8 am-u-sm-12">
+        <div class="am-g am-margin-top">
+          	<table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr>
+                <th width="40%">文件名</th>
+                <th width="30%">更新时间</th>
+                <th width="15%">文件大小</th>
+                <th width="15%">下载</th>
+              </tr>
+          </thead>
+          <tbody>
+            <?php 
+            	$dir="files/Package";
+            	list_file($dir);				
 
-<h4>&nbsp&nbsp&nbsp游戏规则</h4>
-<hr/>
-<ul>
-	<li><a href="files/ts17_rules.pdf">ts17_rules.pdf</a></li>
-</ul>
-<br/>
-
-<h4>&nbsp&nbsp&nbspSample AI</h4>
-<hr/>
-<ul>
-	<li><a href="files/ts17_sample_ai.pdf">ts17_sample_ai.pdf</a></li>
-</ul>
-<br/>
+            ?>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      </div>
+      </div>
 
 
+      <div class="am-tab-panel am-fade am-in am-active" id="tab2">
+      	<div class="am-g">
+      	<div class="am-u-lg-8 am-u-sm-12">
+        <div class="am-g am-margin-top">
+          	<table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr>
+                <th width="40%">文件名</th>
+                <th width="30%">更新时间</th>
+                <th width="15%">文件大小</th>
+                <th width="15%">下载</th>
+              </tr>
+          </thead>
+          <tbody>
+            <?php 
+            	$dir="files/player";
+            	list_file($dir);				
+            ?>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="am-tab-panel am-fade am-in am-active" id="tab3">
+      	<div class="am-g">
+      	<div class="am-u-lg-8 am-u-sm-12">
+        <div class="am-g am-margin-top">
+          	<table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr>
+                <th width="40%">文件名</th>
+                <th width="30%">更新时间</th>
+                <th width="15%">文件大小</th>
+                <th width="15%">下载</th>
+              </tr>
+          </thead>
+          <tbody>
+            <?php 
+            	$dir="files/Rules";
+            	list_file($dir);				
+            ?>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="am-tab-panel am-fade am-in am-active" id="tab4">
+      	<div class="am-g">
+      	<div class="am-u-lg-8 am-u-sm-12">
+        <div class="am-g am-margin-top">
+          	<table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr>
+                <th width="40%">文件名</th>
+                <th width="30%">更新时间</th>
+                <th width="15%">文件大小</th>
+                <th width="15%">下载</th>
+              </tr>
+          </thead>
+          <tbody>
+            <?php 
+            	$dir="files/SampleAi";
+            	list_file($dir);				
+            ?>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

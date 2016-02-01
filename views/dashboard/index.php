@@ -1,9 +1,158 @@
-<h1 align="center">欢迎你，<?=Yii::$app->user->identity->realname?></h1>
+<?php 
+$this->title = 'Dashboard';
+use app\assets\MyAppAsset2;
+MyAppAsset2::register($this);
+?>
 
-<p align="center">距离队式程序设计大赛提交初赛代码还有x天</p>
+<div class="am-g">
+  <div class=" am-u-sm-3 am-u-lg-2 admin-sidebar">
+    <div>
+      <ul class="am-list admin-sidebar-list">
+        <li>
+        	
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+                <img class="am-img am-img-thumbnail" src="images/avatar.jpg" width="128" height="256" alt=""/>
+          </div>
+        </div>
+        </li>
+        <li><a href="admin-table.html"><span class="am-icon-table"></span>个人资料</a></li>
+        <li><a href="admin-table.html"><span class="am-icon-table"></span>进入战队</a></li>
+        <li><a href="admin-table.html"><span class="am-icon-table"></span>资源下载</a></li>
+        <li><a href="admin-table.html"><span class="am-icon-table"></span>代码提交</a></li>
+        <li class='am-disabled'><a href="#"><span class="am-icon-table"></span>在线对战</a></li>
+        <li class="am-disabled"><a href="#"><span class="am-icon-table"></span>更多功能</a></li>
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+        </div>
+      </div>
 
-<p align="center">距离队式程序设计大赛决赛，走向人生巅峰还有x天</p>
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-tag"></span> wiki</p>
+          <p>Welcome to the Amaze UI wiki!</p>
+        </div>
+      </div>
+   -->
+    </div>
+  </div>
+  <!-- sidebar end -->
+  <!-- content start -->
+  <div class="admin-content am-u-sm-9 am-u-lg-10">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
+    </div>
 
-<p>修改个人资料(加照片)</p>
-<p>查看队伍信息</p>
-<p>你的队伍当前上传的代码为</p>
+    <hr/>
+
+    <div class="am-g">
+
+      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="am-g">
+              <div class="am-u-md-4">
+                <img class="am-img-circle am-img-thumbnail" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt=""/>
+              </div>
+              <div class="am-u-md-8">
+                <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                <form class="am-form">
+                  <div class="am-form-group">
+                    <input type="file" id="user-pic">
+                    <p class="am-form-help">请选择要上传的文件...</p>
+                    <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="user-info">
+              <p>等级信息</p>
+              <div class="am-progress am-progress-sm">
+                <div class="am-progress-bar" style="width: 60%"></div>
+              </div>
+              <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
+            </div>
+            <div class="user-info">
+              <p>信用信息</p>
+              <div class="am-progress am-progress-sm">
+                <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
+              </div>
+              <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+        <form class="am-form am-form-horizontal">
+          <div class="am-form-group">
+            <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
+            <div class="am-u-sm-9">
+              <input type="text" id="user-name" placeholder="姓名 / Name">
+              <small>输入你的名字，让我们记住你。</small>
+            </div>
+          </div>
+
+          <div class="am-form-group">
+            <label for="user-email" class="am-u-sm-3 am-form-label">电子邮件 / Email</label>
+            <div class="am-u-sm-9">
+              <input type="email" id="user-email" placeholder="输入你的电子邮件 / Email">
+              <small>邮箱你懂得...</small>
+            </div>
+          </div>
+
+          <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
+            <div class="am-u-sm-9">
+              <input type="email" id="user-phone" placeholder="输入你的电话号码 / Telephone">
+            </div>
+          </div>
+
+          <div class="am-form-group">
+            <label for="user-QQ" class="am-u-sm-3 am-form-label">QQ</label>
+            <div class="am-u-sm-9">
+              <input type="email" id="user-QQ" placeholder="输入你的QQ号码">
+            </div>
+          </div>
+
+          <div class="am-form-group">
+            <label for="user-weibo" class="am-u-sm-3 am-form-label">微博 / Twitter</label>
+            <div class="am-u-sm-9">
+              <input type="email" id="user-weibo" placeholder="输入你的微博 / Twitter">
+            </div>
+          </div>
+
+          <div class="am-form-group">
+            <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
+            <div class="am-u-sm-9">
+              <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+              <small>250字以内写出你的一生...</small>
+            </div>
+          </div>
+
+          <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-push-3">
+              <button type="button" class="am-btn am-btn-primary">保存修改</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+
+
+
