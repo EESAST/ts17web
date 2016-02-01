@@ -9,8 +9,6 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
 
-echo \Yii::$app->view->renderFile('@app/views/site/index.php');
-
 ?>
 
 <button type="button" class="am-btn am-btn-primary" id='123' data-am-modal="{target:'#temp'}" >点我试试</button>
@@ -73,8 +71,5 @@ echo \Yii::$app->view->renderFile('@app/views/site/index.php');
             </div>
         </div>
     <?php ActiveForm::end(); ?>
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> lzhbrian
+
