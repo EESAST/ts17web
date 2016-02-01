@@ -206,4 +206,4 @@ $('#'+$(document).attr('title')).addClass('am-active');
 <?php $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>                                   
+<?php $this->endPage() ?>
