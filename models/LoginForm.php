@@ -54,9 +54,8 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-            $hash = Yii::$app->getSecurity()->generatePasswordHash($this->password);
             //使用Yii自带的hash密码函数处理
-            if (!$user || !Yii::$app->getSecurity()->validatePassword($user->password, $hash)) {
+            if (!$user || !Yii::$app->getSecurity()->validatePassword($this->password, $user->password)) {
                 $this->addError($attribute, '用户名或密码错误');
             }
         }
