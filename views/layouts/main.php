@@ -130,6 +130,8 @@ $title='Eatting in Tsinghua'
         <li id='Dashboard'><a href="<?php echo Url::toRoute('dashboard/index') ;?>">dashboard</a></li>
         <li id='Forum'><a href="<?php echo Url::toRoute('forum/index') ;?>">forum</a></li>
         <li id='Supporting Files'><a href="<?php echo Url::toRoute('supporting-files/index') ;?>">files</a></li>
+        <li id='Online Compile'><a href="<?php echo Url::toRoute('online-compile/index') ;?>">online compile</a></li>
+
         <li id='more' class="am-disabled"><a href="#">more</a></li>
       </ul>
       
