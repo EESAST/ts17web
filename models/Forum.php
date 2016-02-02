@@ -13,6 +13,9 @@ use Yii;
  * @property string $author
  * @property string $theme
  * @property string $content
+ * @property string $kinds
+ * @property string $reply
+ * @property string $like
  * @property string $created_at
  * @property string $updated_at
  */

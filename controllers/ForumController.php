@@ -11,7 +11,7 @@ use app\models\DetailForumForm;
 class ForumController extends \yii\web\Controller
 {
 
-    public function actionIndex()
+    public function actionIndex($kinds='all')
     {
         $sort = new Sort([
             'attributes' => [
@@ -41,14 +41,45 @@ class ForumController extends \yii\web\Controller
                     'default' => SORT_DESC,
                     'label' => '最后更新',
                 ],
+                'like' => [
+                    'asc' => ['like' => SORT_ASC],
+                    'desc' => ['like' => SORT_DESC],
+                    'default' => SORT_DESC,
+                    'label' => '赞',
+                ],
+                'kinds' => [
+                    'asc' => ['kinds' => SORT_ASC],
+                    'desc' => ['kinds' => SORT_DESC],
+                    'default' => SORT_ASC,
+                    'label' => '类别',
+                ],
 
             ],
 
             'defaultOrder' => ['updated_at' => SORT_DESC], 
 
         ]);
-
-        $query = Forum::find();
+        
+        if($kinds==='all'){
+            $query = Forum::find();
+        }elseif ($kinds==='tucao') {
+            $query = Forum::find()->where(array('kinds'=>'tucao'));
+        }elseif ($kinds==='tactic') {
+            $query = Forum::find()->where(array('kinds'=>'tactic'));
+        }elseif ($kinds==='rule') {
+            $query = Forum::find()->where(array('kinds'=>'rule'));
+        }elseif ($kinds==='bug') {
+            $query = Forum::find()->where(array('kinds'=>'bug'));
+        }elseif ($kinds==='aboutme') {
+            $query1 = Forum::find()->where(array('author'=>Yii::$app->user->identity->username));
+            $query2id = DetailForum::find()->select(['fatherindex'])
+                ->where(array('author'=>Yii::$app->user->identity->username));
+            $query2 = Forum::find()->where(array('index'=>$query2id));
+            $query1->union($query2);//这里下面的排序还只能实现两个各自排，就是第一个排好然后排第二个然后接在一起
+            $query=$query1;
+        }else{
+            $query = Forum::find();
+        }
 
         $pagination = new Pagination([
             'defaultPageSize' => 5,
@@ -60,12 +91,30 @@ class ForumController extends \yii\web\Controller
             ->limit($pagination->limit)
             ->all();
 
+        $sort1 = new Sort([//用来置顶2个点赞量最高的
+            'attributes' => [
+                'like' => [
+                    'asc' => ['like' => SORT_ASC],
+                    'desc' => ['like' => SORT_DESC],
+                    'default' => SORT_DESC,
+                    'label' => '赞',
+                ],
+
+            ],
+            'defaultOrder' => ['like' => SORT_DESC],
+        ]);
+        $topquery = Forum::find()->orderBy($sort1->orders)
+            ->limit(2)
+            ->all();//用来置顶3个浏览量最高的
+
         return $this->render('index', [
             'forums' => $forums,
             'pagination' => $pagination,
             'sort' => $sort,
+            'topquery' => $topquery,//用来置顶3个浏览量最高的
         ]);
     }
+
    	public function actionNewForum(){
 
         if (Yii::$app->user->isGuest) {
@@ -102,6 +151,24 @@ class ForumController extends \yii\web\Controller
 
         $fathermodel=$this->findModel($id);
 
+
+        //以下热门讨论贴
+        $sort = new Sort([
+            'attributes' => [
+                'like' => [
+                    'asc' => ['like' => SORT_ASC],
+                    'desc' => ['like' => SORT_DESC],
+                    'default' => SORT_DESC,
+                    'label' => '赞',
+                ],
+            ],
+            'defaultOrder' => ['like' => SORT_DESC], 
+        ]);
+        $forums = Forum::find()->orderBy($sort->orders)
+            ->limit(8)
+            ->all();
+        //以上热门讨论贴
+
         //新建回复
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $forum = new DetailForum;
@@ -114,11 +181,11 @@ class ForumController extends \yii\web\Controller
             $fathermodel->reply=$fathermodel->reply+1;
             $fathermodel->updated_at=$forum->created_at;
             $fathermodel->save(true);
-            return $this->redirect(['forum/detail-forum','id'=>$fathermodel->index]);//应该  成服务器对应的网址
+            return $this->redirect(['forum/detail-forum','id'=>$fathermodel->index]);
         } 
         else {
             return $this->render('detailforum', [
-            'forum' => $fathermodel, 'detailforums'=>$this->findReplies($id),'model'=>$model
+            'forum' => $fathermodel, 'detailforums'=>$this->findReplies($id),'model'=>$model, 'forums'=>$forums
         ]);
         }
 

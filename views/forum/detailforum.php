@@ -12,9 +12,14 @@ $this->title = $forum->theme;
 <br/>
 <div class="am-g">
 <div class="am-u-sm-8">
-      <section class="am-panel am-panel-default">
-        <div class="am-panel-hd"><span class="am-text-lg am-text-warning">话题： </span><?=$forum->content ?></div>
-       </section>
+    <section class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <span class="am-text-lg am-text-warning">话题： </span>
+            <?=$forum->theme ?>
+            <span class="am-text-lg am-text-warning"><font align:"right">赞：</span>
+            <?=$forum->like?>
+        </div>
+    </section>
 <article class="am-comment-success">
 <img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48">	
 <div class="am-comment-main">
@@ -30,8 +35,11 @@ $this->title = $forum->theme;
 
 
  <div class="am-panel am-panel-default">
-      <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-3'}"><span class="am-text-lg am-text-warning">评论： </span><span class="am-icon-chevron-down am-fr" ></span><?=$forum->reply?></div>
-      
+      <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-3'}">
+        <span class="am-text-lg am-text-warning">评论：</span>
+        <?=$forum->reply?>
+        <span class="am-icon-chevron-down am-fr" ></span>
+      </div>
       <div class="am-panel-bd am-collapse am-in am-cf" id="collapse-panel-3">
         <ul class="am-comments-list">
         <?php if(!$forum->reply==0): ?>
@@ -103,8 +111,11 @@ $this->title = $forum->theme;
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">热门讨论帖</div>
         <ul class="am-list blog-list">
-          <li><a href="#">你真的愿意写热门么？</a></li>
-          <li><a href="#">我再问一次，你们真的写么</a></li>
+
+            <?php foreach ($forums as $forum): ?>
+                <li><a href="#"><?= $forum->theme ?></a></li>
+            <?php endforeach; ?>
+
           <li><a href="#">还有啥啥啥的</a></li>
           <li><a href="#">然后帖主有删帖子的权利，评论者有扯评论的权利</a></li>
           <li><a href="#">点赞、评论其他人的帖子，@</a></li>
