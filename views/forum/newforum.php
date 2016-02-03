@@ -30,14 +30,17 @@ use yii\bootstrap\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 </div>
+
+<?php //热门讨论贴，现在是赞最多的前八个?>
 <div class="am-u-sm-4 ">
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">热门讨论帖</div>
         <ul class="am-list blog-list">
-          <li><a href="#">你真的愿意写热门么？</a></li>
-          <li><a href="#">我再问一次，你们真的写么</a></li>
-          <li><a href="#">还有啥啥啥的</a></li>
-          <li><a href="#">然后帖主有删帖子的权利，评论者有扯评论的权利</a></li>
+
+            <?php foreach ($forums as $forum): ?>
+                <li><a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->index])?>"><?= $forum->theme ?></a></li>
+            <?php endforeach; ?>
+
           <li><a href="#">点赞、评论其他人的帖子，@</a></li>
           <li><a href="#">到底写不写嘛</a></li>          
         </ul>
