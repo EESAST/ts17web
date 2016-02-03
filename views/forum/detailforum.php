@@ -1,5 +1,6 @@
 <?php 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\bootstrap\ActiveForm;
 
@@ -16,7 +17,9 @@ $this->title = $forum->theme;
         <div class="am-panel-hd">
             <span class="am-text-lg am-text-warning">话题： </span>
             <?=$forum->theme ?>
-            <span class="am-text-lg am-text-warning"><font align:"right">赞：</span>
+            <span class="am-text-lg am-text-warning"><font align:"right">
+                <a href="">赞:</a>
+            </span>
             <?=$forum->like?>
         </div>
     </section>
@@ -24,7 +27,26 @@ $this->title = $forum->theme;
 <img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48">	
 <div class="am-comment-main">
   <header class="am-comment-hd">
-     <div class="am-comment-meta"><a href="#" class="am-comment-author"><span class="am-text-lg am-text-success"><?=$forum->author?></span></a>发帖于<time><?=$forum->created_at ?></time></div>
+     <div class="am-comment-meta">
+        <a href="#" class="am-comment-author">
+            <span class="am-text-lg am-text-success">
+                <?=$forum->author?>
+            </span>
+        </a>
+        &nbsp发帖于&nbsp<time><?=$forum->created_at ?></time>
+        <?php if (Yii::$app->user->identity->username===$forum->author) { ?>
+            <span class="am-icon-trash-o">
+            <?= Html::a(Yii::t('app', '删除键在这里，是作者才会出现'), ['delete', 'id' => $forum->index], [
+                'class' => '',
+                'data' => [
+                    'confirm' => Yii::t('app', '删去的帖子就像泼出去的水，再也回不来了，你去定要删除吗？'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+            </span>
+        <?php } ?>
+            
+    </div>
   </header>
   <div class="am-comment-bd">
   	<p><?=$forum->content ?></p>
@@ -48,7 +70,13 @@ $this->title = $forum->theme;
             <a href="#"><img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48"></a>
              <div class="am-comment-main">
               <header class="am-comment-hd">
-                   <div class="am-comment-meta"><a href="#" class="am-comment-author"><span class="am-comment-author am-text-lg "><?=$detailforum->author?></span></a> 评论于 <time><?=$detailforum->created_at?></time></div>
+                    <div class="am-comment-meta">
+                        <a href="#" class="am-comment-author">
+                            <span class="am-comment-author am-text-lg ">
+                                <?=$detailforum->author?>
+                            </span>
+                        </a>&nbsp评论于&nbsp<time><?=$detailforum->created_at?></time>
+                    </div>
                </header>
               <div class="am-comment-bd">
               		<p><?=$detailforum->reply?></p>
@@ -107,17 +135,17 @@ $this->title = $forum->theme;
 <?php endif; ?>
 
 </div>
+
+<?php //热门讨论贴，现在是赞最多的前八个?>
 <div class="am-u-sm-4 ">
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">热门讨论帖</div>
         <ul class="am-list blog-list">
 
             <?php foreach ($forums as $forum): ?>
-                <li><a href="#"><?= $forum->theme ?></a></li>
+                <li><a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->index])?>"><?= $forum->theme ?></a></li>
             <?php endforeach; ?>
 
-          <li><a href="#">还有啥啥啥的</a></li>
-          <li><a href="#">然后帖主有删帖子的权利，评论者有扯评论的权利</a></li>
           <li><a href="#">点赞、评论其他人的帖子，@</a></li>
           <li><a href="#">到底写不写嘛</a></li>          
         </ul>

@@ -148,9 +148,7 @@ class ForumController extends \yii\web\Controller
         
         $model = new DetailForumForm;
         $model->created_at = date("Y-m-d H:i:s");
-
         $fathermodel=$this->findModel($id);
-
 
         //以下热门讨论贴
         $sort = new Sort([
@@ -185,10 +183,21 @@ class ForumController extends \yii\web\Controller
         } 
         else {
             return $this->render('detailforum', [
-            'forum' => $fathermodel, 'detailforums'=>$this->findReplies($id),'model'=>$model, 'forums'=>$forums
+            'forum' => $fathermodel,//当前的论坛帖子
+            'detailforums'=>$this->findReplies($id),//回复的帖子们
+            'model'=>$model, //新建的回复
+            'forums'=>$forums//热门讨论贴
         ]);
         }
 
+    }
+
+    //删除自己发的帖子
+    public function actionDelete($id)
+    {
+        $model = $this->findModel($id);
+        $model->delete();
+        return $this->redirect(['index']);
     }
 
 
