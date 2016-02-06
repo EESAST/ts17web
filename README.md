@@ -1,5 +1,35 @@
 #Log
 --------------------
+###2-6 by 林子恒
+现在论坛帖子分四类：吐槽灌水，战术讨论，规则询问，平台报错；还有全部、我发的帖子、我回复的帖子
+
+点赞：点进去帖子里面之后点赞；likehistory会记录你的userid和你点的论坛的forumid
+
+删除：点进去帖子里面之后删除（如果你是作者的话），下面回复的东西也都会删除
+
+置顶：前两个帖子是置顶，现在设置是被点赞量最高的两个
+
+###31-1 by 段续光	
+我们是不是以后吧log都merge到master上去啊。
+我好想改了点东西
+
+###1-28 by 林子恒
+修改了user属性，加入passwordhash，还有生成authkey（资料库里的user表已有的数据要删掉重新加入）
+文件下载（supporting files写了一点东西），文件存在web/files下面（这部分一点技术含量都没有。。。）
+然后改了一点点注册的服务器端验证
+
+###1-19 by 范承泽
+完成上传文件并存储的功能。
+存储路径为/web/uploads，文件名是自增的数字。
+里面有ts17web.sql文件，用于生成数据库。直接在phpmyadmin中import就可以。
+
+###1-19 by Brian
+完成论坛的主要功能
+论坛的大框架是先有很多个大主题(对应table:forum),每个大主题下可以留言(对应table:detailforum),detailforum里面的fatherindex属性对应到相应的大主题。
+
+###1-19 by Brian
+完成论坛的主要功能
+论坛的大框架是先有很多个大主题(对应table:forum),每个大主题下可以留言(对应table:detailforum),detailforum里面的fatherindex属性对应到相应的大主题。
 
 ###10-7 by 范承泽
 完善了注册登陆功能，增加user属性，实现组队功能。
@@ -18,33 +48,19 @@
 
 同理，可以访问id，email，username，realname，teamname等等。
 
+####2.论坛的代码里面需要注意的是
+
+/controllers/ForumController.php里面的第119行actionDetailForum函数的里面的redirect函数的网址一部分应该改为对应服务器
+
+/views/forum/index.php里面的第44行也是上述的问题
+
+####3.web下面有一个文件夹images放图片
 
 
 #Settings
 --------------------
-资料库设置成下面这样：
+资料库: web/ts17web.sql
 
-在config/db.php里
-```
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname= //Your DB Name ',
-    'username' => 'root',
-    'password' => '//Your Password',
-    'charset' => 'utf8',
-];
-```
-然后创建一个table叫'user'
-
-设置成下面这样：
-![user.png](https://github.com/EESAST/ts17web/blob/master/user.png)
-
-
-
-同一个db下创建另一个一个table叫'team'
-
-设置成下面这样：
-![team.png](https://github.com/EESAST/ts17web/blob/master/team.png)
 
 #Installation
 -----------------
@@ -58,21 +74,3 @@ return [
 工作的话直接把这个仓库clone到电脑上那个网站的文件夹就可以了
 
 clone之后要注意那个config/db.php 里面打自己电脑上的database资料，然后以后这个文件不要commit
-
------------------
-这个仓库我改了一下网站的名字、然后把大致上基本的功能的view，还有controller的文件建好了（只有建文件没有代码。。）
-
-基本上有以下几个：Dashboard，Forum，News，OnlineCompile，SupportingFiles
-
-以上先写dashboard和forum就好，其他都不急
-
-
-它本身就有带登陆的功能，但非常简陋。。没有用到DB没有密码的验证。
-
-所以还有登陆、注册、组队的功能要写，包括user的model，controller。
-
-登陆注册用户的部分可能比较急，不完成的话其他可能不知道怎么写。。
-
------------------
-基本上开学之前要完成的功能：登录，注册，组队，论坛（包括发帖），登陆后的dashboard，就只有这些！感觉挺少的吧！
-各位加油！
