@@ -1,14 +1,45 @@
 <?php 
+use app\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\bootstrap\ActiveForm;
 
 //从上个界面传过来了$forum
-//需要在database里面再建一个table，detailforum存一个大帖子下的回复，对应到$forum（大帖子）的index
+//需要在database里面再建一个table，detailforum存一个大帖子下的回复，对应到$forum（大帖子）的id
 
 $this->title = $forum->theme;
 ?>
+<head>
+<script type="text/javascript">
+function likefunc(forumid, userid){
+    var dataString = 'forumid=' + forumid + '&userid=' + userid;
+    $("#jindutiao").fadeIn(400).html('<img src="images/loading.gif" />');
+    $.ajax({
+        type: "POST",
+        url: "../controllers/changeLike.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+            if(result){
+                var position=result.indexOf("||");
+                var warningMessage=result.substring(0,position);
+                if(warningMessage=='success'){
+                    var successMessage=result.substring(position+2);
+                    $("#jindutiao").html('&nbsp');
+                    $("#likelike").html(successMessage);
+                }else{
+                    var errorMessage=result.substring(position+2);
+                    $("#jindutiao").html(errorMessage);
+                }
+            }
+        }
+    });
+}
+</script>
+</head>
+
+
 <br/>
 <br/>
 <div class="am-g">
@@ -16,11 +47,22 @@ $this->title = $forum->theme;
     <section class="am-panel am-panel-default">
         <div class="am-panel-hd">
             <span class="am-text-lg am-text-warning">话题： </span>
-            <?=$forum->theme ?>
-            <span class="am-text-lg am-text-warning"><font align:"right">
-                <a href="">赞:</a>
+            <?=$forum->theme ?>&nbsp&nbsp
+            <span class="am-text-lg am-text-warning">
+                <?php if(!\Yii::$app->user->isGuest){ ?>
+                  <a href="#" onclick=likefunc(<?= $forum->id ?>,<?= Yii::$app->user->identity->id ?>) > 赞: </a>
+                <?php }else { ?>
+                  赞:
+                <?php } ?>
             </span>
-            <?=$forum->like?>
+            <span id="likelike"><?=$forum->plike?></span>
+            <span class="am-text-lg am-text-warning">
+                <?php if(!\Yii::$app->user->isGuest){ ?>
+                    <span id="jindutiao">&nbsp</span>
+                <?php }else { ?>
+                    <span>(登录才能点赞)</span>
+                <?php } ?>
+            </span>
         </div>
     </section>
 <article class="am-comment-success">
@@ -34,9 +76,9 @@ $this->title = $forum->theme;
             </span>
         </a>
         &nbsp发帖于&nbsp<time><?=$forum->created_at ?></time>
-        <?php if (Yii::$app->user->identity->username===$forum->author) { ?>
+        <?php if(!\Yii::$app->user->isGuest){ if (Yii::$app->user->identity->username===$forum->author) { ?>
             <span class="am-icon-trash-o">
-            <?= Html::a(Yii::t('app', '删除键在这里，是作者才会出现'), ['delete', 'id' => $forum->index], [
+            <?= Html::a(Yii::t('app', '删除键在这里，因为你是作者所以能看到'), ['delete', 'id' => $forum->id], [
                 'class' => '',
                 'data' => [
                     'confirm' => Yii::t('app', '删去的帖子就像泼出去的水，再也回不来了，你去定要删除吗？'),
@@ -44,7 +86,7 @@ $this->title = $forum->theme;
                 ],
             ]) ?>
             </span>
-        <?php } ?>
+        <?php } } ?>
             
     </div>
   </header>
@@ -143,11 +185,9 @@ $this->title = $forum->theme;
         <ul class="am-list blog-list">
 
             <?php foreach ($forums as $forum): ?>
-                <li><a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->index])?>"><?= $forum->theme ?></a></li>
+                <li><a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->id])?>"><?= $forum->theme ?></a></li>
             <?php endforeach; ?>
-
-          <li><a href="#">点赞、评论其他人的帖子，@</a></li>
-          <li><a href="#">到底写不写嘛</a></li>          
+        
         </ul>
         </section>
 </div>

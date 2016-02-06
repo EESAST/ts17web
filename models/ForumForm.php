@@ -14,7 +14,7 @@ use app\models\Forum;
  */
 class ForumForm extends Model
 {
-    public $index;
+    public $id;
     public $theme;
     public $content;
     public $kinds;

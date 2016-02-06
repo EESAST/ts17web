@@ -1,6 +1,15 @@
 
 #Log
 --------------------
+###2-6 by 林子恒
+现在论坛帖子分四类：吐槽灌水，战术讨论，规则询问，平台报错；还有全部、我发的帖子、我回复的帖子
+
+点赞：点进去帖子里面之后点赞；likehistory会记录你的userid和你点的论坛的forumid
+
+删除：点进去帖子里面之后删除（如果你是作者的话），下面回复的东西也都会删除
+
+置顶：前两个帖子是置顶，现在设置是被点赞量最高的两个
+
 ###31-1 by 段续光	
 我们是不是以后吧log都merge到master上去啊。
 我好想改了点东西
@@ -51,27 +60,7 @@
 
 #Settings
 --------------------
-资料库设置成下面这样：
-
-在config/db.php里
-```
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname= //Your DB Name ',
-    'username' => 'root',
-    'password' => '//Your Password',
-    'charset' => 'utf8',
-];
-```
-然后创建四个table：user,team,forum(大的主题),detailforum(主题下的回复)
-
-![db.png](https://github.com/EESAST/ts17web/blob/lzhbrian/user.png)
-
-![team.png](https://github.com/EESAST/ts17web/blob/lzhbrian/team.png)
-
-![team.png](https://github.com/EESAST/ts17web/blob/lzhbrian/forum.png)
-
-![team.png](https://github.com/EESAST/ts17web/blob/lzhbrian/detailforum.png)
+资料库: web/ts17web.sql
 
 
 #Installation

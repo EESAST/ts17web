@@ -14,7 +14,7 @@ use app\models\DetailForum;
  */
 class DetailForumForm extends Model
 {
-    public $index;
+    public $id;
     public $reply;
     public $created_at;
 

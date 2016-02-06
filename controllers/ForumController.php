@@ -41,9 +41,9 @@ class ForumController extends \yii\web\Controller
                     'default' => SORT_DESC,
                     'label' => '最后更新',
                 ],
-                'like' => [
-                    'asc' => ['like' => SORT_ASC],
-                    'desc' => ['like' => SORT_DESC],
+                'plike' => [
+                    'asc' => ['plike' => SORT_ASC],
+                    'desc' => ['plike' => SORT_DESC],
                     'default' => SORT_DESC,
                     'label' => '赞',
                 ],
@@ -70,13 +70,12 @@ class ForumController extends \yii\web\Controller
             $query = Forum::find()->where(array('kinds'=>'rule'));
         }elseif ($kinds==='bug') {
             $query = Forum::find()->where(array('kinds'=>'bug'));
-        }elseif ($kinds==='aboutme') {
-            $query1 = Forum::find()->where(array('author'=>Yii::$app->user->identity->username));
-            $query2id = DetailForum::find()->select(['fatherindex'])
+        }elseif ($kinds==='myposts') {//我发的帖子
+            $query = Forum::find()->where(array('author'=>Yii::$app->user->identity->username));
+        }elseif ($kinds==='myreplies') {//我回复的帖子
+            $queryid = DetailForum::find()->select(['fatherindex'])
                 ->where(array('author'=>Yii::$app->user->identity->username));
-            $query2 = Forum::find()->where(array('index'=>$query2id));
-            $query1->union($query2);//这里下面的排序还只能实现两个各自排，就是第一个排好然后排第二个然后接在一起
-            $query=$query1;
+            $query = Forum::find()->where(array('id'=>$queryid));
         }else{
             $query = Forum::find();
         }
@@ -91,27 +90,28 @@ class ForumController extends \yii\web\Controller
             ->limit($pagination->limit)
             ->all();
 
-        $sort1 = new Sort([//用来置顶2个点赞量最高的
+        //用来置顶2个点赞量最高的
+        $sort1 = new Sort([
             'attributes' => [
-                'like' => [
-                    'asc' => ['like' => SORT_ASC],
-                    'desc' => ['like' => SORT_DESC],
+                'plike' => [
+                    'asc' => ['plike' => SORT_ASC],
+                    'desc' => ['plike' => SORT_DESC],
                     'default' => SORT_DESC,
                     'label' => '赞',
                 ],
 
             ],
-            'defaultOrder' => ['like' => SORT_DESC],
+            'defaultOrder' => ['plike' => SORT_DESC],
         ]);
         $topquery = Forum::find()->orderBy($sort1->orders)
             ->limit(2)
-            ->all();//用来置顶3个浏览量最高的
+            ->all();//用来置顶2个点赞量最高的
 
         return $this->render('index', [
             'forums' => $forums,
             'pagination' => $pagination,
             'sort' => $sort,
-            'topquery' => $topquery,//用来置顶3个浏览量最高的
+            'topquery' => $topquery,//用来置顶2个点赞量最高的
         ]);
     }
 
@@ -121,6 +121,24 @@ class ForumController extends \yii\web\Controller
             return $this->goHome();
         }
 
+        //以下热门讨论贴
+        $sort = new Sort([
+            'attributes' => [
+                'plike' => [
+                    'asc' => ['plike' => SORT_ASC],
+                    'desc' => ['plike' => SORT_DESC],
+                    'default' => SORT_DESC,
+                    'label' => '赞',
+                ],
+            ],
+            'defaultOrder' => ['plike' => SORT_DESC], 
+        ]);
+        $forums = Forum::find()->orderBy($sort->orders)
+            ->limit(8)
+            ->all();
+        //以上热门讨论贴
+
+        //以下新的帖子
    		$model = new ForumForm;
    		$model->created_at = date("Y-m-d H:i:s");
    		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
@@ -136,7 +154,7 @@ class ForumController extends \yii\web\Controller
             return $this->redirect(['index']);
 
         } else {
-            return $this->render('newforum', ['model' => $model]);
+            return $this->render('newforum', ['model' => $model,'forums'=>$forums]);
         }
 
    	}
@@ -153,14 +171,14 @@ class ForumController extends \yii\web\Controller
         //以下热门讨论贴
         $sort = new Sort([
             'attributes' => [
-                'like' => [
-                    'asc' => ['like' => SORT_ASC],
-                    'desc' => ['like' => SORT_DESC],
+                'plike' => [
+                    'asc' => ['plike' => SORT_ASC],
+                    'desc' => ['plike' => SORT_DESC],
                     'default' => SORT_DESC,
                     'label' => '赞',
                 ],
             ],
-            'defaultOrder' => ['like' => SORT_DESC], 
+            'defaultOrder' => ['plike' => SORT_DESC], 
         ]);
         $forums = Forum::find()->orderBy($sort->orders)
             ->limit(8)
@@ -179,7 +197,7 @@ class ForumController extends \yii\web\Controller
             $fathermodel->reply=$fathermodel->reply+1;
             $fathermodel->updated_at=$forum->created_at;
             $fathermodel->save(true);
-            return $this->redirect(['forum/detail-forum','id'=>$fathermodel->index]);
+            return $this->redirect(['forum/detail-forum','id'=>$fathermodel->id]);
         } 
         else {
             return $this->render('detailforum', [
@@ -195,8 +213,16 @@ class ForumController extends \yii\web\Controller
     //删除自己发的帖子
     public function actionDelete($id)
     {
+        //删除这个帖子
         $model = $this->findModel($id);
         $model->delete();
+
+        //删除帖子下面的评论
+        $comments = DetailForum::find()->where(['fatherindex'=>$id]);
+        foreach ($comments->each() as $comment) {
+            $comment->delete();
+        }
+        
         return $this->redirect(['index']);
     }
 
@@ -215,7 +241,7 @@ class ForumController extends \yii\web\Controller
 
         $query = DetailForum::find()->where(['fatherindex' => $id]);
 
-        $detailforums = $query->orderBy('index')->all();
+        $detailforums = $query->orderBy('id')->all();
 
         return $detailforums;
 
