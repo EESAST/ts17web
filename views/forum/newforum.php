@@ -5,6 +5,7 @@
 /* @var $model app\models\RegisterForm */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 ?>
 <br/>
@@ -38,11 +39,9 @@ use yii\bootstrap\ActiveForm;
         <ul class="am-list blog-list">
 
             <?php foreach ($forums as $forum): ?>
-                <li><a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->index])?>"><?= $forum->theme ?></a></li>
+                <li><a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->id])?>"><?= $forum->theme ?></a></li>
             <?php endforeach; ?>
 
-          <li><a href="#">点赞、评论其他人的帖子，@</a></li>
-          <li><a href="#">到底写不写嘛</a></li>          
         </ul>
         </section>
 </div>

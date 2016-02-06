@@ -10,7 +10,7 @@ use Yii;
 /**
  * This is the model class for table "forum".
  *
- * @property integer $index
+ * @property integer $id
  * @property integer $fatherindex
  * @property string $author
  * @property string $reply
@@ -42,7 +42,7 @@ class DetailForum extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'index' => 'Index',
+            'id' => 'ID',
             'fatherindex' => 'Father Index',
             'author' => 'author',
             'reply' => 'Reply',

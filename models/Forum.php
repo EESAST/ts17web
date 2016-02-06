@@ -9,13 +9,13 @@ use Yii;
 /**
  * This is the model class for table "forum".
  *
- * @property integer $index
+ * @property integer $id
  * @property string $author
  * @property string $theme
  * @property string $content
  * @property string $kinds
  * @property string $reply
- * @property string $like
+ * @property string $plike
  * @property string $created_at
  * @property string $updated_at
  */
@@ -45,7 +45,7 @@ class Forum extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'index' => 'Index',
+            'id' => 'ID',
             'author' => 'author',
             'theme' => 'Theme',
             'content' => 'Content',
