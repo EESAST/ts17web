@@ -2,55 +2,70 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Eat In Tsinghua';
-?>
-<div class="site-index">
+$this->title = 'Eatting in Tsinghua';?>
 
-    <div class="jumbotron">
-        <h1>Eat In Tsinghua</h1>
-        <h2>TeamStyle 17</h2>
-        <br>
-        <!--
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-        -->
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiichina.com/doc/guide/2.0">Yii guide in Chinese</a></p>
+<div class="get">
+  <div class="am-g">
+    <div class="am-u-lg">
+      <h1 class="get-title"><?php echo $this->title;?> 队式开发大赛</h1>
+      <p>
+        <a href="#" class="am-btn am-btn-sm get-btn">获取更多信息？</a>
+      </p>
     </div>
+  </div>
+</div>
 
-    <div class="body-content">
+  
+<div class="detail">
+  <div class="am-g am-container">
+    <div class="am-u-lg-12">
+      <h2 class="detail-h2">第17届队式程序开发大赛，有你精彩!</h2>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+      <div class="am-g">
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+          <h3 class="detail-h3">
+            <i class="am-icon-mobile am-icon-sm"></i>
+            为移动而生
+          </h3>
+          <p class="detail-p">
+           队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛
+          </p>
         </div>
 
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
+          <h3 class="detail-h3">
+            <i class="am-icon-cogs am-icon-sm"></i>
+            组件丰富，模块化
+          </h3>
+
+          <p class="detail-p">
+          队式开发大赛队式开发大赛队式开发大赛队式开发大赛
+          </p>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
+          <h3 class="detail-h3">
+            <i class="am-icon-check-square-o am-icon-sm"></i>
+            本地化支持
+          </h3>
+
+          <p class="detail-p">
+           队式开发大赛队式开发大赛队式开发大赛队式开发大赛
+          </p>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
+          <h3 class="detail-h3">
+            <i class="am-icon-send-o am-icon-sm"></i>
+            轻量级，高性能
+          </h3>
+
+          <p class="detail-p">
+          队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛    
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
