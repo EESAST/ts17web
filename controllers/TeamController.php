@@ -15,6 +15,7 @@ use yii\filters\VerbFilter;
  */
 class TeamController extends Controller
 {
+    public $layout = 'main1';
     public function behaviors()
     {
         return [

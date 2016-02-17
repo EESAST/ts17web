@@ -11,10 +11,10 @@ use yii\bootstrap\ActiveForm;
 $this->title = $forum->theme;
 ?>
 <head>
-<script type="text/javascript">
+<script>
 function likefunc(forumid, userid){
     var dataString = 'forumid=' + forumid + '&userid=' + userid;
-    $("#jindutiao").fadeIn(400).html('<img src="images/loading.gif" />');
+    $("#jindutiao").fadeIn(400).html('<i class="am-icon-spinner am-icon-spin" style="display: inline-block"></i>');
     $.ajax({
         type: "POST",
         url: "../controllers/changeLike.php",
@@ -78,7 +78,7 @@ function likefunc(forumid, userid){
         &nbsp发帖于&nbsp<time><?=$forum->created_at ?></time>
         <?php if(!\Yii::$app->user->isGuest){ if (Yii::$app->user->identity->username===$forum->author) { ?>
             <span class="am-icon-trash-o">
-            <?= Html::a(Yii::t('app', '删除键在这里，因为你是作者所以能看到'), ['delete', 'id' => $forum->id], [
+            <?= Html::a(Yii::t('app', '删除'), ['delete', 'id' => $forum->id], [
                 'class' => '',
                 'data' => [
                     'confirm' => Yii::t('app', '删去的帖子就像泼出去的水，再也回不来了，你去定要删除吗？'),
@@ -178,7 +178,7 @@ function likefunc(forumid, userid){
 
 </div>
 
-<?php //热门讨论贴，现在是赞最多的前八个?>
+<?php //热门讨论贴，现在是赞最多的前二个?>
 <div class="am-u-sm-4 ">
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">热门讨论帖</div>

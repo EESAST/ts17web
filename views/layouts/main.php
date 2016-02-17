@@ -181,7 +181,7 @@ $title='Eatting in Tsinghua'
         </div> 
       </div>
     </div>
-<? endif ?>
+  <?php endif ?>
 
 
 <script type="text/javascript">

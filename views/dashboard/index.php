@@ -1,46 +1,6 @@
 <?php 
-$this->title = 'Dashboard';
-use app\assets\MyAppAsset2;
-MyAppAsset2::register($this);
+
 ?>
-
-<div class="am-g">
-  <div class=" am-u-sm-3 am-u-lg-2 admin-sidebar">
-    <div>
-      <ul class="am-list admin-sidebar-list">
-        <li>
-        	
-        <div class="am-panel am-panel-default">
-          <div class="am-panel-bd">
-                <img class="am-img am-img-thumbnail" src="images/avatar.jpg" width="128" height="256" alt=""/>
-          </div>
-        </div>
-        </li>
-        <li><a href="admin-table.html"><span class="am-icon-table"></span>个人资料</a></li>
-        <li><a href="admin-table.html"><span class="am-icon-table"></span>进入战队</a></li>
-        <li><a href="admin-table.html"><span class="am-icon-table"></span>资源下载</a></li>
-        <li><a href="admin-table.html"><span class="am-icon-table"></span>代码提交</a></li>
-        <li class='am-disabled'><a href="#"><span class="am-icon-table"></span>在线对战</a></li>
-        <li class="am-disabled"><a href="#"><span class="am-icon-table"></span>更多功能</a></li>
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-bookmark"></span> 公告</p>
-          <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
-        </div>
-      </div>
-
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-tag"></span> wiki</p>
-          <p>Welcome to the Amaze UI wiki!</p>
-        </div>
-      </div>
-   -->
-    </div>
-  </div>
-  <!-- sidebar end -->
-  <!-- content start -->
-  <div class="admin-content am-u-sm-9 am-u-lg-10">
     <div class="am-cf am-padding">
       <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
     </div>
@@ -70,24 +30,7 @@ MyAppAsset2::register($this);
           </div>
         </div>
 
-        <div class="am-panel am-panel-default">
-          <div class="am-panel-bd">
-            <div class="user-info">
-              <p>等级信息</p>
-              <div class="am-progress am-progress-sm">
-                <div class="am-progress-bar" style="width: 60%"></div>
-              </div>
-              <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
-            </div>
-            <div class="user-info">
-              <p>信用信息</p>
-              <div class="am-progress am-progress-sm">
-                <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
-              </div>
-              <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
-            </div>
-          </div>
-        </div>
+
 
       </div>
 
@@ -148,11 +91,3 @@ MyAppAsset2::register($this);
     </div>
   </div>
   <!-- content end -->
-
-</div>
-
-<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
-
-
-
-
