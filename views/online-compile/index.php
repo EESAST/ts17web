@@ -1,10 +1,17 @@
 <?php
-/* @var $this yii\web\View */
-$this->title = 'Online Compile';
+use yii\widgets\ActiveForm;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
+use yii\helpers\html;
 ?>
-<h1>online-compile/index</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+Please Upload your source code here.
+<?= $form->field($model, 'sourcecode')->fileInput() ?>
+<button>Submit</button>
+
+<?php ActiveForm::end() ?>
+
+Online compile:
+<?php print_r($indexs);?>
+<?echo Html::dropDownList( 'Source Code List',null , $indexs );  ?>
