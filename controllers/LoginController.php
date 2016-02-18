@@ -20,8 +20,7 @@ class LoginController extends \yii\web\Controller
             return $this->render('/site/index');
             //登陆之后直接跳转到site
         }
-        return $this->render('index',[
-                'model' => $model]);  
+        return $this->render('site/index');  
 
     }
 
