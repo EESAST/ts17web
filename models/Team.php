@@ -46,14 +46,14 @@ class Team extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'teamname' => Yii::t('app', 'Team Name'),
-            'leadername' => Yii::t('app', 'Leader ID'),
-            'member1name' => Yii::t('app', 'Member ID'),
-            'member2name' => Yii::t('app', 'Member ID'),
-            'member3name' => Yii::t('app', 'Member ID'),
-            'slogan' => Yii::t('app', 'Slogan'),
-            'key' => Yii::t('app', 'Key'),
-            'status' => Yii::t('app', 'Status'),
+            'teamname' => Yii::t('app', '队名'),
+            'leadername' => Yii::t('app', '队长'),
+            'member1name' => Yii::t('app', '队员'),
+            'member2name' => Yii::t('app', '队员'),
+            'member3name' => Yii::t('app', '队员'),
+            'slogan' => Yii::t('app', '简介'),
+            'key' => Yii::t('app', '密钥'),
+            'status' => Yii::t('app', '成员'),
         ];
     }
 }

@@ -6,12 +6,12 @@ use yii\helpers\Html;
 /* @var $model app\models\Team */
 
 $this->title = Yii::t('app', 'Create Team');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Teams'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="team-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+     <div class="am-cf"><strong class="am-text-primary am-text-lg"><?= Html::encode($this->title) ?></strong>
+     <hr/>
+    <small><?php echo $model->slogan ?></small></div>
 
     <?= $this->render('_form', [
         'model' => $model,

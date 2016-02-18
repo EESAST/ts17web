@@ -8,7 +8,6 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Register';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-register" style="width:90%">
 <br/>

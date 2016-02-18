@@ -9,14 +9,11 @@ use yii\helpers\Html;
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Team',
 ]) . ' ' . $model->teamname;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Teams'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->teamname, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="team-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+<div class="am-padding">
+<div class="am-cf"><strong class="am-text-primary am-text-lg"><?= Html::encode($this->title) ?></strong>
+</div>
+<hr/>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
