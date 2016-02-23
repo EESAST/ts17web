@@ -152,25 +152,6 @@ $title='Eatting in Tsinghua'
   <p>© 2015 <a href="http://www.yunshipei.com" target="_blank"><?php echo $title;?></a> 
   Licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">Web license</a>. by the ts17web Team.</p>
 </footer>
-
-
-
-
-
-<div class="am-modal am-modal-prompt" tabindex='-1' id='temp'>
-    <div class="am-modal-dialog" id='login'>
-    <?php $form = ActiveForm::begin(['id' => 'login-form','action'=>'index.php?r=login/index']); ?>
-        <div class="am-modal-hd">Login</div>
-        <input type="text" class="am-modal-prompt-input " id="loginform-username" name="LoginForm[username]"  placeholder="your username" data-validation-message="username required" required/>
-        <input type="password" class="am-modal-prompt-input"  id='loginform-password' name="LoginForm[password]" placeholder="your password" data-validation-message="password required" required/>
-        <div class="am-modal-footer">     
-            <span class="am-modal-btn"  data-am-modal-confirm id='Login'> login</span>
-            <span class="am-modal-btn"  data-am-modal-cancel id='Forget'>cancel</span>
-        </div>
-    <?php ActiveForm::end(); ?>
-    </div>
-
-</div>
   <?php if(!\Yii::$app->user->isGuest): ?>
     <div id='right' class="am-offcanvas ">
       <div class='am-offcanvas-bar am-offcanvas-bar-flip'>
@@ -186,15 +167,6 @@ $title='Eatting in Tsinghua'
 
 
 <script type="text/javascript">
-
-
-$('#Login').on('click',function(){
-    $('#login-form').submit();
-})
-
-$('#Forget').on('click',function(){
-    alert('写一个找回密码的页面');
-})
 $('#'+$(document).attr('title')).addClass('am-active');
 </script>
 
