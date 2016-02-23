@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-
+$count=0;
 $this->title = 'Eatting in Tsinghua';?>
 
 
@@ -16,54 +16,26 @@ $this->title = 'Eatting in Tsinghua';?>
   </div>
 </div>
 
-  
+
 <div class="detail">
   <div class="am-g am-container">
     <div class="am-u-lg-12">
       <h2 class="detail-h2">第17届队式程序开发大赛，有你精彩!</h2>
 
       <div class="am-g">
+      <?php foreach ($news as $new){
+        if($count ++ >3)break;
+       ?>
         <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
 
-          <h3 class="detail-h3">
-            <i class="am-icon-mobile am-icon-sm"></i>
-            为移动而生
+          <h3>
+            <?= "<span class='am-text-primary'>".$new->title."</span><br/><span class='am-text-xs'>".$new->addedby."<span class='am-text-xs'>更新于</span>".$new->addedat."</span>" ?>
           </h3>
           <p class="detail-p">
-           队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛
+           <?= $new->text ?>
           </p>
         </div>
-
-        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
-          <h3 class="detail-h3">
-            <i class="am-icon-cogs am-icon-sm"></i>
-            组件丰富，模块化
-          </h3>
-
-          <p class="detail-p">
-          队式开发大赛队式开发大赛队式开发大赛队式开发大赛
-          </p>
-        </div>
-        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
-          <h3 class="detail-h3">
-            <i class="am-icon-check-square-o am-icon-sm"></i>
-            本地化支持
-          </h3>
-
-          <p class="detail-p">
-           队式开发大赛队式开发大赛队式开发大赛队式开发大赛
-          </p>
-        </div>
-        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
-          <h3 class="detail-h3">
-            <i class="am-icon-send-o am-icon-sm"></i>
-            轻量级，高性能
-          </h3>
-
-          <p class="detail-p">
-          队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛队式开发大赛    
-          </p>
-        </div>
+      <?php } ?>
       </div>
     </div>
   </div>

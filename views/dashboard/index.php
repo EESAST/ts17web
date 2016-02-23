@@ -4,9 +4,9 @@
     <div class="am-cf am-padding">
       <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
     </div>
-
-    <hr/>
-
+      <br/>
+      <hr/><small>本页面处于开发阶段，请随意吐槽</small><hr/>
+      <br/>
     <div class="am-g">
 
       <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">

@@ -50,9 +50,9 @@ function likefunc(forumid, userid){
             <?=$forum->theme ?>&nbsp&nbsp
             <span class="am-text-lg am-text-warning">
                 <?php if(!\Yii::$app->user->isGuest){ ?>
-                  <a href="#" onclick=likefunc(<?= $forum->id ?>,<?= Yii::$app->user->identity->id ?>) > 赞: </a>
+                  <a href="#" onclick=likefunc(<?= $forum->id ?>,<?= Yii::$app->user->identity->id ?>) > <i class="am-icon-thumbs-o-up"></i> </a>
                 <?php }else { ?>
-                  赞:
+                  <i class="am-icon-thumbs-o-up"></i>
                 <?php } ?>
             </span>
             <span id="likelike"><?=$forum->plike?></span>
@@ -147,35 +147,27 @@ function likefunc(forumid, userid){
 
 <?php if (!\Yii::$app->user->isGuest): ?>
 
-<div class="site-forum">
-
+<div>
+<h3>发表新评论</h3>
 <?php
     $form = ActiveForm::begin([
         'id' => 'detail-forum-form',
         'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-11 am-form\">{input}</div>",
+            'template' => "{input}",
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); 
 ?>
 		
         <?= $form->field($model, 'reply')->textarea(['rows' => 4])?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('提交', ['class' => 'am-btn am-btn-secondary', 'name' => 'submit-button']) ?>
-            </div>
-        </div>
+        <br/>
+        <?= Html::submitButton('submit', ['class' => 'am-btn am-btn-secondary am-btn-block', 'name' => 'submit-button']) ?>
 
     <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        
-    </div>
 </div>
 <?php endif; ?>
-
+<br/>
 </div>
 
 <?php //热门讨论贴，现在是赞最多的前二个?>

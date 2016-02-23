@@ -24,7 +24,7 @@ $this->title = 'Login';
 <div id="parent">
 <div id="child" class="am-g">
 <div class="am-u-md-8 am-u-sm-centered">
-    <?php $form = myActiveForm::begin([
+    <?php $form = myActiveForm::begin([ 
         'id' => 'login-form',
         'options' => ['class' => 'am-form'],
         'fieldConfig' => [

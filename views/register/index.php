@@ -19,8 +19,7 @@ $this->title = 'Register';
             'errorOptions'=>['class'=>'am-text-danger']
         ],
     ]); ?>
-
-    <h2 align="center"><strong><a href="#">请填写下表进行注册</a></strong></h2>
+    <br/><br/>
         <?= $form->field($model, 'username',['placeholder'=>'请设置一个用户名(至少应包含6个字符)']) ?>
 
         <?= $form->field($model, 'password',['placeholder'=>'请设置登录密码(至少应包含6个字符)'])->passwordInput() ?>
