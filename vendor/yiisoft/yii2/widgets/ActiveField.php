@@ -203,7 +203,7 @@ class ActiveField extends Component
             $content = call_user_func($content, $this);
         }
 
-        return $content;
+        return $this->begin() . "\n" . $content . "\n" . $this->end();
     }
 
     /**

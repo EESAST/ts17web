@@ -10,12 +10,14 @@ $this->title = Yii::t('app', 'Create News');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'News'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="am-g">
+<div class="am-u-sm-8 am-u-sm-centered">
 <div class="news-create">
-
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
+</div>
+</div>
 </div>

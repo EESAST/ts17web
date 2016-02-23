@@ -6,7 +6,7 @@ use yii\widgets\LinkPager;
 $this->title = 'Forum';
 
 ?>
-<a href="<?php echo Url::toRoute('forum/new-forum') ;?>"><button class="am-btn am-btn-primary am-btn-block"><br/><span class="am-text-lg"><i class="am-icon-th-large"></i>发帖</span><br/><br/></button></a>
+<a href="<?php echo Url::toRoute('forum/new-forum') ;?>"><button class="am-btn am-btn-primary am-btn-block"><br/><span class="am-text-lg"><i class="am-icon-hand-pointer-o"></i>点我发帖</span><br/><br/></button></a>
 <hr data-am-widget="divider" class="am-divider am-divider-default" />
 <div class="am-g">
     <div class="am-u-sm-9">
@@ -107,9 +107,8 @@ $this->title = 'Forum';
     			<h3 class="am-panel-title">队式动态</h3>
   			</header>
   			<div class="am-panel-bd">
-  				<ul class="am-list am-list-static">	
-  					<li>dashboard里也有一个放新闻的地方，回头可以设置下权限，
-  						管理员可以进入新闻页面发布新闻，而普通用户只能浏览新闻</li>
+  				<strong><?= $new->title ?></strong>
+          <p><?= $new->text ?></p>
   			</div>
 		</section>
     </div>
