@@ -5,48 +5,42 @@
 /* @var $model app\models\RegisterForm */
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-
+use app\doc\widgets\myActiveForm;
 $this->title = 'Register';
 ?>
-<div class="site-register" style="width:90%">
-<br/>
-    <?php $form = ActiveForm::begin([
+<div class="am-g">
+<div class="am-u-md-8 am-u-sm-centered">
+    <?php $form = myActiveForm::begin([
         'id' => 'register-form',
-        'options' => ['class' => 'form-horizontal'],
+        'options' => ['class' => 'am-form'],
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-5 am-form \">{input}</div>\n<div class=\"col-lg-5 am-form\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label am-song'],
-            'errorOptions'=>['']
+            'template' => "{input}",
+            //'labelOptions' => ['class' => 'col-lg-1 control-label'],
+            'errorOptions'=>['class'=>'am-text-danger']
         ],
     ]); ?>
 
-        <?= $form->field($model, 'username') ?>
+    <h2 align="center"><strong><a href="#">请填写下表进行注册</a></strong></h2>
+        <?= $form->field($model, 'username',['placeholder'=>'请设置一个用户名(至少应包含6个字符)']) ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'password',['placeholder'=>'请设置登录密码(至少应包含6个字符)'])->passwordInput() ?>
 
-        <?= $form->field($model, 'password2')->passwordInput() ?>
+        <?= $form->field($model, 'password2',['placeholder'=>'请确认登录密码(两次输入的密码需要一致)'])->passwordInput() ?>
 
-        <?= $form->field($model, 'email') ?>
+        <?= $form->field($model, 'email',['placeholder'=>'请输入您的邮箱(该邮箱将在找回密码)']) ?>
 
-        <?= $form->field($model, 'realname') ?>
+        <?= $form->field($model, 'realname',['placeholder'=>'请输入您的真实姓名(这有助于我们确定您的真实身份)']) ?>
 
-        <?= $form->field($model, 'school') ?>
+        <?= $form->field($model, 'school',['placeholder'=>'请输入您的学校全称(五道口男子技术学院?)']) ?>
 
-        <?= $form->field($model, 'class') ?>
+        <?= $form->field($model, 'class',['placeholder'=>'请输入您的院系-班级(例:电子工程系-无59班)']) ?>
 
-        <?= $form->field($model, 'studentnumber') ?>
+        <?= $form->field($model, 'studentnumber',['placeholder'=>'请输入您的学号(例:2015012345)']) ?>
 
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Register', ['class' => 'am-btn am-btn-success', 'name' => 'register-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
         
-    </div>
+        <?= Html::submitButton('Register', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'register-button']) ?>
+    
+    <?php myActiveForm::end(); ?>
 </div>
+</div>
+<br/>
