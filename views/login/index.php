@@ -35,7 +35,7 @@ $this->title = 'Login';
 
         <?= $form->field($model, 'password',['placeholder'=>'请输入您的登录密码'])->passwordInput() ?>
 
-        <?= Html::submitButton('Register', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'login-button']) ?>
+        <?= Html::submitButton('Login', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'login-button']) ?>
     <p></p>
     <div class="am-fr"><a href="#"><p>忘记密码?</p></a></div>
     <?php myActiveForm::end(); ?>
