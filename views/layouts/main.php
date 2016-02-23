@@ -103,8 +103,7 @@ $title='Eatting in Tsinghua'
     </h1>
     <div class="am-collapse am-topbar-collapse" id="collapse-head">
       <ul class="am-nav am-nav-pills am-topbar-nav ">
-        <li id='#News'><a href="<?php echo Url::toRoute('news/index') ;?>">news</a></li>
-        </li>
+      	
       </ul>
       
       <div class="am-topbar-right">
@@ -113,9 +112,9 @@ $title='Eatting in Tsinghua'
         </a>
       </div>
       <div class="am-topbar-right">
-      <!--	<a href="<?php echo Url::toRoute('login/index') ;?>">-->
-        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"  id='ontemp' data-am-modal="{target:'#temp'}"><span class="am-icon-user"></span>login</button>
-       
+      <a href="<?php echo Url::toRoute('login/index') ;?>">
+        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"  ><span class="am-icon-user"></span>login</button>
+      </a>       
       </div>
     </div>
 
@@ -126,7 +125,9 @@ $title='Eatting in Tsinghua'
 
     <div class="am-collapse am-topbar-collapse" id="collapse-head">
       <ul class="am-nav am-nav-pills am-topbar-nav">
-        <li id='News'><a href="<?php echo Url::toRoute('news/index') ;?>" >news</a></li>
+        <?php if(Yii::$app->user->identity->status!=1): ?>
+        <li id='#News'><a href="<?php echo Url::toRoute('news/index') ;?>">news</a></li>
+    	<?php endif; ?>
         <li id='Dashboard'><a href="<?php echo Url::toRoute('dashboard/index') ;?>">dashboard</a></li>
         <li id='Forum'><a href="<?php echo Url::toRoute('forum/index') ;?>">forum</a></li>
         <li id='Supporting-files'><a href="<?php echo Url::toRoute('supporting-files/index') ;?>">supporting-files</a></li>

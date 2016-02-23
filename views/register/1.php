@@ -24,40 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-register">
 <br/>
-    <?php $form = ActiveForm::begin([
-        'id' => 'register-form',
-        'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-5 \">{input}</div>\n<div class=\"col-lg-5\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-            'errorOptions'=>['']
-        ],
-    ]); ?>
 
-        <?= $form->field($model, 'username') ?>
-
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?= $form->field($model, 'password2')->passwordInput() ?>
-
-        <?= $form->field($model, 'email') ?>
-
-        <?= $form->field($model, 'realname') ?>
-
-        <?= $form->field($model, 'school') ?>
-
-        <?= $form->field($model, 'class') ?>
-
-        <?= $form->field($model, 'studentnumber') ?>
-
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Register', ['class' => 'am-btn am-btn-success', 'name' => 'register-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
 
     <div class="col-lg-offset-1" style="color:#999;">
         
@@ -127,3 +94,102 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     <?php ActiveForm::end(); ?>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--
+<div class="am-g">
+
+  <div class="am-u-md-6 am-u-sm-centered">
+    <?php $form = ActiveForm::begin([
+        'id' => 'register-form',
+        'options' => ['class' => 'am-form'],
+        'fieldConfig' => [
+            'template' => "{input}{error}",
+            'errorOptions'=>['']
+        ],
+    ]); ?>
+        <fieldset class="am-form-set">
+        <input type="text" id="doc-vld-name-2-1" minlength="3" placeholder="输入用户名（至少 3 个字符）" required/>
+
+        
+        <input type="text" placeholder="取个昵称(字母开头，至少包含六个字符)" id="registerform-username" name="RegisterForm[username]" minlength="6" required/>
+        <input type="password" placeholder="输入密码(密码长度不能少于6位)" id="registerform-password" name="RegisterForm[password]" minlength="6" required/>
+        <input type="password" placeholder="确认密码" id="registerform-password2"  name="RegisterForm[password2]" data-equal-to="#registerform-password1" required/>
+        <input type="email" placeholder="您的邮箱" id="registerform-email"  name="RegisterForm[email]" required/>
+        <input type="text" placeholder="真实姓名" id="registerform-realname" name="RegisterForm[realname]" required/>
+        <input type="text" placeholder="您的学校" id="registerform-school" name="RegisterForm[school]" required/>
+        <input type="text" placeholder="院系班级" id="registerform-class" name="RegisterForm[class]" required/>
+        <input type="text" placeholder="学生证号(选填)" id="registerform-studentnumber" name="RegisterForm[studentnumber]" required/>
+        <button type="submit" class="am-btn am-btn-primary am-btn-block">Submit</button>
+      </fieldset>      
+    <?php ActiveForm::end(); ?>
+  </div>
+</div>
+
+
+
+<div class="am-g">
+  <div class="am-u-md-6 am-u-sm-centered">
+    <?php $form = ActiveForm::begin([
+        'id' => 'register-form',
+        'options' => ['class' => 'am-form'],
+        'fieldConfig' => [
+            'template' => "{input}{error}",
+            'errorOptions'=>['']
+        ],
+    ]); ?>
+    <fieldset >
+        <?= $form->field($model, 'username') ?>
+
+        <?= $form->field($model, 'password')->passwordInput() ?>
+
+        <?= $form->field($model, 'password2')->passwordInput() ?>
+
+        <?= $form->field($model, 'email') ?>
+
+        <?= $form->field($model, 'realname') ?>
+
+        <?= $form->field($model, 'school') ?>
+
+        <?= $form->field($model, 'class') ?>
+
+        <?= $form->field($model, 'studentnumber') ?>
+
+         <?= Html::submitButton('Register', ['class' => 'am-btn am-btn-success am-btn-block', 'name' => 'register-button']) ?>
+        </fieldset>
+    <?php ActiveForm::end(); ?>
+
+</div>
+</div>
+
+
+-->

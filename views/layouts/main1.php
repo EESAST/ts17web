@@ -17,6 +17,7 @@ $this->title = 'Dashboard';
       <ul class="am-list admin-sidebar-list">
         <li><a href="<?php echo Url::toRoute('dashboard/index') ;?>"><span class="am-icon-user"></span>个人资料</a></li>
         <li><a href="<?php echo Url::toRoute('team/index') ;?>"><span class="am-icon-users"></span>战队之家</a></li>
+        <li><a href="<?php echo Url::toRoute('online-compile/index') ;?>"><span class="am-icon-users"></span>代码提交</a></li>
         <li><a href="<?php echo Url::toRoute('supporting-files/index') ;?>"><span class="am-icon-folder-open"></span>资源下载</a></li>        <li class="am-disabled"><a href="#"><span class="am-icon-table"></span>更多功能</a></li>
       </ul>
     </div>

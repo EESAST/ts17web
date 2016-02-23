@@ -10,6 +10,7 @@ use app\models\User;
 
 class OnlineCompileController extends Controller
 {
+    public $layout = 'main1';
     public function actionIndex()
     {
         $model = new UploadForm();
