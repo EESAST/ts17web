@@ -10,11 +10,15 @@ function list_file($dir){
 		if(!is_dir($file_url))echo "<tr><td>$file</td><td>".date('M,d,Y G:i',$update_time)."</td><td>$file_size KB</td><td><a href='$file_url'><i class='am-icon-download'></i></a></td></tr>";
 	}
 }
+
+use yii\helpers\Url;
 ?>
 <div class="admin-content">
 
   <div class="am-cf am-padding">
-    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">文件支持</strong> / <small>在文件使用过程中遇到bug请通知向开发组相关人员，文件最终解释权归第十七届队式程序开发组所有</small></div>
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">资源下载</strong> 
+    / <small>
+    在文件使用过程中遇到bug请<a href="<?php echo Url::to(['forum/new-forum'])?>">通知向开发组相关人员</a>，文件最终解释权归第十七届队式程序开发组所有</small></div>
   </div>
 
   <div class="am-tabs am-margin" data-am-tabs>
@@ -52,7 +56,7 @@ function list_file($dir){
       </div>
 
 
-      <div class="am-tab-panel am-fade am-in am-active" id="tab2">
+      <div class="am-tab-panel am-fade am-in" id="tab2">
       	<div class="am-g">
       	<div class="am-u-lg-8 am-u-sm-12">
         <div class="am-g am-margin-top">
@@ -76,7 +80,7 @@ function list_file($dir){
       </div>
       </div>
       </div>
-      <div class="am-tab-panel am-fade am-in am-active" id="tab3">
+      <div class="am-tab-panel am-fade am-in" id="tab3">
       	<div class="am-g">
       	<div class="am-u-lg-8 am-u-sm-12">
         <div class="am-g am-margin-top">
@@ -100,7 +104,7 @@ function list_file($dir){
       </div>
       </div>
       </div>
-      <div class="am-tab-panel am-fade am-in am-active" id="tab4">
+      <div class="am-tab-panel am-fade am-in" id="tab4">
       	<div class="am-g">
       	<div class="am-u-lg-8 am-u-sm-12">
         <div class="am-g am-margin-top">
