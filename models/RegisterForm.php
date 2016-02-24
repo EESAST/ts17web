@@ -22,6 +22,7 @@ class RegisterForm extends Model
     public $studentnumber;
     public $school;
     public $class;
+    public $portrait;
     private $_user = false;
 
     public function attributeLabels()
@@ -34,7 +35,8 @@ class RegisterForm extends Model
             'realname' => '真实姓名',
             'school'=>'学校',
             'class'=>'院系班级',
-            'studentnumber' => '学生证号(如果有)'
+            'studentnumber' => '学生证号(如果有)',
+            'portrait'=>'头像'
         ];
     }
 
@@ -84,6 +86,7 @@ class RegisterForm extends Model
                 $user->updated_at = date("Y-m-d H:i:s");
                 $user->status = 1;
                 $user->group = 'player';
+                $user->portrait = $this->portrait->fileaddress();
                 if ($user->save(true)){//true调用User里的rules方法进行二次验证
                     return $user;
                 }

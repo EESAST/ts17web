@@ -128,8 +128,10 @@ $title='Eatting in Tsinghua'
       <ul class="am-nav am-nav-pills am-topbar-nav">
         <li id='News'><a href="<?php echo Url::toRoute('news/index') ;?>" >news</a></li>
         <li id='Dashboard'><a href="<?php echo Url::toRoute('dashboard/index') ;?>">dashboard</a></li>
+        <li id='Team'><a href="<?php echo Url::toRoute('team/index') ;?>">team</a></li>
         <li id='Forum'><a href="<?php echo Url::toRoute('forum/index') ;?>">forum</a></li>
         <li id='Supporting-files'><a href="<?php echo Url::toRoute('supporting-files/index') ;?>">supporting-files</a></li>
+        <li id='Online-compile'><a href="<?php echo Url::toRoute('online-compile/index') ;?>">online-compile</a></li>
         <li id='more' class="am-disabled"><a href="#">more</a></li>
       </ul>
       
