@@ -246,10 +246,9 @@ class myActiveField extends Component
             $class[]='am-form-icon';
             $class[]='am-form-feedback';            
         }
-        
         $options['class'] = implode(' ', $class);
+        $options['id']='form_'.$this->attribute;
         $tag = ArrayHelper::remove($options, 'tag', 'div');
-
         return Html::beginTag($tag, $options);
     }
 
