@@ -103,8 +103,7 @@ $title='Eatting in Tsinghua'
     </h1>
     <div class="am-collapse am-topbar-collapse" id="collapse-head">
       <ul class="am-nav am-nav-pills am-topbar-nav ">
-        <li id='#News'><a href="<?php echo Url::toRoute('news/index') ;?>">news</a></li>
-        </li>
+      	
       </ul>
       
       <div class="am-topbar-right">
@@ -113,9 +112,9 @@ $title='Eatting in Tsinghua'
         </a>
       </div>
       <div class="am-topbar-right">
-      <!--	<a href="<?php echo Url::toRoute('login/index') ;?>">-->
-        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"  id='ontemp' data-am-modal="{target:'#temp'}"><span class="am-icon-user"></span>login</button>
-       
+      <a href="<?php echo Url::toRoute('login/index') ;?>">
+        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"  ><span class="am-icon-user"></span>login</button>
+      </a>       
       </div>
     </div>
 
@@ -126,7 +125,9 @@ $title='Eatting in Tsinghua'
 
     <div class="am-collapse am-topbar-collapse" id="collapse-head">
       <ul class="am-nav am-nav-pills am-topbar-nav">
-        <li id='News'><a href="<?php echo Url::toRoute('news/index') ;?>" >news</a></li>
+        <?php if(Yii::$app->user->identity->status!=1): ?>
+        <li id='#News'><a href="<?php echo Url::toRoute('news/index') ;?>">news</a></li>
+    	<?php endif; ?>
         <li id='Dashboard'><a href="<?php echo Url::toRoute('dashboard/index') ;?>">dashboard</a></li>
         <li id='Team'><a href="<?php echo Url::toRoute('team/index') ;?>">team</a></li>
         <li id='Forum'><a href="<?php echo Url::toRoute('forum/index') ;?>">forum</a></li>
@@ -153,25 +154,6 @@ $title='Eatting in Tsinghua'
   <p>© 2015 <a href="http://www.yunshipei.com" target="_blank"><?php echo $title;?></a> 
   Licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">Web license</a>. by the ts17web Team.</p>
 </footer>
-
-
-
-
-
-<div class="am-modal am-modal-prompt" tabindex='-1' id='temp'>
-    <div class="am-modal-dialog" id='login'>
-    <?php $form = ActiveForm::begin(['id' => 'login-form','action'=>'index.php?r=login/index']); ?>
-        <div class="am-modal-hd">Login</div>
-        <input type="text" class="am-modal-prompt-input " id="loginform-username" name="LoginForm[username]"  placeholder="your username" data-validation-message="username required" required/>
-        <input type="password" class="am-modal-prompt-input"  id='loginform-password' name="LoginForm[password]" placeholder="your password" data-validation-message="password required" required/>
-        <div class="am-modal-footer">     
-            <span class="am-modal-btn"  data-am-modal-confirm id='Login'> login</span>
-            <span class="am-modal-btn"  data-am-modal-cancel id='Forget'>cancel</span>
-        </div>
-    <?php ActiveForm::end(); ?>
-    </div>
-
-</div>
   <?php if(!\Yii::$app->user->isGuest): ?>
     <div id='right' class="am-offcanvas ">
       <div class='am-offcanvas-bar am-offcanvas-bar-flip'>
@@ -183,19 +165,10 @@ $title='Eatting in Tsinghua'
         </div> 
       </div>
     </div>
-<? endif ?>
+  <?php endif ?>
 
 
 <script type="text/javascript">
-
-
-$('#Login').on('click',function(){
-    $('#login-form').submit();
-})
-
-$('#Forget').on('click',function(){
-    alert('写一个找回密码的页面');
-})
 $('#'+$(document).attr('title')).addClass('am-active');
 </script>
 

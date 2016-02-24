@@ -15,6 +15,8 @@ use yii\filters\VerbFilter;
  */
 class TeamController extends Controller
 {
+    public $layout = 'main1';
+
     public function behaviors()
     {
         return [
@@ -37,10 +39,14 @@ class TeamController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         if (Yii::$app->user->isGuest) //Èç¹ûÎ´µÇÂ¼ÔòÌø×ªÖÁµÇÂ¼½çÃæ
             return $this->redirect(array('/login'));
-        else return $this->render('index', [
+        else {
+            $team = Team::findOne(['teamname'=>Yii::$app->user->identity->teamname]);
+            return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'info'=>$team!==null?$team->id:0,
         ]);
+        }
     }
 
     /**
@@ -110,29 +116,33 @@ class TeamController extends Controller
             ]);
         }
     }
-    public function actionJoin(){
+    public function actionJoin($id){
         $input  = new Team;
+        $team=Team::findOne(['id'=>$id]);
         if($input->load(Yii::$app->request->post())) {
             $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
             if ($user->teamname != null)
                 return $this->render('error', ['message' => 'Error:<br>You have already joined another team.']);
-            $team = Team::findOne(['teamname' => $input->teamname]);
+            $team = Team::findOne(['id'=>$id]);
             if ($team != null && $team->key == $input->key) {
                 if ($team->member1name == '') {
                     $team->member1name = $user->username;
                     $user->teamname = $team->teamname;
+                    $team->status++;
                 } elseif ($team->member2name == '') {
                     $team->member2name = $user->username;
                     $user->teamname = $team->teamname;
+                    $team->status++;
                 } elseif ($team->member3name == '') {
                     $team->member3name = $user->username;
                     $user->teamname = $team->teamname;
+                    $team->status++;
                 } else return $this->render('error', ['message' => 'Error:<br>This team has already 4 members.']);
                 if($team->save()&&$user->save(false ))
                 return $this->redirect(['view', 'id' => $team->id]);
-            } else return $this->render('error', ['message' => 'Error:<br>Team name and key do not match.']);
+            } else return $this->render('error', ['message' => 'Error:<br>the key do not match.']);
         }
-        else return $this->render('join', [
+        else return $this->render('join',['team'=>$team,
             'model' => $input]);
     }
 
@@ -149,7 +159,38 @@ class TeamController extends Controller
         $model->delete();
         return $this->redirect(['index']);
     }
+    public function actionQuit($id)
+    {
+        $model = $this->findModel($id);
+        $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
 
+
+        if($user==User::findOne(['username'=>$model->member1name]))
+        {   
+            $model->member1name='';
+            $model->status--;
+            $model->save(false);
+            $user->teamname = '';
+            $user->save(false);
+        }
+        else if($user==User::findOne(['username'=>$model->member2name]))
+        {   
+            $model->member2name='';
+            $model->status--;
+            $model->save(false);
+            $user->teamname = '';
+            $user->save(false);
+        }
+        else if($user==User::findOne(['username'=>$model->member3name]))
+        {   
+            $model->member3name='';
+            $model->status--;
+            $model->save(false);
+            $user->teamname = '';
+            $user->save(false);
+        }
+        return $this->redirect(['index']);
+    }
     /**
      * Finds the Team model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

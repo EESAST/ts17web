@@ -7,7 +7,7 @@ use app\models\Forum;
 use app\models\ForumForm;
 use app\models\DetailForum;
 use app\models\DetailForumForm;
-
+use app\models\News;
 class ForumController extends \yii\web\Controller
 {
 
@@ -81,7 +81,7 @@ class ForumController extends \yii\web\Controller
         }
 
         $pagination = new Pagination([
-            'defaultPageSize' => 5,
+            'defaultPageSize' => 10,
             'totalCount' => $query->count(),
         ]);
 
@@ -106,8 +106,9 @@ class ForumController extends \yii\web\Controller
         $topquery = Forum::find()->orderBy($sort1->orders)
             ->limit(2)
             ->all();//用来置顶2个点赞量最高的
-
+        $news = News::find()->orderBy('addedat')->all();
         return $this->render('index', [
+            'new'=>$news[0],
             'forums' => $forums,
             'pagination' => $pagination,
             'sort' => $sort,

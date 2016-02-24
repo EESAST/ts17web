@@ -6,6 +6,7 @@ use Yii;
 
 class SupportingFilesController extends \yii\web\Controller
 {
+	public $layout = 'main1';
     public function actionIndex()
     {
     	if (Yii::$app->user->isGuest) {
