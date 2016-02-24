@@ -20,7 +20,7 @@ $this->title = 'Register';
         ],
     ]); ?>
     <br/><br/>
-        <?= $form->field($model, 'username',['placeholder'=>'请设置一个用户名(至少应包含6个字符)']) ?>
+        <?= $form->field($model, 'username',['placeholder'=>'请设置一个用户名(应输入6-32个字符，汉字按照1个字符计算)']) ?>
 
         <?= $form->field($model, 'password',['placeholder'=>'请设置登录密码(至少应包含6个字符)'])->passwordInput() ?>
 
@@ -43,3 +43,107 @@ $this->title = 'Register';
 </div>
 </div>
 <br/>
+<script type="text/javascript">
+$(document).ready(function(){
+    var username=$("#form_username").children("input");    
+    var password=$("#form_password").children("input");
+    var password2=$("#form_password2").children("input");
+    var email=$("#form_email").children("input");
+    var realname=$("#form_realname").children("input");
+    var school=$("#form_school").children("input");
+    var studentnumber=$("#form_studentnumber").children("input");
+    var class1=$("#form_class").children("input");
+    username.focus(function(){
+        $("#form_username").removeClass("am-form-error").children("span").remove();
+    });
+    username.blur(function(){
+        var reg=/[\u4e00-\u9fa5\w]{6,32}/;
+        if(reg.test(username.val())===false){
+            $("#form_username").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            username.attr({"placeholder":"不合法的用户名"});
+        };
+    });
+
+
+    password.focus(function(){
+        $("#form_password").removeClass("am-form-error").children("span").remove();
+    });
+    password.blur(function(){
+        var reg=/\w{6,32}/;
+        if(reg.test(password.val())===false){
+            $("#form_password").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            password.attr({"placeholder":"不合法的密码"});
+        };
+    });
+
+
+    password2.focus(function(){
+        $("#form_password2").removeClass("am-form-error").children("span").remove();
+    });
+    password2.blur(function(){
+        if(password.val()!==password2.val()){
+            $("#form_password2").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            password2.attr({"placeholder":"两次密码不一致"});
+        };
+    });
+
+    email.focus(function(){
+        $("#form_email").removeClass("am-form-error").children("span").remove();
+    });
+    email.blur(function(){
+        var reg=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(reg.test(email.val())===false){
+            $("#form_email").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            email.attr({"placeholder":"不合法的邮箱地址"});
+        };
+    });
+
+    realname.focus(function(){
+        $("#form_realname").removeClass("am-form-error").children("span").remove();
+    });
+    realname.blur(function(){
+        if(realname.val()==''){
+            $("#form_realname").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            realname.attr({"placeholder":"真实姓名不能为空"});
+        };
+    });
+
+
+    school.focus(function(){
+        $("#form_school").removeClass("am-form-error").children("span").remove();
+    });
+    school.blur(function(){
+        if(school.val()==''){
+            $("#form_school").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            school.attr({"placeholder":"学校名称不能为空"});
+        };
+    });
+
+    class1.focus(function(){
+        $("#form_class").removeClass("am-form-error").children("span").remove();
+    });
+    class1.blur(function(){
+        if(class1.val()==''){
+            $("#form_class").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            class1.attr({"placeholder":"院系班级不能为空"});
+        };
+    });
+
+    studentnumber.focus(function(){
+        $("#form_studentnumber").removeClass("am-form-error").children("span").remove();
+    });
+    studentnumber.blur(function(){
+        var reg=/\d{6,32}/;
+        if(studentnumber.val()==''){
+            $("#form_studentnumber").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            studentnumber.attr({"placeholder":"学生证号不能为空"});
+        }else if(reg.test(studentnumber.val())===false){
+            $("#form_studentnumber").addClass("am-form-icon am-form-feedback am-form-error").append("<span class='am-icon-times'></span>");
+            studentnumber.attr({"placeholder":"您至少给个像样的学生证号吧"});
+        }
+    });
+
+
+    
+});
+</script>
