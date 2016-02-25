@@ -43,3 +43,20 @@ $this->title = 'Login';
 </div>
 </div>
 <br/>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var username=$("#form_username").children("input");    
+    var password=$("#form_password").children("input");
+    username.focus(function(){
+        $("#form_username").removeClass("am-form-error").children("span").remove();
+    });
+    password.focus(function(){
+        $("#form_password").removeClass("am-form-error").children("span").remove();
+    });
+
+});
+
+
+
+</script>
