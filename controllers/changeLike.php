@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost","root","root","ts17web") or die("Could not connect database");
+$link = mysqli_connect("localhost","root","Rzxlszy712","ts17web") or die("Could not connect database");
 
 $forumid=$_POST['forumid'];
 $userid=$_POST['userid'];

@@ -3,6 +3,8 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\RegisterForm */
+/* @var $portrait app\models\PortraitForm */
+
 
 use yii\helpers\Html;
 use app\doc\widgets\myActiveForm;
@@ -12,7 +14,7 @@ $this->title = 'Register';
 <div class="am-u-md-8 am-u-sm-centered">
     <?php $form = myActiveForm::begin([
         'id' => 'register-form',
-        'options' => ['class' => 'am-form'],
+        'options' => ['class' => 'form-horizontal','enctype' => 'multipart/form-data'],
         'fieldConfig' => [
             'template' => "{input}",
             //'labelOptions' => ['class' => 'col-lg-1 control-label'],
@@ -62,6 +64,8 @@ $(document).ready(function(){
             username.attr({"placeholder":"不合法的用户名"});
         };
     });
+
+        /*<?= $form->field($portrait, 'imagefile')->fileInput() ?>*/
 
 
     password.focus(function(){

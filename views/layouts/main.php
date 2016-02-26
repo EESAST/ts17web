@@ -93,18 +93,17 @@ $title='Eatting in Tsinghua'
 <?php endif; ?>
 </div>
 
-
  <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
     <a href="#top" title="">
           <i class="am-gotop-icon am-icon-hand-o-up"></i>
     </a>
   </div>
-
-
 </header>
 <div style="height: 100%;">
 <?=$content ?>
 </div>
+
+
 <footer class="footer" >
   <p>© 2015 <a href="http://www.yunshipei.com" target="_blank"><?php echo $title;?></a> 
   Licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">Web license</a>. by the ts17web Team.</p>
