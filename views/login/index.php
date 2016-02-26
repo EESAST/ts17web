@@ -10,20 +10,9 @@ use app\doc\widgets\myActiveForm;
 $this->title = 'Login';
 
 ?>
-<style type="text/css">
-#parent{position:relative;}
-#child{
-    position:absolute;
-    top:30%;
-    left:50%;
-    width:50%;
-    height:30%;
-    margin:15% 0 0 -25%;
-}
-</style>
-<div id="parent">
-<div id="child" class="am-g">
-<div class="am-u-md-8 am-u-sm-centered">
+<div class="am-vertical-align" style="height: 100%">
+<div class="am-vertical-align-middle am-g">
+<div class="am-u-lg-4 am-sm-8 am-md-6 am-u-sm-centered am-u-lg-centerd am-u-md-centerd">
     <?php $form = myActiveForm::begin([ 
         'id' => 'login-form',
         'options' => ['class' => 'am-form'],

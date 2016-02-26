@@ -77,7 +77,7 @@ $title='Eatting in Tsinghua'
       <li class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">more<span class="am-icon-caret-down"></span>
         </a>
-        <ul id="dashboard"class="am-dropdown-content" style="background-color: #fafafa">
+        <ul id="dashboard"class="am-dropdown-content am-padding-0" style="background-color: #fafafa; border: none;">
           <li class="am-active am-dropdown-header">dashboard</li>
           <li class="am-active"><a href="<?php echo Url::to(['dashboard/index']) ?>">个人信息</a></li>
           <li class="am-active" ><a href="<?php echo Url::to(['team/index']) ?>">战队之家</a></li>
@@ -92,6 +92,15 @@ $title='Eatting in Tsinghua'
   </div>
 <?php endif; ?>
 </div>
+
+
+ <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+    <a href="#top" title="">
+          <i class="am-gotop-icon am-icon-hand-o-up"></i>
+    </a>
+  </div>
+
+
 </header>
 <div style="height: 100%;">
 <?=$content ?>

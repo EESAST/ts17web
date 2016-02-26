@@ -42,7 +42,6 @@ $this->title = 'Register';
     <?php myActiveForm::end(); ?>
 </div>
 </div>
-<br/>
 <script type="text/javascript">
 $(document).ready(function(){
     var username=$("#form_username").children("input");    
