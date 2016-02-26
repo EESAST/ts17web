@@ -24,6 +24,7 @@ use yii\web\IdentityInterface;
  * @property string $created_at
  * @property string $updated_at
  * @property string $group
+ * @property string $portrait
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -43,7 +44,7 @@ class User extends ActiveRecord implements IdentityInterface
         return[
             //required
             [['username', 'password', 'email', 'realname', 'school',
-                'class', 'studentnumber', 'status', 'created_at', 'updated_at', 'group'], 'required'],
+                'class', 'studentnumber', 'status', 'created_at', 'updated_at', 'group','portrait'], 'required'],
 
             //unique
             ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '此用户名已被注册'],
