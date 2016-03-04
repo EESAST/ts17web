@@ -17,7 +17,7 @@ $title='Eatting in Tsinghua'
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <head>
 	<meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,20 +27,28 @@ $title='Eatting in Tsinghua'
   <style>
 
     .footer{
-      position:relative;
-      margin-top:-15px;
-      height:60px;
-      clear:both;
-      background:#2d3e50;
-    }       
+      position: absolute;
+      width: 100%;
+      margin-bottom: 0px;
+      padding: 0px;
+      background:#102020;
+    }
     .footer p {
       color: #7f8c8d;
       margin: 0;
       padding: 15px 0;
       text-align: center;
-      background: #2d3e50;
+    }
+    .content{
+      min-height: 100%;
+      clear: both;
     }
   </style>
+
+    <script type="text/javascript" name="baidu-tc-cerfication" data-appid="7816487" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>
+  
+
+  
   <?php $this->head() ?>
 </head>
 
@@ -51,6 +59,7 @@ $title='Eatting in Tsinghua'
 
 <header class="am-topbar am-topbar-inverse am-margin-0" style=" border:none;">
 <div class="am-container">
+
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 
 
@@ -77,7 +86,7 @@ $title='Eatting in Tsinghua'
       <li class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">more<span class="am-icon-caret-down"></span>
         </a>
-        <ul id="dashboard"class="am-dropdown-content am-padding-0" style="background-color: #fafafa; border: none;">
+        <ul id="dashboard" class="am-dropdown-content am-padding-0" style= "background-color: #fafafa; border: none;">
           <li class="am-active am-dropdown-header">dashboard</li>
           <li class="am-active"><a href="<?php echo Url::to(['dashboard/index']) ?>">个人信息</a></li>
           <li class="am-active" ><a href="<?php echo Url::to(['team/index']) ?>">战队之家</a></li>
@@ -93,24 +102,22 @@ $title='Eatting in Tsinghua'
 <?php endif; ?>
 </div>
 
+</header>
+<div class="content">
+<?=$content ?>
+</div>
  <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
     <a href="#top" title="">
           <i class="am-gotop-icon am-icon-hand-o-up"></i>
     </a>
-  </div>
-</header>
-<div style="height: 100%;">
-<?=$content ?>
 </div>
 
-
 <footer class="footer" >
-  <p>© 2015 <a href="http://www.yunshipei.com" target="_blank"><?php echo $title;?></a> 
-  Licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">Web license</a>. by the ts17web Team.</p>
+  <p>© 2015 <a href="#" target="_blank"><?php echo $title;?></a> 
+  Licensed<a href="#" target="_blank">Web license</a>. by the ts17web Team.</p>
 </footer>
 
 <script>
-  $("#dashboard").Children("li").mouseover(function(){alert(this);   this.addClass("am-active");});
 </script>
 
 <!--[if lt IE 9]>

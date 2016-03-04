@@ -1,93 +1,43 @@
 <?php 
-
+use app\doc\widgets\myActiveForm;
+use yii\helpers\Html;
 ?>
-    <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
-    </div>
+<div>
+<br/>
+      <div class="am-fl"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
       <br/>
       <hr/><small>本页面处于开发阶段，请随意吐槽</small><hr/>
+      <hr/><small>目前暂不提供信息修改功能，请见谅</small><hr/>
       <br/>
-    <div class="am-g">
+<div class="am-cf">
+    <?php $form = myActiveForm::begin([
+        'id' => 'register-form',
+        'options' => ['class' => 'form-horizontal','enctype' => 'multipart/form-data'],
+        'fieldConfig' => [
+            'template' => "{label}{input}",
+            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+            'errorOptions'=>['class'=>'am-text-danger']
+        ],
+    ]); ?>
+        <?= $form->field($model, 'username',['placeholder'=>'请设置一个用户名(应输入6-32个字符，汉字按照1个字符计算)']) ?>
 
-      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
-        <div class="am-panel am-panel-default">
-          <div class="am-panel-bd">
-            <div class="am-g">
-              <div class="am-u-md-4">
-                <img class="am-img-circle am-img-thumbnail" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/200/h/200/q/80" alt=""/>
-              </div>
-              <div class="am-u-md-8">
-                <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
-                <form class="am-form">
-                  <div class="am-form-group">
-                    <input type="file" id="user-pic">
-                    <p class="am-form-help">请选择要上传的文件...</p>
-                    <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?= $form->field($model, 'password',['placeholder'=>'请设置登录密码(至少应包含6个字符)'])->passwordInput() ?>
+        <?= $form->field($model, 'email',['placeholder'=>'请输入您的邮箱(该邮箱将在找回密码)']) ?>
 
+        <?= $form->field($model, 'realname',['placeholder'=>'请输入您的真实姓名(这有助于我们确定您的真实身份)']) ?>
 
+        <?= $form->field($model, 'school',['placeholder'=>'请输入您的学校全称(五道口男子技术学院?)']) ?>
 
-      </div>
+        <?= $form->field($model, 'class',['placeholder'=>'请输入您的院系-班级(例:电子工程系-无59班)']) ?>
 
-      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form class="am-form am-form-horizontal">
-          <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
-            <div class="am-u-sm-9">
-              <input type="text" id="user-name" placeholder="姓名 / Name">
-              <small>输入你的名字，让我们记住你。</small>
-            </div>
-          </div>
+        <?= $form->field($model, 'studentnumber',['placeholder'=>'请输入您的学号(例:2015012345)']) ?>
 
-          <div class="am-form-group">
-            <label for="user-email" class="am-u-sm-3 am-form-label">电子邮件 / Email</label>
-            <div class="am-u-sm-9">
-              <input type="email" id="user-email" placeholder="输入你的电子邮件 / Email">
-              <small>邮箱你懂得...</small>
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
-            <div class="am-u-sm-9">
-              <input type="email" id="user-phone" placeholder="输入你的电话号码 / Telephone">
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label for="user-QQ" class="am-u-sm-3 am-form-label">QQ</label>
-            <div class="am-u-sm-9">
-              <input type="email" id="user-QQ" placeholder="输入你的QQ号码">
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label for="user-weibo" class="am-u-sm-3 am-form-label">微博 / Twitter</label>
-            <div class="am-u-sm-9">
-              <input type="email" id="user-weibo" placeholder="输入你的微博 / Twitter">
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
-            <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
-              <small>250字以内写出你的一生...</small>
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <div class="am-u-sm-9 am-u-sm-push-3">
-              <button type="button" class="am-btn am-btn-primary">保存修改</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+        
+        <?= Html::submitButton('Save', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'register-button']) ?>
+    
+    <?php myActiveForm::end(); ?>
+</div>
   <!-- content end -->
+  <br/>
+  <br/>
+  </div>

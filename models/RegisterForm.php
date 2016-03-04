@@ -44,31 +44,30 @@ class RegisterForm extends Model
     {
         return
             [
-                ['username', 'required','message' => '用户名不能为空'],
-                ['password', 'required','message' => '密码不能为空'],
-                ['password2', 'required','message' => '确认密码不能为空'],
-                ['email', 'required','message' => '邮箱不能为空'],
-                ['realname', 'required','message' => '真实姓名不能为空'],
-                ['school', 'required','message' => '学校不能为空'],
-                ['class', 'required','message' => '院系班级不能为空'],
-                ['studentnumber', 'required','message' => '学生证号不能为空'],
+                ['username', 'required', 'message' => '用户名不能为空'],
+                ['password', 'required', 'message' => '密码不能为空'],
+                ['password2', 'required', 'message' => '确认密码不能为空'],
+                ['email', 'required', 'message' => '邮箱不能为空'],
+                ['realname', 'required', 'message' => '真实姓名不能为空'],
+                ['school', 'required', 'message' => '学校不能为空'],
+                ['class', 'required', 'message' => '院系班级不能为空'],
+                ['studentnumber', 'required', 'message' => '学生证号不能为空'],
 
                 //unique
                 ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已被注册'],
                 ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已被注册'],
 
                 //double check password
-                ['password2','compare','compareAttribute'=>'password','message'=>'两次输入的密码不一致'],
+                ['password2', 'compare', 'compareAttribute' => 'password', 'message' => '两次输入的密码不一致'],
 
                 //data type and requirements
                 ['username', 'filter', 'filter' => 'trim'],
                 ['username', 'string', 'length' => [5, 12]],
                 ['password', 'string', 'min' => 6],
-                ['school', 'string', 'min'=>2, 'max'=>10],
-                ['email', 'email', 'message'=>'请检查您的电子邮件地址'],
+                ['school', 'string', 'min' => 2, 'max' => 10],
+                ['email', 'email', 'message' => '请检查您的电子邮件地址'],
             ];
     }
-
     public function register()
     {
         if ($this->validate()) {
@@ -109,3 +108,5 @@ class RegisterForm extends Model
         return $this->_user;
     }
 }
+?>
+

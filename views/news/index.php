@@ -10,7 +10,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'News');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="news-index">
+<div class="container">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -35,4 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+
+    
 </div>

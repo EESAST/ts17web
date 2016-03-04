@@ -10,8 +10,6 @@ use app\doc\widgets\myActiveForm;
 $this->title = 'Login';
 
 ?>
-<div class="am-vertical-align" style="height: 100%">
-<div class="am-vertical-align-middle am-g">
 <div class="am-u-lg-4 am-sm-8 am-md-6 am-u-sm-centered am-u-lg-centerd am-u-md-centerd">
     <?php $form = myActiveForm::begin([ 
         'id' => 'login-form',
@@ -28,8 +26,6 @@ $this->title = 'Login';
     <p></p>
     <div class="am-fr"><a href="#"><p>忘记密码?</p></a></div>
     <?php myActiveForm::end(); ?>
-</div>
-</div>
 </div>
 <br/>
 

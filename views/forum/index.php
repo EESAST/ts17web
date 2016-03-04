@@ -9,7 +9,7 @@ $this->title = 'Forum';
 <a href="<?php echo Url::toRoute('forum/new-forum') ;?>"><button class="am-btn am-btn-primary am-btn-block"><br/><span class="am-text-lg"><i class="am-icon-hand-pointer-o"></i>点我发帖</span><br/><br/></button></a>
 <hr data-am-widget="divider" class="am-divider am-divider-default" />
 <div class="am-g">
-    <div class="am-u-sm-9 am-lg-9 am-md-9">
+    <div class="am-u-sm-12 am-u-lg-9 am-u-md-9">
         <table class="am-table am-table-striped am-table-hover table-main">
             <button class="am-btn am-btn-default am-btn-block"><span class="am-text-lg">全部帖子</span></button>
             <thead>
@@ -82,7 +82,7 @@ $this->title = 'Forum';
 
     </div>
 
-    <div class="am-u-sm-4 am-u-md-3 am-u-lg-3">
+    <div class="am-u-sm-12 am-u-md-3 am-u-lg-3">
         <?php //以下按钮可以对帖子进行分类显示 ?>
 		<section class="am-panel am-panel-default">
   			<header class="am-panel-hd">
@@ -90,7 +90,7 @@ $this->title = 'Forum';
   			</header>
   			<div class="am-panel-bd">
   				<ul class="am-list">
-    			<li><a href="<?php echo Url::to(['forum/index','kinds'=>'all'])?>">全部</a></li>
+    			 <li><a href="<?php echo Url::to(['forum/index','kinds'=>'all'])?>">全部</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'tucao'])?>">吐槽灌水</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'tactic'])?>">战术讨论</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'rule'])?>">规则询问</a></li>
