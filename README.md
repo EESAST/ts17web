@@ -1,6 +1,8 @@
 
 #Log
 --------------------
+###3-12 by 林子恒
+论坛加了队伍招募；汉化了；news页面需要账号：lzhbrian，密码：password才能打开；主页放了一些东西，需要 @duanxg 美化一下QAQ。。。
 ###2-23 by 段续光
 重写了login/register,懒得写ajax（其实是不会写）所以用了activeform的一些东西，但是对activeform进行了修改(app\doc\widgets\myActiveForm)，以适应目前的格式，不知道在其他浏览器、手机端会不会有bug。
 ###2-18 by 段续光

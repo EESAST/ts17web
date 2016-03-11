@@ -38,7 +38,7 @@ $this->title = 'Register';
 
         <?= $form->field($model, 'studentnumber',['placeholder'=>'请输入您的学号(例:2015012345)']) ?>
         
-        <?= Html::submitButton('Register', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'register-button']) ?>
+        <?= Html::submitButton('注册', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'register-button']) ?>
     
     <?php myActiveForm::end(); ?>
 </div>

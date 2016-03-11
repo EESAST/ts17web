@@ -70,20 +70,20 @@ $title='Eatting in Tsinghua'
       <li><a href="<?php echo Url::to(['site/index']); ?>">home</a></li>
     </ul>
     <div class="am-topbar-right">
-      <a href="<?php echo Url::to(['register/index']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-pencil"></i>register</button></a>
+      <a href="<?php echo Url::to(['register/index']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-pencil"></i>&nbsp 注册</button></a>
     </div>
     <div class="am-topbar-right">
-      <a href="<?php echo Url::to(['login/index']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-user"></i>login</button></a>
+      <a href="<?php echo Url::to(['login/index']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-user"></i>&nbsp 登陆</button></a>
     </div>
   </div>
 <?php else: ?>
   <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav">
-     <li><a href="<?php echo Url::to(['site/index'])?>">home</a></li>
+     <li><a href="<?php echo Url::to(['site/index'])?>">主页</a></li>
       <li><a href="<?php echo Url::to(['news/index']) ?>">news</a></li>
-      <li><a href="<?php echo URl::to(['forum/index']) ?>">forum</a></li>
+      <li><a href="<?php echo URl::to(['forum/index']) ?>">论坛</a></li>
       <li class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">more<span class="am-icon-caret-down"></span>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">更多<span class="am-icon-caret-down"></span>
         </a>
         <ul id="dashboard" class="am-dropdown-content am-padding-0" style= "background-color: #fafafa; border: none;">
           <li class="am-active am-dropdown-header">dashboard</li>
@@ -95,7 +95,7 @@ $title='Eatting in Tsinghua'
       </li>
     </ul>
     <div class="am-topbar-right">
-      <a href="<?php echo Url::to(['login/logout']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-paper-plane"></i>logout</button></a>
+      <a href="<?php echo Url::to(['login/logout']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-paper-plane"></i>&nbsp 登出</button></a>
     </div>
   </div>
 <?php endif; ?>
