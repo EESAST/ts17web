@@ -6,6 +6,7 @@ MyAppAsset2::register($this);
 $this->title = 'Dashboard';
 
 ?>
+
 <?php $this->beginContent('@app/views/layouts/main.php'); ?>
 <div class="am-g am-cf">
 

@@ -76,7 +76,7 @@ class TeamController extends Controller
 //                'myTeamInfo' => $team,
 //                'searchModel' => $searchModel,
 //            'dataProvider' => $dataProvider]);
-        return $this->render('error',['message'=>'You have already been in another team.']);
+        return $this->render('error',['message'=>'你已经在某个队伍里面了']);
         }
         $model = new Team();
         if ($model->load(Yii::$app->request->post()) ) {
@@ -87,7 +87,7 @@ class TeamController extends Controller
             $user->updated_at = date("Y-m-d H:i:s");//¸ü¸ÄuserµÄupdateÊ±¼ä
             if($model->save()&& $user->save(false))
                 return $this->redirect(['view', 'id' => $model->id]);
-            else return $this->render('error',['message'=>'Please check if your team infomation is unique or if you have joined another team.']);
+            else return $this->render('error',['message'=>'请检查你的队伍信息是否唯一且你没有在另外一支队伍里面']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -122,7 +122,7 @@ class TeamController extends Controller
         if($input->load(Yii::$app->request->post())) {
             $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
             if ($user->teamname != null)
-                return $this->render('error', ['message' => 'Error:<br>You have already joined another team.']);
+                return $this->render('error', ['message' => '你已经加入另外一支队伍啦']);
             $team = Team::findOne(['id'=>$id]);
             if ($team != null && $team->key == $input->key) {
                 if ($team->member1name == '') {
@@ -137,10 +137,10 @@ class TeamController extends Controller
                     $team->member3name = $user->username;
                     $user->teamname = $team->teamname;
                     $team->status++;
-                } else return $this->render('error', ['message' => 'Error:<br>This team has already 4 members.']);
+                } else return $this->render('error', ['message' => '这支队伍已经有四个人啦']);
                 if($team->save()&&$user->save(false ))
                 return $this->redirect(['view', 'id' => $team->id]);
-            } else return $this->render('error', ['message' => 'Error:<br>the key do not match.']);
+            } else return $this->render('error', ['message' => '密钥不对。。。']);
         }
         else return $this->render('join',['team'=>$team,
             'model' => $input]);
@@ -151,7 +151,7 @@ class TeamController extends Controller
     {
         $model = $this->findModel($id);
         $user = User::findone(['username'=>Yii::$app->user->identity->username]);
-        if ($model->leadername!=$user->username&&$user->group!='admin') return $this->render('error',['message'=>'Error:Only Team leader can DELETE a team.']);
+        if ($model->leadername!=$user->username&&$user->group!='admin') return $this->render('error',['message'=>'只有队长才可以删除队伍啊']);
         $user = User::findOne(['username'=>$model->leadername]); if  ($user){ $user->teamname = '';$user->save(false);}
         $user = User::findOne(['username'=>$model->member1name]); if  ($user) {$user->teamname = '';$user->save(false);}
         $user = User::findOne(['username'=>$model->member2name]); if  ($user) {$user->teamname = '';$user->save(false);}
