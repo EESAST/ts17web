@@ -5,7 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Team */
 
-$this->title = Yii::t('app', 'Create Team');
+?>
+<br/><br/>
+<?
+$this->title = Yii::t('app', '创建队伍');
 ?>
 <div class="team-create">
 

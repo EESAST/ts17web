@@ -55,7 +55,9 @@ $this->title = 'Forum';
                         规则询问
                     <?php }elseif ($forum->kinds==='bug') { ?>
                         平台报错
-                    <?php } ?>
+                    <?php }elseif ($forum->kinds==='team'){ ?>
+                        队伍招募
+                    <? } ?>
                 </td>
                 <td>
                     <i class='am-icon-book'></i>
@@ -71,15 +73,12 @@ $this->title = 'Forum';
             <?php endforeach; //以上代码显示全部的帖子?>
             </tbody>
         </table>
-        <br/>
-
-        <div align="right">
+        <div align="center">
             <?php echo LinkPager::widget([
                 'pagination' => $pagination,
             ]);
         ?>
 </div>
-
     </div>
 
     <div class="am-u-sm-12 am-u-md-3 am-u-lg-3">
@@ -95,6 +94,7 @@ $this->title = 'Forum';
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'tactic'])?>">战术讨论</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'rule'])?>">规则询问</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'bug'])?>">平台报错</a></li>
+            <li><a href="<?php echo Url::to(['forum/index','kinds'=>'team'])?>">队伍招募</a></li>
         		<?php if (!Yii::$app->user->isGuest) { //如果没登陆就没有“与我相关按钮” ?>
             		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'myposts'])?>">我发的帖子</a></li>
             		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'myreplies'])?>">我回的帖子</a></li>

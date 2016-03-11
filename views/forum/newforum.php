@@ -28,6 +28,7 @@ use yii\bootstrap\ActiveForm;
         <label><input type="radio" name="ForumForm[kinds]" value="tactic"> 战术讨论</label>
         <label><input type="radio" name="ForumForm[kinds]" value="rule"> 规则询问</label>
         <label><input type="radio" name="ForumForm[kinds]" value="bug"> 平台报错</label>
+        <label><input type="radio" name="ForumForm[kinds]" value="team"> 队伍招募</label>
         </div>      
         <h3>帖子主题</h3>
         <?= $form->field($model, 'theme') ?>

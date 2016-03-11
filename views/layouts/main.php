@@ -77,7 +77,6 @@ $title='Eatting in Tsinghua'
     </div>
   </div>
 <?php else: ?>
-
   <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav">
      <li><a href="<?php echo Url::to(['site/index'])?>">home</a></li>

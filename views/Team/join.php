@@ -6,8 +6,11 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Team */
+?>
 
-$this->title = Yii::t('app', 'Join Team');
+<br/><br/>
+<?
+$this->title = Yii::t('app', '加入队伍');
 ?>
 <div class="team-view">
     <div class="am-cf"><strong class="am-text-primary am-text-lg"><?= Html::encode($this->title) ?>/<span class="am-text-danger am-text"></span></strong></div>
@@ -21,7 +24,6 @@ $this->title = Yii::t('app', 'Join Team');
             'member2name',
             'member3name',
             'slogan:ntext',
-//            'key:ntext',
             'status',
         ],
     ]) ?>

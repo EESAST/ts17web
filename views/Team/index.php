@@ -7,10 +7,10 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\TeamSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 ?>
-
+<br/>
   <div class="am-cf am-padding">
     <div class="am-cf"><strong class="am-text-primary am-text-lg">队伍信息</strong>/<small>你和你的队友们将在这里相遇</small></div>
-
+<br/>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -35,7 +35,7 @@ use yii\helpers\Url;
             'urlCreator' => function ($action, $model, $key, $index) {
                  if ($action === 'view') {
                     return ['view', 'id' => $model->id];
-                } else if ($action === 'area') {
+                } else if ($action === 'area' && Yii::$app->user->identity->teamname==null) {
                       return ['join','id'=>$model->id];
                 }
             }
