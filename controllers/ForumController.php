@@ -10,7 +10,18 @@ use app\models\DetailForumForm;
 use app\models\News;
 class ForumController extends \yii\web\Controller
 {
-
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
     public function actionIndex($kinds='all')
     {
         $sort = new Sort([
