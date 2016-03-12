@@ -11,7 +11,7 @@ use yii\bootstrap\ActiveForm;
 <br/>
 <br/>
 <div class="am-g">
-<div class="am-u-sm-8">
+<div class="am-u-sm-12 am-u-md-8 am-u-lg-8">
     <?php $form = ActiveForm::begin([
         'id' => 'forum-form',
         'options' => ['class' => 'am-form'],
@@ -28,6 +28,7 @@ use yii\bootstrap\ActiveForm;
         <label><input type="radio" name="ForumForm[kinds]" value="tactic"> 战术讨论</label>
         <label><input type="radio" name="ForumForm[kinds]" value="rule"> 规则询问</label>
         <label><input type="radio" name="ForumForm[kinds]" value="bug"> 平台报错</label>
+        <label><input type="radio" name="ForumForm[kinds]" value="team"> 队伍招募</label>
         </div>      
         <h3>帖子主题</h3>
         <?= $form->field($model, 'theme') ?>
@@ -42,7 +43,7 @@ use yii\bootstrap\ActiveForm;
 </div>
 
 <?php //热门讨论贴，现在是赞最多的前八个?>
-<div class="am-u-sm-4 ">
+<div class="am-u-sm-12 am-u-md-4 am-u-lg-4 ">
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">热门讨论帖</div>
         <ul class="am-list blog-list">
