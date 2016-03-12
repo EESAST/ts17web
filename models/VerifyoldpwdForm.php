@@ -33,6 +33,5 @@ class VerifyoldpwdForm extends Model
             return $user;
         }
         return null;
-        
     }
 }
