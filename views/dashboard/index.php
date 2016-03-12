@@ -45,17 +45,17 @@ use yii\helpers\Url;
         <br/>
 
         <a class="am-link-muted" href="<?php echo Url::to(['dashboard/verifyoldpwd'])?>">
-            <button  class="am-btn am-btn-default am-btn-block">修改密码</button>
+            <button id="button1" class="am-btn am-btn-default am-btn-block">修改密码</button>
         </a>
     </div>
     <div class="am-u-sm-4 am-u-lg-4">
         <div style="width:120px;border: grey 1px solid;padding-top: 10px;">
         <img class="am-center" src="touxiang/".<?=$model->username?>.".png" onerror="this.src='images/star4.png'" width="100" height="100" >
-        <button class="am-btn am-btn-block" id="button">更换头像</button>
+        <button class="am-btn am-btn-block" id="button2">更换头像</button>
         </div>
         <script>
-            $("button").hover(function(){$(this).addClass("am-btn-primary")});
-            $("button").mouseleave(function(){$(this).removeClass("am-btn-primary")});
+            $("#button1 #button2").hover(function(){$(this).addClass("am-btn-primary")});
+            $("#button1 #button2").mouseleave(function(){$(this).removeClass("am-btn-primary")});
         </script>
     </div>
 </div>

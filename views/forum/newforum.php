@@ -7,6 +7,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
 ?>
 <br/>
 <br/>
@@ -34,6 +35,14 @@ use yii\bootstrap\ActiveForm;
         <?= $form->field($model, 'theme') ?>
         <h3>帖子内容</h3>
         <?= $form->field($model, 'content')->textarea(['rows' => 6])?>
+
+        <?= $form->field($model, 'verifyCode', ['options' => [],
+            ])->widget(Captcha::className(),
+        ['template' => "{input}<div align='center'>{image}</div>",
+            'class'=>'am-form-field',
+            'imageOptions' => ['alt' => '验证码'],
+            'captchaAction' => 'site/captcha',
+        ]); ?>
         <div class="form-group">
             <br/>
             <?= Html::submitButton('提交', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'submit-button']) ?>
