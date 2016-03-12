@@ -43,10 +43,10 @@ function likefunc(forumid, userid){
 <br/>
 <br/>
 <div class="am-g">
-<div class="am-u-sm-8">
+<div class="am-u-sm-8 am-u-md-8 am-u-lg-8">
     <section class="am-panel am-panel-default">
         <div class="am-panel-hd">
-            <span class="am-text-lg am-text-warning">话题： </span>
+            <span class="am-text-lg am-text-primary">话题： </span>
             <?=$forum->theme ?>&nbsp&nbsp
             <span class="am-text-lg am-text-warning">
                 <?php if(!\Yii::$app->user->isGuest){ ?>
@@ -100,7 +100,7 @@ function likefunc(forumid, userid){
 
  <div class="am-panel am-panel-default">
       <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-3'}">
-        <span class="am-text-lg am-text-warning">评论：</span>
+        <span class="am-text-lg am-text-primary">评论：</span>
         <?=$forum->reply?>
         <span class="am-icon-chevron-down am-fr" ></span>
       </div>
@@ -147,31 +147,29 @@ function likefunc(forumid, userid){
 
 <?php if (!\Yii::$app->user->isGuest): ?>
 
-<div>
+<div class="am-container">
 <h3>发表新评论</h3>
 <?php
     $form = ActiveForm::begin([
         'id' => 'detail-forum-form',
-        'options' => ['class' => 'form-horizontal'],
+        'options' => ['class' => 'am-form'],
         'fieldConfig' => [
-            'template' => "{input}",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+            'template' => "{input}"        
         ],
     ]); 
 ?>
 		
-        <?= $form->field($model, 'reply')->textarea(['rows' => 4])?>
-        <br/>
-        <?= Html::submitButton('submit', ['class' => 'am-btn am-btn-secondary am-btn-block', 'name' => 'submit-button']) ?>
-
-    <?php ActiveForm::end(); ?>
+<?= $form->field($model, 'reply')->textarea(['rows' => 4])?>
+<br/>
+<?= Html::submitButton('submit', ['class' => 'am-btn am-btn-secondary am-btn-block', 'name' => 'submit-button']) ?>
+<?php ActiveForm::end(); ?>
 </div>
 <?php endif; ?>
 <br/>
 </div>
 
 <?php //热门讨论贴，现在是赞最多的前二个?>
-<div class="am-u-sm-4 ">
+<div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">热门讨论帖</div>
         <ul class="am-list blog-list">

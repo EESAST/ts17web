@@ -70,6 +70,8 @@ class ForumController extends \yii\web\Controller
             $query = Forum::find()->where(array('kinds'=>'rule'));
         }elseif ($kinds==='bug') {
             $query = Forum::find()->where(array('kinds'=>'bug'));
+        }elseif ($kinds==='team') {
+            $query = Forum::find()->where(array('kinds'=>'team'));
         }elseif ($kinds==='myposts') {//我发的帖子
             $query = Forum::find()->where(array('author'=>Yii::$app->user->identity->username));
         }elseif ($kinds==='myreplies') {//我回复的帖子

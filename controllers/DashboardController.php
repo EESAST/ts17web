@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use Yii;
-
+use app\models\User;
 class DashboardController extends \yii\web\Controller
 {
 	public $layout = 'main1';
@@ -12,8 +12,8 @@ class DashboardController extends \yii\web\Controller
     	if(Yii::$app->user->isGuest){
     		return $this->render('/site/index');
     	}
-
-        return $this->render('index');
+    	$user=User::findByUsername(Yii::$app->user->identity->username);
+        return $this->render('index', ['model'=>$user]);
     }
 
 }
