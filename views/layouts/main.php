@@ -104,7 +104,6 @@ $this->title='Stellar Craft'
   <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav">
      <li><a href="<?php echo Url::to(['site/index'])?>">主页</a></li>
-      <li><a href="<?php echo Url::to(['news/index']) ?>">news</a></li>
       <li><a href="<?php echo URl::to(['forum/index']) ?>">论坛</a></li>
       <li class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">更多<span class="am-icon-caret-down"></span>
