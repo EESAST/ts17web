@@ -22,7 +22,6 @@ class RegisterForm extends Model
     public $studentnumber;
     public $school;
     public $class;
-    public $portrait;
     private $_user = false;
 
     public function attributeLabels()
@@ -36,7 +35,7 @@ class RegisterForm extends Model
             'school'=>'学校',
             'class'=>'院系班级',
             'studentnumber' => '学生证号(如果有)',
-            'portrait'=>'头像'
+
         ];
     }
 
@@ -54,8 +53,8 @@ class RegisterForm extends Model
                 ['studentnumber', 'required','message' => '学生证号不能为空'],
 
                 //unique
-                ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已被注册'],
-                ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已被注册'],
+           //     ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已被注册'],
+             //   ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已被注册'],
 
                 //double check password
                 ['password2','compare','compareAttribute'=>'password','message'=>'两次输入的密码不一致'],
@@ -71,28 +70,26 @@ class RegisterForm extends Model
 
     public function register()
     {
+        $this->validate();
+        var_dump($this->getErrors());
         if ($this->validate()) {
-                $user = new User();
-                $user->username = $this->username;
-
-                //密码用Yii自带的hash密码函数处理
-                $user->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
-                $user->realname = $this->realname;
-                $user->email = $this->email;
-                $user->school = $this->school;
-                $user->class = $this->class;
-                $user->studentnumber = $this->studentnumber;
-                $user->created_at = date("Y-m-d H:i:s");
-                $user->updated_at = date("Y-m-d H:i:s");
-                $user->status = 1;
-                $user->group = 'player';
-                $user->portrait = $this->portrait->fileaddress();
-                if ($user->save(true)){//true调用User里的rules方法进行二次验证
-                    return $user;
-                }
-            
+            $user = new User();
+            $user->username = $this->username;
+            $user->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+            $user->realname = $this->realname;
+            $user->email = $this->email;
+            $user->school = $this->school;
+            $user->class = $this->class;
+            $user->studentnumber = $this->studentnumber;
+            $user->created_at = date("Y-m-d H:i:s");
+            $user->updated_at = date("Y-m-d H:i:s");
+            $user->status = 1;
+            $user->group = 'player';
+            if ($user->save(true)) {//true调用User里的rules方法进行二次验证
+                return $user;
+            }
+            return null;
         }
-        return null;       
     }
     //实现注册之后直接登录
     public function login()
