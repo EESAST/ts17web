@@ -27,10 +27,9 @@ $this->title = 'Login';
 
         <?= $form->field($model, 'password',['placeholder'=>'请输入您的登录密码'])->passwordInput() ?>
         
-        <?= $form->field($model, 
+        <?= $form->field($model,
         'verifyCode',
-
-         ['options' => ['class' => 'form-group form-group-lg'],
+         ['options' => ['class' => 'am-form-field'],
          ])->widget(Captcha::className(),
 
         ['template' => "{input}<div align='center'>{image}</div>",

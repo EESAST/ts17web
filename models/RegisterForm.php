@@ -23,6 +23,7 @@ class RegisterForm extends Model
     public $school;
     public $class;
     private $_user = false;
+    public $verifyCode;
 
     public function attributeLabels()
     {
@@ -65,6 +66,8 @@ class RegisterForm extends Model
                 ['password', 'string', 'min' => 6],
                 ['school', 'string', 'min' => 2, 'max' => 10],
                 ['email', 'email', 'message' => '请检查您的电子邮件地址'],
+                ['verifyCode', 'required'],
+                ['verifyCode', 'captcha'],
             ];
     }
     public function register()

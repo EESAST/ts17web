@@ -15,6 +15,7 @@ $this->title = '更改密码';
     <?php $form = myActiveForm::begin([ 
         'id' => 'changepwd-form',
         'options' => ['class' => 'am-form'],
+        'action'=>['dashboard/changepwd'],
         'fieldConfig' => [
             'template' => "{input}",
         ],
