@@ -84,7 +84,7 @@ $this->title='Stellar Craft'
 <header class="am-topbar am-topbar-inverse am-margin-0" style=" border:none;">
 <div class="am-container">
 
-  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-home">第十七届队式程序程序设计大赛</span></button>
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary am-show-sm-only am-fl" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-home">第十七届队式程序程序设计大赛</span></button>
 
 
 <?php if(Yii::$app->user->isGuest):?>

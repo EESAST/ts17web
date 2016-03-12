@@ -66,8 +66,9 @@ function likefunc(forumid, userid){
         </div>
     </section>
 <article class="am-comment-success">
-<img src="touxiang/".<?=$forum->author?>.".png" onerror="this.src='images/star4.png'" alt="" class="am-comment-avatar" width="48" height="48">
-<div class="am-comment-main">
+<img src="images/star<? $user=User::findByUsername($forum->author);echo $user==null?1:$user->pic ?>.png" onerror="this.src='images/star4.png'" alt="" class="am-comment-avatar" width="48" height="48">
+
+    <div class="am-comment-main">
   <header class="am-comment-hd">
      <div class="am-comment-meta">
         <a href="#" class="am-comment-author">
@@ -81,7 +82,7 @@ function likefunc(forumid, userid){
             <?= Html::a(Yii::t('app', '删除'), ['delete', 'id' => $forum->id], [
                 'class' => '',
                 'data' => [
-                    'confirm' => Yii::t('app', '删去的帖子就像泼出去的水，再也回不来了，你去定要删除吗？'),
+                    'confirm' => Yii::t('app', '删去的帖子就像泼出去的水，再也回不来了，你确定要删除吗？'),
                     'method' => 'post',
                 ],
             ]) ?>
@@ -109,8 +110,8 @@ function likefunc(forumid, userid){
         <?php if(!$forum->reply==0): ?>
         <?php foreach ($detailforums as $detailforum): ?>
           <li id="<?=$detailforum->author?>" class="am-comment">
-            <img src="touxiang/".<?=$detailforum->author?>.".png" onerror="this.src='images/star4.png'" alt="" class="am-comment-avatar" width="48" height="48">
-             <div class="am-comment-main">
+            <img src="images/star<? $user=User::findByUsername($detailforum->author);echo $user==null?1:$user->pic ?>.png"onerror="this.src='images/star4.png'" alt="" class="am-comment-avatar" width="48" height="48">
+              <div class="am-comment-main">
               <header class="am-comment-hd">
                     <div class="am-comment-meta">
                         <a href="#" class="am-comment-author">

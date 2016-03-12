@@ -50,12 +50,61 @@ use yii\helpers\Url;
     </div>
     <div class="am-u-sm-4 am-u-lg-4">
         <div style="width:120px;border: grey 1px solid;padding-top: 10px;">
-        <img class="am-center" src="touxiang/".<?=$model->username?>.".png" onerror="this.src='images/star4.png'" width="100" height="100" >
-        <button class="am-btn am-btn-block" id="button2">更换头像</button>
+        <img class="am-center" src="images/star<?=$model->pic ?>.png" width="100" height="100" style="padding: 5px;">
+        <button
+            type="button"
+            id="button2"
+            class="am-btn am-btn-default am-btn-block"
+            data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 225}">
+            更换头像
+        </button>
         </div>
         <script>
-            $("#button1 #button2").hover(function(){$(this).addClass("am-btn-primary")});
-            $("#button1 #button2").mouseleave(function(){$(this).removeClass("am-btn-primary")});
+            $("#button1").hover(function(){$(this).addClass("am-btn-primary")});
+            $("#button1").mouseleave(function(){$(this).removeClass("am-btn-primary")});
+            $("#button2").hover(function(){$(this).addClass("am-btn-primary")});
+            $("#button2").mouseleave(function(){$(this).removeClass("am-btn-primary")});
         </script>
     </div>
 </div>
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">更换头像
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="am-g">
+                <div id="pic1" class="am-u-lg-2"><img src="images/star1.png" style="width: 120%"/></div>
+                <div id="pic2" class="am-u-lg-2"><img src="images/star2.png" style="width: 120%"/></div>
+                <div id="pic3" class="am-u-lg-2"><img src="images/star3.png" style="width: 120%"/></div>
+                <div id="pic4" class="am-u-lg-2"><img src="images/star4.png" style="width: 140%"/></div>
+                <div id="pic5" class="am-u-lg-2"><img src="images/star5.png" style="width: 120%"/></div>
+                <div id="pic6" class="am-u-lg-2"><img src="images/star6.png" style="width: 150%"/></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("img").click(function(){
+            var a=$(this).parent().attr("id");
+
+            var b= "<input value=" +a+ " name='data'>";
+            var temp = document.createElement("form");
+            temp.action = "<?= Url::to(['dashboard/resetpic']) ?>";
+            temp.method = "post";
+
+            temp.appendChild(b);
+            //document.body.appendChild(temp);
+            alert(123);
+            temp.submit();
+
+            $("#doc-modal-1").modal('close');
+            return temp;
+
+
+        });
+    });
+
+
+</script>
