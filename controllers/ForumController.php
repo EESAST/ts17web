@@ -2,7 +2,7 @@
 namespace app\controllers;
 use Yii;
 use yii\data\Pagination;
-use yii\data\sort;
+use yii\data\Sort;
 use app\models\Forum;
 use app\models\ForumForm;
 use app\models\DetailForum;
