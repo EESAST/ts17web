@@ -20,7 +20,7 @@ class RegisterController extends \yii\web\Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'maxLength' => 7,
-                'minLength' => 5
+                'minLength' => 5,
             ],
         ];
     }
@@ -29,17 +29,17 @@ class RegisterController extends \yii\web\Controller
         if (!\Yii::$app->user->isGuest) {
             return $this->redirect(['site/index']);
         }
+
         $model = new RegisterForm();
         if ($model->load(Yii::$app->request->post()) )
         {
-            $user=$model->register();
-            Yii::$app->user->login($user, 0);
+            if(($model->register())) {
+            $model->login();
             return $this->redirect(['site/index']);
-            //注册成功后登陆并直接跳转到dashboard
         }
-        return $this->render('index', [
-            'model' => $model,
-        ]);
+        }
+
+        return $this->render('index', ['model' => $model,]);
     }
 
 }
