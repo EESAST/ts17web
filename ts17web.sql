@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2016 at 04:56 PM
+-- Generation Time: Mar 12, 2016 at 11:47 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `detailforum` (
   `reply` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `author` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `created_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `detailforum`
@@ -93,7 +93,10 @@ INSERT INTO `detailforum` (`id`, `fatherindex`, `reply`, `author`, `created_at`)
 (53, 15, 'ewqrqehrqehrelkw', 'lzhbrian', '2016-02-06 10:48:58'),
 (58, 15, 'fsbsdbbd', 'lzhbrian', '2016-02-06 13:02:29'),
 (59, 11, 'sadfasf', 'testtestuser', '2016-02-06 13:14:28'),
-(60, 11, 'sdflkjdahfjksahf', 'lzhbrian', '2016-03-09 12:47:17');
+(60, 11, 'sdflkjdahfjksahf', 'lzhbrian', '2016-03-09 12:47:17'),
+(61, 30, 'gsfdgf ', 'lzhbrian', '2016-03-12 05:56:35'),
+(62, 11, 'sdfadf', 'lzhbrian', '2016-03-12 08:25:35'),
+(63, 25, 'sdaaf', 'lzhbrian', '2016-03-12 08:25:49');
 
 -- --------------------------------------------------------
 
@@ -111,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `forum` (
   `plike` int(11) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `forum`
@@ -125,19 +128,21 @@ INSERT INTO `forum` (`id`, `author`, `theme`, `content`, `kinds`, `reply`, `plik
 (7, 'lzhbrian', 'sadcas', 'acsdcdad', 'tucao', 7, 6, '2016-02-01 12:46:56', '2016-02-03 12:48:11'),
 (9, 'lzhbrian', 'sdfasf(bug)', 'afsfaf', 'tucao', 2, 0, '2016-02-01 12:52:52', '2016-02-01 13:10:14'),
 (10, 'lzhbrian', 'asfasfasf(tactic)', 'lksdnlkjasnfsa', 'tactic', 3, 5, '2016-02-01 13:02:44', '2016-02-02 02:36:10'),
-(11, 'testtest', '规则询问贴（rule）', 'fhkahfsjkdfhaldfa', 'rule', 7, 26, '2016-02-01 13:21:34', '2016-03-09 12:47:17'),
-(12, 'testtest', 'bug（bug）', '看撒娇和防空军阿里合法的时间发 ', 'bug', 5, 18, '2016-02-01 13:21:49', '2016-02-06 10:41:35'),
-(13, 'testtest', 'rule2（rule）', '封口机娃焕发健康时间考虑到哈伦裤放假啊哈', 'rule', 2, 12, '2016-02-01 13:22:21', '2016-02-06 09:31:01'),
+(11, 'testtest', '规则询问贴（rule）', 'fhkahfsjkdfhaldfa', 'rule', 8, 27, '2016-02-01 13:21:34', '2016-03-12 08:25:35'),
+(12, 'testtest', 'bug（bug）', '看撒娇和防空军阿里合法的时间发 ', 'bug', 5, 19, '2016-02-01 13:21:49', '2016-02-06 10:41:35'),
+(13, 'testtest', 'rule2（rule）', '封口机娃焕发健康时间考虑到哈伦裤放假啊哈', 'rule', 2, 13, '2016-02-01 13:22:21', '2016-02-06 09:31:01'),
 (14, 'testtest', 'bug（bug）', '疯狂的萨和防空军撒发哈时间发；决定开始啦', 'bug', 4, 8, '2016-02-01 13:22:34', '2016-02-06 10:07:48'),
 (15, 'testabtmefor', '测试测试', 'fweqfwqfewqfqew', 'tactic', 7, 84, '2016-02-02 03:22:07', '2016-02-06 13:02:29'),
 (21, 'testabtmefor', 'bugbugbug快消失', 'hah', 'bug', 0, 1, '2016-02-06 09:58:29', '2016-02-06 09:58:29'),
 (22, 'test5', 'hahaha我是乱发的', '看来发健身房卡号发大水', 'tactic', 1, 2, '2016-02-06 10:05:40', '2016-02-06 10:05:48'),
 (23, 'test5', 'puppy', 'wefewfewf', 'bug', 1, 1, '2016-02-06 10:06:14', '2016-02-06 10:06:29'),
 (24, 'test7', 'hahahahaha', 'wefwefw', 'bug', 0, 0, '2016-02-06 10:07:27', '2016-02-06 10:07:27'),
-(25, 'test7', '第六个平台报错', '克赖斯基啊倒海翻江啊哭', 'bug', 0, 0, '2016-02-06 10:08:13', '2016-02-06 10:08:13'),
+(25, 'test7', '第六个平台报错', '克赖斯基啊倒海翻江啊哭', 'bug', 1, 0, '2016-02-06 10:08:13', '2016-03-12 08:25:49'),
 (28, 'testtestuser', 'safasf', 'afafdfa', 'tactic', 0, 2, '2016-02-06 13:14:35', '2016-02-06 13:14:35'),
 (29, 'lzhbrian', '咕叽咕叽', '感觉很干净', 'bug', 0, 1, '2016-03-11 14:43:28', '2016-03-11 14:43:28'),
-(30, 'lzhbrian', '我要招募队伍', '刷卡劳动法环境法', 'team', 0, 1, '2016-03-11 15:54:35', '2016-03-11 15:54:35');
+(30, 'lzhbrian', '我要招募队伍', '刷卡劳动法环境法', 'team', 1, 1, '2016-03-11 15:54:35', '2016-03-12 05:56:35'),
+(31, 'lzhbrian', '撒地方', '是短发', 'team', 0, 0, '2016-03-12 07:30:34', '2016-03-12 07:30:34'),
+(32, 'lzhbrian', '客家话客家话', '空间发的我', 'rule', 0, 0, '2016-03-12 07:38:02', '2016-03-12 07:38:02');
 
 -- --------------------------------------------------------
 
@@ -149,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `likehistory` (
   `id` int(11) NOT NULL,
   `forumid` int(11) NOT NULL,
   `userid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `likehistory`
@@ -179,7 +184,10 @@ INSERT INTO `likehistory` (`id`, `forumid`, `userid`) VALUES
 (21, 14, 8),
 (22, 3, 8),
 (23, 29, 8),
-(24, 30, 8);
+(24, 30, 8),
+(25, 13, 8),
+(26, 11, 8),
+(27, 12, 8);
 
 -- --------------------------------------------------------
 
@@ -207,22 +215,20 @@ CREATE TABLE IF NOT EXISTS `newss` (
   `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `addedby` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `addedat` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `newss`
 --
 
 INSERT INTO `newss` (`id`, `title`, `text`, `addedby`, `addedat`) VALUES
+(1, '队式开赛啦！', 'RT，队式开赛啦！大家终于可以开始熬夜写代码了！', 'lzhbrian', '2016-03-13'),
 (4, '队式开赛啦！', 'RT，队式开赛啦！大家终于可以开始熬夜写代码了！', 'lzhbrian', '2016-03-11'),
 (5, '组队方法', '由队长组队，并设置密钥，队员可通过输入密钥加入队伍。\r\n\r\n“队伍招募”请左转“论坛”->“队伍招募”', 'lzhbrian', '2016-03-11'),
 (6, '新闻就是在这里发布的！', '寝室就要有无线网啦，大家兴奋不兴奋', 'lzhbrian', '2016-03-11'),
 (7, '大家好！', '队式开发组跟大家拜年了～', 'lzhbrian', '2016-03-11'),
-(8, '拉萨；豆腐块', '吉拉屎', 'lzhbrian', '2016-03-11'),
-(9, '盛大发售发', '阿斯顿发啊', 'lzhbrian', '2016-03-11'),
-(10, '阿斯顿发a', '阿斯顿发', 'lzhbrian', '2016-03-11'),
-(11, '阿斯顿发a', '阿斯顿发a', 'lzhbrian', '2016-03-11'),
-(12, '阿斯顿发', '阿斯顿发', 'lzhbrian', '2016-03-11');
+(14, 'hahah', 'lfkjasdf', 'lzhbrian', '2016-03-12'),
+(15, 'vasdv', 'sdvas', 'lzhbrian', '2016-03-12');
 
 -- --------------------------------------------------------
 
@@ -235,14 +241,19 @@ CREATE TABLE IF NOT EXISTS `sourcecodes` (
   `team` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `uploadedby` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `uploadedat` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `sourcecodes`
 --
 
 INSERT INTO `sourcecodes` (`id`, `team`, `uploadedby`, `uploadedat`) VALUES
-(1, '嘿我真的好想你', 'fcz', '2016-01-23 06:32:51');
+(1, '嘿我真的好想你', 'fcz', '2016-01-23 06:32:51'),
+(2, '你给我去死', 'lzhbrian', '2016-03-12 08:21:01'),
+(3, '你给我去死', 'lzhbrian', '2016-03-12 08:21:09'),
+(4, '你给我去死', 'lzhbrian', '2016-03-12 08:21:30'),
+(5, '你给我去死', 'lzhbrian', '2016-03-12 08:21:49'),
+(6, '你给我去死', 'lzhbrian', '2016-03-12 08:22:00');
 
 -- --------------------------------------------------------
 
@@ -260,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `team` (
   `slogan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `key` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `status` tinyint(4) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `team`
@@ -269,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `team` (
 INSERT INTO `team` (`id`, `teamname`, `leadername`, `member1name`, `member2name`, `member3name`, `slogan`, `key`, `status`) VALUES
 (2, '嘿我真的好想你', 'fanchengze', 'fcz', '', '', '呵呵呵', '嘿嘿嘿', 1),
 (3, '我的队伍最帅', 'test3', '', '', '', '哈哈哈', 'passkey', 1),
-(4, 'hhh', 'lzhbrian', '', '', '', 'jkh', 'iybyk', 1);
+(5, '你给我去死', 'lzhbrian', '', '', '', '可分离技术的空间里发', 'lzhbrian', 1);
 
 -- --------------------------------------------------------
 
@@ -286,6 +297,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `school` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `class` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `studentnumber` int(11) unsigned NOT NULL,
+  `pic` enum('1','2','3','4','5','6') NOT NULL DEFAULT '1',
   `authKey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
   `accessToken` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
   `teamname` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
@@ -293,25 +305,33 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `group` enum('admin','player') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `realname`, `school`, `class`, `studentnumber`, `authKey`, `accessToken`, `teamname`, `status`, `created_at`, `updated_at`, `group`) VALUES
-(8, 'lzhbrian', '$2y$13$MME8Lg56Z5vxAT3x6TLZz.q3hBBVBJMnYM6gs96qkWI.Lgs38ZF3e', 'lzhbrian@gmail.com', '林子恒', '清华大学', '无42', 2014011054, '7Nmfmwkuj88D_vyIN1jY8-HFQiM47nmz', '', 'hhh', 1, '2016-01-27 14:25:49', '2016-01-27 15:39:35', 'player'),
-(9, 'username', '$2y$13$DeRxktOcMhejzgzRsVEHTeINMIbVfd7FD1sZ73bEZ4qkDCNMFcrDi', 'email3', '胡昌然', '清华大学', '无42', 2014011111, 'KgR0qN7fzjlu9UkCxQgmkDFwQE3qc_gH', '', NULL, 1, '2016-01-27 14:29:35', '2016-01-27 14:29:35', 'player'),
-(10, 'lllbrian', '$2y$13$gsrkJYT4UOAk8jsKjGEGTuNirRteMECNMHLOSXczBNo90X9nKHerC', 'lzhbrian@email', '林', '清华', '电子系无42', 2014, 'XF1thgVEyPqnLFDSPv2xN3zS2hhXrSGi', '', NULL, 1, '2016-01-27 16:18:19', '2016-01-27 16:18:19', 'player'),
-(11, 'dddd', '$2y$13$9CYoh0dFJ7mVaTyXHJ3y7elw90U/517XHcwc/DwPv.mOnygSggdmW', 'd', 'dd', 'd', 'd', 0, 'VZVF0P60KzZ4PT3CE5PRflDOyLKASQpE', '', NULL, 1, '2016-01-27 16:19:28', '2016-01-27 16:19:28', 'player'),
-(12, 'test5', '$2y$13$WNAaNzgA74uj3Fh3qZCjPuubn28p4i.Kc5FojNQUT.IijdS9ry0dC', 'j', 'j', 'jj', 'j', 0, 'wzWQJ4ojE4x38TiqDJqc2gi7paDKWNY9', '', NULL, 1, '2016-01-27 16:20:57', '2016-01-27 16:20:57', 'player'),
-(13, 'test7', '$2y$13$FEkdN9tO/nFArjm66W4kwOuo8UKqjEjKa0aNb4sbK1BzzxhetXQbS', 'dlzhbrian@gmail.com', '林子恒', '清华', 'w43', 2014011000, 'XxealDI_uqjL-dBL_126Z42UBn-Fk6Yj', '', NULL, 1, '2016-01-30 13:43:47', '2016-01-30 13:43:47', 'player'),
-(15, 'testtest', '$2y$13$3T/goqu.zzItVf0nMG/mTuDtvWf6B11WU2oQn3EV9NRHmPsWOJLPW', 'email@email.com', 'k', 'lsdaf', 'l', 2000, '5iXMBvAdttWC6AegdBlHloUv2XpDUXk0', '', NULL, 1, '2016-02-01 11:50:46', '2016-02-01 11:50:46', 'player'),
-(16, 'testtesttest', '$2y$13$7P/162Are4/dc0wBiV0qtOCHzjJpm1U.6g4KcLxFo42s085ns9BYO', 'email@email.com1', 'real', 'sis', 'asdf', 20123, 'ravFilSvkQIhzGkawzdQyJXVt5keJS_k', '', NULL, 1, '2016-02-01 14:02:43', '2016-02-01 14:02:43', 'player'),
-(17, 'testuser', '$2y$13$BFJO9rfWJgcLTNEXTm.2ZOfTAml/vgc6ZvSlV8.rxNfkdBDrNv1h.', 'email.email@email.com', 'jldksajlfk', 'lkfjsadkl', 'kfjalsk', 29321893, 'MEpuXlb7zAtiwYKbhd6pgm01ldIj1RUM', '', NULL, 1, '2016-02-01 14:37:42', '2016-02-01 14:37:42', 'player'),
-(18, 'testabtmefor', '$2y$13$.yIv8DtbXRi3nR9u5yLZLukIjOUkaK3PrJ1LaZ1MU4XoqYSMd6FUW', 'test@email.com', 'real', 'sdlkj', 'flksjda', 3029183, '_HpXCeHCww9T0lZcs7EXKGYxbxeOYqFM', '', NULL, 1, '2016-02-02 03:20:16', '2016-02-02 03:20:16', 'player'),
-(19, 'testtestuser', '$2y$13$JCqK7csSHtyH7hs6mbjxKOOuAKUV2FFrZf/bpIXT/6YeZjd/jJ9Ai', 'email.email@email.emal', 'lsadjk', 'kfjalsk', 'lkfjaslkd', 1821739, '9_OfOvr2llgwJB8xajdaqIWrP6lpuKs2', '', NULL, 1, '2016-02-06 13:14:19', '2016-02-06 13:14:19', 'player'),
-(20, 'hahaha', '$2y$13$jpnQEnNda8DoQsfhdiYxeO6gDU1TlMuJ8nxxl616LSLPa0taQA4tS', 'lz@g.com', '林子恒', '清华大学', '电子工程系－无42', 2014011054, 'pzsHWBIIyVvpspoNDLnllmhWnFHqi0yn', '', NULL, 1, '2016-02-23 14:58:21', '2016-02-23 14:58:21', 'player');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `realname`, `school`, `class`, `studentnumber`, `pic`, `authKey`, `accessToken`, `teamname`, `status`, `created_at`, `updated_at`, `group`) VALUES
+(8, 'lzhbrian', '$2y$13$MME8Lg56Z5vxAT3x6TLZz.q3hBBVBJMnYM6gs96qkWI.Lgs38ZF3e', 'lzhbrian@gmail.com', '林子恒', '清华大学', '无42', 2014011054, '1', '7Nmfmwkuj88D_vyIN1jY8-HFQiM47nmz', '', '你给我去死', 1, '2016-01-27 14:25:49', '2016-03-12 07:33:04', 'player'),
+(9, 'username', '$2y$13$DeRxktOcMhejzgzRsVEHTeINMIbVfd7FD1sZ73bEZ4qkDCNMFcrDi', 'email3', '胡昌然', '清华大学', '无42', 2014011111, '1', 'KgR0qN7fzjlu9UkCxQgmkDFwQE3qc_gH', '', NULL, 1, '2016-01-27 14:29:35', '2016-01-27 14:29:35', 'player'),
+(10, 'lllbrian', '$2y$13$gsrkJYT4UOAk8jsKjGEGTuNirRteMECNMHLOSXczBNo90X9nKHerC', 'lzhbrian@email', '林', '清华', '电子系无42', 2014, '1', 'XF1thgVEyPqnLFDSPv2xN3zS2hhXrSGi', '', NULL, 1, '2016-01-27 16:18:19', '2016-01-27 16:18:19', 'player'),
+(11, 'dddd', '$2y$13$9CYoh0dFJ7mVaTyXHJ3y7elw90U/517XHcwc/DwPv.mOnygSggdmW', 'd', 'dd', 'd', 'd', 0, '1', 'VZVF0P60KzZ4PT3CE5PRflDOyLKASQpE', '', NULL, 1, '2016-01-27 16:19:28', '2016-01-27 16:19:28', 'player'),
+(12, 'test5', '$2y$13$WNAaNzgA74uj3Fh3qZCjPuubn28p4i.Kc5FojNQUT.IijdS9ry0dC', 'j', 'j', 'jj', 'j', 0, '1', 'wzWQJ4ojE4x38TiqDJqc2gi7paDKWNY9', '', NULL, 1, '2016-01-27 16:20:57', '2016-01-27 16:20:57', 'player'),
+(13, 'test7', '$2y$13$FEkdN9tO/nFArjm66W4kwOuo8UKqjEjKa0aNb4sbK1BzzxhetXQbS', 'dlzhbrian@gmail.com', '林子恒', '清华', 'w43', 2014011000, '1', 'XxealDI_uqjL-dBL_126Z42UBn-Fk6Yj', '', NULL, 1, '2016-01-30 13:43:47', '2016-01-30 13:43:47', 'player'),
+(15, 'testtest', '$2y$13$3T/goqu.zzItVf0nMG/mTuDtvWf6B11WU2oQn3EV9NRHmPsWOJLPW', 'email@email.com', 'k', 'lsdaf', 'l', 2000, '1', '5iXMBvAdttWC6AegdBlHloUv2XpDUXk0', '', NULL, 1, '2016-02-01 11:50:46', '2016-02-01 11:50:46', 'player'),
+(16, 'testtesttest', '$2y$13$7P/162Are4/dc0wBiV0qtOCHzjJpm1U.6g4KcLxFo42s085ns9BYO', 'email@email.com1', 'real', 'sis', 'asdf', 20123, '1', 'ravFilSvkQIhzGkawzdQyJXVt5keJS_k', '', NULL, 1, '2016-02-01 14:02:43', '2016-02-01 14:02:43', 'player'),
+(17, 'testuser', '$2y$13$BFJO9rfWJgcLTNEXTm.2ZOfTAml/vgc6ZvSlV8.rxNfkdBDrNv1h.', 'email.email@email.com', 'jldksajlfk', 'lkfjsadkl', 'kfjalsk', 29321893, '1', 'MEpuXlb7zAtiwYKbhd6pgm01ldIj1RUM', '', NULL, 1, '2016-02-01 14:37:42', '2016-02-01 14:37:42', 'player'),
+(18, 'testabtmefor', '$2y$13$.yIv8DtbXRi3nR9u5yLZLukIjOUkaK3PrJ1LaZ1MU4XoqYSMd6FUW', 'test@email.com', 'real', 'sdlkj', 'flksjda', 3029183, '1', '_HpXCeHCww9T0lZcs7EXKGYxbxeOYqFM', '', NULL, 1, '2016-02-02 03:20:16', '2016-02-02 03:20:16', 'player'),
+(19, 'testtestuser', '$2y$13$JCqK7csSHtyH7hs6mbjxKOOuAKUV2FFrZf/bpIXT/6YeZjd/jJ9Ai', 'email.email@email.emal', 'lsadjk', 'kfjalsk', 'lkfjaslkd', 1821739, '1', '9_OfOvr2llgwJB8xajdaqIWrP6lpuKs2', '', NULL, 1, '2016-02-06 13:14:19', '2016-02-06 13:14:19', 'player'),
+(20, 'hahaha', '$2y$13$jpnQEnNda8DoQsfhdiYxeO6gDU1TlMuJ8nxxl616LSLPa0taQA4tS', 'lz@g.com', '林子恒', '清华大学', '电子工程系－无42', 2014011054, '1', 'pzsHWBIIyVvpspoNDLnllmhWnFHqi0yn', '', NULL, 1, '2016-02-23 14:58:21', '2016-02-23 14:58:21', 'player'),
+(21, 'sdafsadfas', '$2y$13$q4NyRzTbP0nwfhsXD7cpleXnH6XrgEx5fB43dkA2gQDBhIfYLCx3C', 'd@d.sdfasfda', 'sadf', 'asdf', 'asdf', 3412341, '1', 'Nip7xxqg-7zvb2hgDO2IvTjRfAYLNGJd', '', NULL, 1, '2016-03-12 06:45:49', '2016-03-12 06:45:49', 'player'),
+(22, 'asvdadva', '$2y$13$eHPLk52JaDPPOyQs0Kdn7OLSdKel7CHfyG0Uu/Co7kUcUa/E1nxb2', 'asdf@dsaf.asdf', 'asfd', 'asdf', 'asdf', 2131231, '1', '6gUUOJrU63SJSDogy1-B9rkzAWCzj0Cr', '', NULL, 1, '2016-03-12 07:01:03', '2016-03-12 07:01:03', 'player'),
+(23, 'asfasdfas', '$2y$13$idspk46d91/hCuemZqkwsOeNLeEM5P8QLA9vrQo4w7EBbPRjO061u', 'asdfas@fasdf.com', 'asdfljl', 'lkasjdf', 'qlkjdskf', 123123, '1', 'X1JKQw8C2XXqdglxxfmd59CwOXDTh8cf', '', NULL, 1, '2016-03-12 07:07:20', '2016-03-12 07:07:20', 'player'),
+(24, '1231234', '$2y$13$lY2./C2t4WrPrghDrRJL9ud7NHDQsovGSWpjaTs1S.i/l6h0U28uq', 'asdf@ewqrqrqr.fasdf', 'fasd', 'fadsh', 'kfajshdf', 1232132321, '1', 'dPN3GxfqxirIc5rS9-nH5W7X8R22FxvA', '', NULL, 1, '2016-03-12 07:08:37', '2016-03-12 07:08:37', 'player'),
+(25, 'eqwfqwfwq', '$2y$13$jP/EPI4kWkhRRpIF2fi3uumFoTG5FB0nDvFrS2Fw/9AncLDrJpbna', 'asdfa@fsafd.nfg', 'wergewr', 'gewrgwerg', 'rewgwegwe', 21312313, '1', 'HNgm60oFmA18nxJfd1dWEFzZofktIWML', '', NULL, 1, '2016-03-12 07:09:29', '2016-03-12 07:09:29', 'player'),
+(26, 'eqwfqwfq', '$2y$13$xLLUt2DV/ze7DRhflC8VvObpEc/qV/6sO/69yaVsATsyoumCtt0H2', 'fdfads@fewfasd.csdca', 'wqefeqwf', 'qwefqwef', 'wqffewf', 1231313, '1', 'rhaWS5x1V4iohbzH-JpGQJ5jdPfLHSpH', '', NULL, 1, '2016-03-12 07:10:55', '2016-03-12 07:10:55', 'player'),
+(27, 'sadfsdfas', '$2y$13$ptQ8.Sd07UGifZYgNCL8COuVUNNaHM94R0F1RkUs5pGyrvRxQYuQ.', 'fsdfa@fewfa.fsfda', 'wqfeqf', 'wqfeewqf', 'wefqf', 34124312, '1', 'iNNeWUwztMCYjQ4d3A9vFZPhnaH7LrPB', '', NULL, 1, '2016-03-12 07:23:00', '2016-03-12 07:23:00', 'player'),
+(28, 'wqefqwef', '$2y$13$rMni022g5hrasP8/ai/4kuKdc7Ef8BYWnbMrXSeBYQIXPyP0CkXqW', 'flkadsjfl@lfjdsa.fsdf', 'ifhwf', 'iuhfiewufh', 'iufhwiufwe', 128731263, '1', 'A1ls7Iq5TUyHe00r15K_j0QGklBkfQJC', '', NULL, 1, '2016-03-12 07:23:54', '2016-03-12 07:23:54', 'player');
 
 --
 -- Indexes for dumped tables
@@ -368,37 +388,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `detailforum`
 --
 ALTER TABLE `detailforum`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT for table `forum`
 --
 ALTER TABLE `forum`
-  MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `id` smallint(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `likehistory`
 --
 ALTER TABLE `likehistory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `newss`
 --
 ALTER TABLE `newss`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `sourcecodes`
 --
 ALTER TABLE `sourcecodes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -20,6 +20,8 @@ $this->title = '更改密码';
         ],
     ]); ?>
         <?= $form->field($model, 'verifypwd',['placeholder'=>'请输入您的旧密码']) ?>
+        <?= $form->field($model, 'newpwd',['placeholder'=>'请输入您的新密码']) ?>
+        <?= $form->field($model, 'verifynewpwd',['placeholder'=>'请再一次输入您的新密码']) ?>
         <?= Html::submitButton('确定', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'verify-button']) ?>
     <p></p>
     <?php myActiveForm::end(); ?>
