@@ -30,6 +30,7 @@ class DashboardController extends \yii\web\Controller
 
     	$model = new VerifyoldpwdForm();
        	if ($model->load(Yii::$app->request->post())) {
+			if($model->verifypwd=='')return $this->redirect(['site/index']);
        		if(Yii::$app->getSecurity()->validatePassword($model->verifypwd, $user->password)){
             
         		$user->password = $this->newpwd;//Yii::$app->getSecurity()->generatePasswordHash($model->newpwd);

@@ -7,6 +7,7 @@
 
 use yii\helpers\Html;
 use app\doc\widgets\myActiveForm;
+use yii\captcha\Captcha;
 $this->title = 'Register';
 ?>
 <div class="am-g">
@@ -37,6 +38,13 @@ $this->title = 'Register';
 
         <?= $form->field($model, 'studentnumber',['placeholder'=>'请输入您的学号(例:2015012345)']) ?>
 
+        <?= $form->field($model, 'verifyCode', ['options' => ['class' => 'am-form-field'],
+        ])->widget(Captcha::className(),
+        ['template' => "{input}<div align='center'>{image}</div>",
+            'class'=>'am-form-field',
+            'imageOptions' => ['alt' => '验证码'],
+            'captchaAction' => 'site/captcha',
+        ]); ?>
         
         <?= Html::submitButton('注册', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'register-button']) ?>
 

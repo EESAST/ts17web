@@ -14,6 +14,16 @@ use yii\web\UploadedFile;
 class RegisterController extends \yii\web\Controller
 {
 
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'maxLength' => 7,
+                'minLength' => 5
+            ],
+        ];
+    }
     public function actionIndex()
     {
         if (!\Yii::$app->user->isGuest) {

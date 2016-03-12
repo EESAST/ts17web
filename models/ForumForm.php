@@ -19,6 +19,7 @@ class ForumForm extends Model
     public $content;
     public $kinds;
     public $created_at;
+    public $verifyCode;
 
 /*
     public function attributeLabels()
@@ -37,6 +38,8 @@ class ForumForm extends Model
         return [
             // username and password are both required
             [['theme', 'content','created_at','kinds'], 'required'],
+            ['verifyCode', 'required'],
+            ['verifyCode', 'captcha'],
             
         ];
     }

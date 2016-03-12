@@ -36,6 +36,7 @@ class Forum extends \yii\db\ActiveRecord
     {
         return [
             [['theme', 'content','author', 'kinds', 'created_at'], 'required'],
+
         ];
     }
 
