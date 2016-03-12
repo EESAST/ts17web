@@ -43,16 +43,16 @@ function likefunc(forumid, userid){
 <br/>
 <br/>
 <div class="am-g">
-<div class="am-u-sm-8">
+<div class="am-u-sm-8 am-u-md-8 am-u-lg-8">
     <section class="am-panel am-panel-default">
         <div class="am-panel-hd">
-            <span class="am-text-lg am-text-warning">话题： </span>
+            <span class="am-text-lg am-text-primary">话题： </span>
             <?=$forum->theme ?>&nbsp&nbsp
             <span class="am-text-lg am-text-warning">
                 <?php if(!\Yii::$app->user->isGuest){ ?>
-                  <a href="#" onclick=likefunc(<?= $forum->id ?>,<?= Yii::$app->user->identity->id ?>) > 赞: </a>
+                  <a href="#" onclick=likefunc(<?= $forum->id ?>,<?= Yii::$app->user->identity->id ?>) > <i class="am-icon-thumbs-o-up"></i> </a>
                 <?php }else { ?>
-                  赞:
+                  <i class="am-icon-thumbs-o-up"></i>
                 <?php } ?>
             </span>
             <span id="likelike"><?=$forum->plike?></span>
@@ -66,7 +66,7 @@ function likefunc(forumid, userid){
         </div>
     </section>
 <article class="am-comment-success">
-<img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48">	
+<img src="touxiang/".<?=$forum->author?>.".png" onerror="this.src='images/star4.png'" alt="" class="am-comment-avatar" width="48" height="48">
 <div class="am-comment-main">
   <header class="am-comment-hd">
      <div class="am-comment-meta">
@@ -100,7 +100,7 @@ function likefunc(forumid, userid){
 
  <div class="am-panel am-panel-default">
       <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-3'}">
-        <span class="am-text-lg am-text-warning">评论：</span>
+        <span class="am-text-lg am-text-primary">评论：</span>
         <?=$forum->reply?>
         <span class="am-icon-chevron-down am-fr" ></span>
       </div>
@@ -109,7 +109,7 @@ function likefunc(forumid, userid){
         <?php if(!$forum->reply==0): ?>
         <?php foreach ($detailforums as $detailforum): ?>
           <li id="<?=$detailforum->author?>" class="am-comment">
-            <a href="#"><img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48"></a>
+            <img src="touxiang/".<?=$detailforum->author?>.".png" onerror="this.src='images/star4.png'" alt="" class="am-comment-avatar" width="48" height="48">
              <div class="am-comment-main">
               <header class="am-comment-hd">
                     <div class="am-comment-meta">
@@ -147,39 +147,29 @@ function likefunc(forumid, userid){
 
 <?php if (!\Yii::$app->user->isGuest): ?>
 
-<div class="site-forum">
-
+<div class="am-container">
+<h3>发表新评论</h3>
 <?php
     $form = ActiveForm::begin([
         'id' => 'detail-forum-form',
-        'options' => ['class' => 'form-horizontal'],
+        'options' => ['class' => 'am-form'],
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-11 am-form\">{input}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+            'template' => "{input}"        
         ],
     ]); 
 ?>
 		
-        <?= $form->field($model, 'reply')->textarea(['rows' => 4])?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('提交', ['class' => 'am-btn am-btn-secondary', 'name' => 'submit-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        
-    </div>
+<?= $form->field($model, 'reply')->textarea(['rows' => 4])?>
+<br/>
+<?= Html::submitButton('submit', ['class' => 'am-btn am-btn-secondary am-btn-block', 'name' => 'submit-button']) ?>
+<?php ActiveForm::end(); ?>
 </div>
 <?php endif; ?>
-
+<br/>
 </div>
 
 <?php //热门讨论贴，现在是赞最多的前二个?>
-<div class="am-u-sm-4 ">
+<div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">热门讨论帖</div>
         <ul class="am-list blog-list">

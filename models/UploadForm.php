@@ -15,7 +15,7 @@ class UploadForm extends Model
     public function rules()
     {
         return [
-            [['sourcecode'], 'file', 'skipOnEmpty' => false, 'extensions' => 'c,cpp','maxSize'=>1024*1024],
+            [['sourcecode'], 'file', 'skipOnEmpty' => false, 'extensions' => 'c,cpp,rar','maxSize'=>1024*1024*50],
         ];
     }
     public function indextoadd(){

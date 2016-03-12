@@ -22,6 +22,7 @@ class MyAppAsset1 extends AssetBundle
     ];
     public $js = [
         'UI/assets/js/jquery.min.js',
+        'UI/assets/js/jquery.min.validate.js',
     ];
 
     public $depends = [

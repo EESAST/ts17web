@@ -6,12 +6,12 @@ use yii\widgets\LinkPager;
 $this->title = 'Forum';
 
 ?>
-<a href="<?php echo Url::toRoute('forum/new-forum') ;?>"><button class="am-btn am-btn-primary am-btn-block"><br/><span class="am-text-lg"><i class="am-icon-th-large"></i>发帖</span><br/><br/></button></a>
+<a href="<?php echo Url::toRoute('forum/new-forum') ;?>"><button class="am-btn am-btn-primary am-btn-block"><br/><span class="am-text-lg"><i class="am-icon-hand-pointer-o"></i>点我发帖</span><br/><br/></button></a>
 <hr data-am-widget="divider" class="am-divider am-divider-default" />
 <div class="am-g">
-    <div class="am-u-sm-9">
+    <div class="am-u-sm-12 am-u-lg-9 am-u-md-9">
         <table class="am-table am-table-striped am-table-hover table-main">
-            <button class="am-btn am-btn-default am-btn-block"><span class="am-text-lg">全部帖子</span></button>
+            <a href="<?php echo Url::to(['forum/index','kinds'=>'all'])?>"><button class="am-btn am-btn-default am-btn-block"><span class="am-text-lg">全部帖子</span></button></a>
             <thead>
               <tr>
                 <th width="10%"><?php echo $sort->link('kinds')?></th>
@@ -55,7 +55,9 @@ $this->title = 'Forum';
                         规则询问
                     <?php }elseif ($forum->kinds==='bug') { ?>
                         平台报错
-                    <?php } ?>
+                    <?php }elseif ($forum->kinds==='team'){ ?>
+                        队伍招募
+                    <? } ?>
                 </td>
                 <td>
                     <i class='am-icon-book'></i>
@@ -71,18 +73,15 @@ $this->title = 'Forum';
             <?php endforeach; //以上代码显示全部的帖子?>
             </tbody>
         </table>
-        <br/>
-
-        <div align="right">
+        <div align="center">
             <?php echo LinkPager::widget([
                 'pagination' => $pagination,
             ]);
         ?>
 </div>
-
     </div>
 
-    <div class="am-u-sm-3 ">
+    <div class="am-u-sm-12 am-u-md-3 am-u-lg-3">
         <?php //以下按钮可以对帖子进行分类显示 ?>
 		<section class="am-panel am-panel-default">
   			<header class="am-panel-hd">
@@ -90,11 +89,12 @@ $this->title = 'Forum';
   			</header>
   			<div class="am-panel-bd">
   				<ul class="am-list">
-    			<li><a href="<?php echo Url::to(['forum/index','kinds'=>'all'])?>">全部</a></li>
+    			 <li><a href="<?php echo Url::to(['forum/index','kinds'=>'all'])?>">全部</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'tucao'])?>">吐槽灌水</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'tactic'])?>">战术讨论</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'rule'])?>">规则询问</a></li>
         		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'bug'])?>">平台报错</a></li>
+            <li><a href="<?php echo Url::to(['forum/index','kinds'=>'team'])?>">队伍招募</a></li>
         		<?php if (!Yii::$app->user->isGuest) { //如果没登陆就没有“与我相关按钮” ?>
             		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'myposts'])?>">我发的帖子</a></li>
             		<li><a href="<?php echo Url::to(['forum/index','kinds'=>'myreplies'])?>">我回的帖子</a></li>
@@ -107,9 +107,8 @@ $this->title = 'Forum';
     			<h3 class="am-panel-title">队式动态</h3>
   			</header>
   			<div class="am-panel-bd">
-  				<ul class="am-list am-list-static">	
-  					<li>dashboard里也有一个放新闻的地方，回头可以设置下权限，
-  						管理员可以进入新闻页面发布新闻，而普通用户只能浏览新闻</li>
+  				<strong><?= $new->title ?></strong>
+          <p><?= $new->text ?></p>
   			</div>
 		</section>
     </div>

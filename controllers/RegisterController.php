@@ -4,9 +4,11 @@ namespace app\controllers;
 
 
 use Yii;
-use app\models\User;
 use app\models\RegisterForm;
-use app\models\LoginForm;
+use yii\web\UploadedFile;
+
+
+
 
 
 class RegisterController extends \yii\web\Controller
@@ -15,15 +17,14 @@ class RegisterController extends \yii\web\Controller
     public function actionIndex()
     {
         if (!\Yii::$app->user->isGuest) {
-            return $this->render('/dashboard/index');
+            return $this->redirect(['site/index']);
         }
-
         $model = new RegisterForm();
-
-        if ($model->load(Yii::$app->request->post()) && $user=$model->register()) 
+        if ($model->load(Yii::$app->request->post()) )
         {
+            $user=$model->register();
             Yii::$app->user->login($user, 0);
-            return $this->render('/dashboard/index');
+            return $this->redirect(['site/index']);
             //注册成功后登陆并直接跳转到dashboard
         }
         return $this->render('index', [

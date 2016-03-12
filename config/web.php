@@ -2,6 +2,7 @@
 
 $params = require(__DIR__ . '/params.php');
 date_default_timezone_set("Asia/Shanghai");
+
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -9,7 +10,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'test',
+            'cookieValidationKey' => 'ts17webhahaha',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

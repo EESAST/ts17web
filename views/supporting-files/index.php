@@ -16,6 +16,7 @@ use yii\helpers\Url;
 <div class="admin-content">
 
   <div class="am-cf am-padding">
+    <br/>
     <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">资源下载</strong> 
     / <small>
     在文件使用过程中遇到bug请<a href="<?php echo Url::to(['forum/new-forum'])?>">通知向开发组相关人员</a>，文件最终解释权归第十七届队式程序开发组所有</small></div>
@@ -31,7 +32,7 @@ use yii\helpers\Url;
     <div class="am-tabs-bd">
       <div class="am-tab-panel am-fade am-in am-active" id="tab1">
       	<div class="am-g">
-      	<div class="am-u-lg-8 am-u-sm-12">
+      	<div class="am-u-lg-12 am-u-sm-12">
         <div class="am-g am-margin-top">
           	<table class="am-table am-table-striped am-table-hover table-main">
             <thead>
@@ -58,7 +59,7 @@ use yii\helpers\Url;
 
       <div class="am-tab-panel am-fade am-in" id="tab2">
       	<div class="am-g">
-      	<div class="am-u-lg-8 am-u-sm-12">
+      	<div class="am-u-lg-12 am-u-sm-12">
         <div class="am-g am-margin-top">
           	<table class="am-table am-table-striped am-table-hover table-main">
             <thead>
@@ -82,7 +83,7 @@ use yii\helpers\Url;
       </div>
       <div class="am-tab-panel am-fade am-in" id="tab3">
       	<div class="am-g">
-      	<div class="am-u-lg-8 am-u-sm-12">
+      	<div class="am-u-lg-12 am-u-sm-12">
         <div class="am-g am-margin-top">
           	<table class="am-table am-table-striped am-table-hover table-main">
             <thead>
@@ -106,7 +107,7 @@ use yii\helpers\Url;
       </div>
       <div class="am-tab-panel am-fade am-in" id="tab4">
       	<div class="am-g">
-      	<div class="am-u-lg-8 am-u-sm-12">
+      	<div class="am-u-lg-12 am-u-sm-12">
         <div class="am-g am-margin-top">
           	<table class="am-table am-table-striped am-table-hover table-main">
             <thead>
