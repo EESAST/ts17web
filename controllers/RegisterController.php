@@ -5,7 +5,6 @@ namespace app\controllers;
 
 use Yii;
 use app\models\RegisterForm;
-use app\models\PortraitForm;
 use yii\web\UploadedFile;
 
 
@@ -20,16 +19,9 @@ class RegisterController extends \yii\web\Controller
         if (!\Yii::$app->user->isGuest) {
             return $this->render('/dashboard/index');
         }
-        $portrait = new PortraitForm();
         $model = new RegisterForm();
         if ($model->load(Yii::$app->request->post()) )
         {
-            $portrait->imagefile = UploadedFile::getInstance($portrait, 'portrait');
-            $connection = \Yii::$app->db;
-            $command = $connection->createCommand('SELECT max(id) FROM user');
-            $index = $command->queryall();
-            var_dump($portrait->userid);
-            $model->portrait = $portrait;
             $user=$model->register();
             Yii::$app->user->login($user, 0);
             return $this->render('/dashboard/index');
@@ -37,7 +29,6 @@ class RegisterController extends \yii\web\Controller
         }
         return $this->render('index', [
             'model' => $model,
-            'portrait'=>$portrait,
         ]);
     }
 
