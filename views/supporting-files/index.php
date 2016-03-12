@@ -32,7 +32,7 @@ use yii\helpers\Url;
     <div class="am-tabs-bd">
       <div class="am-tab-panel am-fade am-in am-active" id="tab1">
       	<div class="am-g">
-      	<div class="am-u-lg-8 am-u-sm-12">
+      	<div class="am-u-lg-12 am-u-sm-12">
         <div class="am-g am-margin-top">
           	<table class="am-table am-table-striped am-table-hover table-main">
             <thead>
@@ -59,7 +59,7 @@ use yii\helpers\Url;
 
       <div class="am-tab-panel am-fade am-in" id="tab2">
       	<div class="am-g">
-      	<div class="am-u-lg-8 am-u-sm-12">
+      	<div class="am-u-lg-12 am-u-sm-12">
         <div class="am-g am-margin-top">
           	<table class="am-table am-table-striped am-table-hover table-main">
             <thead>
@@ -83,7 +83,7 @@ use yii\helpers\Url;
       </div>
       <div class="am-tab-panel am-fade am-in" id="tab3">
       	<div class="am-g">
-      	<div class="am-u-lg-8 am-u-sm-12">
+      	<div class="am-u-lg-12 am-u-sm-12">
         <div class="am-g am-margin-top">
           	<table class="am-table am-table-striped am-table-hover table-main">
             <thead>
@@ -107,7 +107,7 @@ use yii\helpers\Url;
       </div>
       <div class="am-tab-panel am-fade am-in" id="tab4">
       	<div class="am-g">
-      	<div class="am-u-lg-8 am-u-sm-12">
+      	<div class="am-u-lg-12 am-u-sm-12">
         <div class="am-g am-margin-top">
           	<table class="am-table am-table-striped am-table-hover table-main">
             <thead>
