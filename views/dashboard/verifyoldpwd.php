@@ -19,20 +19,10 @@ $this->title = '更改密码';
             'template' => "{input}",
         ],
     ]); ?>
-        <?= $form->field($model, 'verifypwd',['placeholder'=>'请输入您的旧密码']) ?>
-        <?= $form->field($model, 'newpwd',['placeholder'=>'请输入您的新密码']) ?>
-        <?= $form->field($model, 'verifynewpwd',['placeholder'=>'请再一次输入您的新密码']) ?>
+        <?= $form->field($model, 'verifypwd',['placeholder'=>'请输入您的旧密码'])->passwordInput() ?>
+        <?= $form->field($model, 'newpwd',['placeholder'=>'请输入您的新密码'])->passwordInput() ?>
+        <?= $form->field($model, 'verifynewpwd',['placeholder'=>'请再一次输入您的新密码'])->passwordInput() ?>
         <?= Html::submitButton('确定', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'verify-button']) ?>
     <?php myActiveForm::end(); ?>
 </div>
 <br/>
-
-<script>
-$(document).ready(function(){
-    var verifypwd=$("#form_verifypwd").children("input");    
-    verifypwd.focus(function(){
-        $("#form_verifypwd").removeClass("am-form-error").children("span").remove();
-    });
-});
-
-</script>
