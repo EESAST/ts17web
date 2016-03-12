@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\RegisterForm */
-/* @var $portrait app\models\PortraitForm */
 
 
 use yii\helpers\Html;
@@ -37,9 +36,10 @@ $this->title = 'Register';
         <?= $form->field($model, 'class',['placeholder'=>'请输入您的院系-班级(例:电子工程系-无59班)']) ?>
 
         <?= $form->field($model, 'studentnumber',['placeholder'=>'请输入您的学号(例:2015012345)']) ?>
+
         
         <?= Html::submitButton('注册', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'register-button']) ?>
-    
+
     <?php myActiveForm::end(); ?>
 </div>
 </div>
@@ -64,7 +64,6 @@ $(document).ready(function(){
         };
     });
 
-        /*<?= $form->field($portrait, 'imagefile')->fileInput() ?>*/
 
 
     password.focus(function(){
