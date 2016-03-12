@@ -36,7 +36,7 @@ class DashboardController extends \yii\web\Controller
        		if(Yii::$app->getSecurity()->validatePassword($model->verifypwd, $user->password)){
         		$newpwd = Yii::$app->getSecurity()->generatePasswordHash($model->newpwd);
                 $username = $user->username;
-        		$link = mysqli_connect("localhost","root","root","ts17web") or die("Could not connect database");
+        		$link = mysqli_connect("localhost","root","tttsss17","ts18web") or die("Could not connect database");
                 if(mysqli_query($link,"UPDATE user SET password = '$newpwd'  WHERE username = '$username'")){
             		return $this->redirect(['site/index']);//(['dashboard/index']);
         		}
