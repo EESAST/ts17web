@@ -7,7 +7,7 @@ use app\models\Forum;
 use app\models\ForumForm;
 use app\models\DetailForum;
 use app\models\DetailForumForm;
-
+use app\models\News;
 class ForumController extends \yii\web\Controller
 {
 
@@ -70,6 +70,8 @@ class ForumController extends \yii\web\Controller
             $query = Forum::find()->where(array('kinds'=>'rule'));
         }elseif ($kinds==='bug') {
             $query = Forum::find()->where(array('kinds'=>'bug'));
+        }elseif ($kinds==='team') {
+            $query = Forum::find()->where(array('kinds'=>'team'));
         }elseif ($kinds==='myposts') {//我发的帖子
             $query = Forum::find()->where(array('author'=>Yii::$app->user->identity->username));
         }elseif ($kinds==='myreplies') {//我回复的帖子
@@ -106,8 +108,9 @@ class ForumController extends \yii\web\Controller
         $topquery = Forum::find()->orderBy($sort1->orders)
             ->limit(2)
             ->all();//用来置顶2个点赞量最高的
-
+        $news = News::find()->orderBy('addedat')->all();
         return $this->render('index', [
+            'new'=>$news[0],
             'forums' => $forums,
             'pagination' => $pagination,
             'sort' => $sort,

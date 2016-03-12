@@ -12,12 +12,12 @@ use app\assets\MyAppAsset1;
 AppAsset::register($this);
 MyAppAsset::register($this);
 MyAppAsset1::register($this);
-$title='Eatting in Tsinghua'
+$this->title='Stellar Craft'
 ?>
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <head>
 	<meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,79 +25,14 @@ $title='Eatting in Tsinghua'
     <title><?= Html::encode($this->title) ?></title>
     
   <style>
-    .get {
-      background: #1E5B94;
-      color: #fff;
-      text-align: center;
-      padding: 100px 0;
-    }
-    .get-title {
-      font-size: 200%;
-      border: 2px solid #fff;
-      padding: 20px;
-      display: inline-block;
-    }
-
-<<<<<<< HEAD
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'Eat In Tsinghua',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    if(Yii::$app->user->isGuest){
-        echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-            'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Forum', 'url' => ['/forum/index']],
-            //['label' => 'Contact', 'url' => ['/site/contact']],
-	    //['lable'=>'OnlineTest','url'=>['online-test/index']],
-            ['label' => 'Login', 'url' => ['/login/index']],
-            
-        ],
-    ]);
-=======
     .get-btn {
       background: #fff;
     }
->>>>>>> dev
 
     .detail {
       background: #fff;
     }
 
-<<<<<<< HEAD
-    else{
-        echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-left'],
-            'items' => [
-
-            ['label' => 'DashBoard', 'url' => ['/dashboard']],
-            
-        ],
-    ]);
-        echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-            'items' => [
-            ['label' => 'OnlineCompile', 'url' => ['/online-compile']],
-            ['label' => 'News', 'url' => ['/news']],
-            ['label' => 'SupportingFiles', 'url' => ['/supporting-files']],
-            ['label' => 'Forum', 'url' => ['/forum']],
-                [
-		    //'label' => 'Logout('.Yii::$app->user->identity->teamname.'),
-                    'label' => 'Logout'.(Yii::$app->user->identity->teamname!=''?'('.$app->user->identity->teamname.')':''),
-		    	
-		
-                    'url' => ['/login/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ],
-        ],
-    ]);
-=======
     .detail-h2 {
       text-align: center;
       font-size: 150%;
@@ -106,7 +41,6 @@ $title='Eatting in Tsinghua'
     .detail-h3 {
       color: #1f8dd6;
     }
->>>>>>> dev
 
     .detail-p {
       color: #7f8c8d;
@@ -116,30 +50,29 @@ $title='Eatting in Tsinghua'
       margin-bottom: 30px;
     }
 
-    .about {
-      background: #fff;
-      padding: 40px 0;
-      color: #7f8c8d;
+    .footer{
+      position: absolute;
+      width: 100%;
+      margin-bottom: 0px;
+      padding: 0px;
+      background:#102020;
     }
-
-    .about-color {
-      color: #34495e;
-    }
-
-    .about-title {
-      font-size: 180%;
-      padding: 30px 0 50px 0;
-      text-align: center;
-    }
-
     .footer p {
       color: #7f8c8d;
       margin: 0;
       padding: 15px 0;
       text-align: center;
-      background: #2d3e50;
+    }
+    .content{
+      min-height: 100%;
+      clear: both;
     }
   </style>
+
+    <script type="text/javascript" name="baidu-tc-cerfication" data-appid="7816487" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>
+  
+
+  
   <?php $this->head() ?>
 </head>
 
@@ -148,108 +81,67 @@ $title='Eatting in Tsinghua'
 <?php $this->beginBody() ?>
 
 
-<header class="am-topbar am-topbar-fixed-top">
-  <div class="am-container">
-  <?php if(\Yii::$app->user->isGuest): ?>
-    <h1 class="am-topbar-brand">
-      <a href="<?php echo \Yii::$app->urlManager->createUrl('site/index') ?>"><?php echo $title;?></a>
-    </h1>
-    <div class="am-collapse am-topbar-collapse" id="collapse-head">
-      <ul class="am-nav am-nav-pills am-topbar-nav ">
-        <li id='#News'><a href="<?php echo Url::toRoute('news/index') ;?>">news</a></li>
-        </li>
-      </ul>
-      
-      <div class="am-topbar-right">
-       	<a href="<?php echo Url::toRoute('register/index') ;?>">
-        <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm " ><span class="am-icon-pencil"></span>register</button>
-        </a>
-      </div>
-      <div class="am-topbar-right">
-      <!--	<a href="<?php echo Url::toRoute('login/index') ;?>">-->
-        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"  id='ontemp' data-am-modal="{target:'#temp'}"><span class="am-icon-user"></span>login</button>
-       
-      </div>
+<header class="am-topbar am-topbar-inverse am-margin-0" style=" border:none;">
+<div class="am-container">
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+
+<?php if(Yii::$app->user->isGuest):?>
+
+  <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav">
+      <li><a href="<?php echo Url::to(['site/index']); ?>">home</a></li>
+    </ul>
+    <div class="am-topbar-right">
+      <a href="<?php echo Url::to(['register/index']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-pencil"></i>&nbsp 注册</button></a>
     </div>
-
-  <?php else: ?>
-    <h1 class="am-topbar-brand">
-      <a href="<?php echo \Yii::$app->urlManager->createUrl('site/index') ?>"><?php echo $title;?></a>
-    </h1>
-
-    <div class="am-collapse am-topbar-collapse" id="collapse-head">
-      <ul class="am-nav am-nav-pills am-topbar-nav">
-        <li id='News'><a href="<?php echo Url::toRoute('news/index') ;?>" >news</a></li>
-        <li id='Dashboard'><a href="<?php echo Url::toRoute('dashboard/index') ;?>">dashboard</a></li>
-        <li id='Forum'><a href="<?php echo Url::toRoute('forum/index') ;?>">forum</a></li>
-        <li id='Supporting-files'><a href="<?php echo Url::toRoute('supporting-files/index') ;?>">supporting-files</a></li>
-        <li id='more' class="am-disabled"><a href="#">more</a></li>
-      </ul>
-      
-      <div class="am-topbar-right"> 
-        <a href="#">
-        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm" data-am-offcanvas="{target:'#right'}" ><span class="am-icon-user"></span> <?php echo Yii::$app->user->identity->username ?></button>
-        </a>
-        <a href="<?php echo Url::toRoute('login/logout') ;?>">
-        <button class="am-btn am-btn-warning am-topbar-btn am-btn-sm"><span class="am-icon-power-off"></span> logout</button>
-        </a>
-      </div>
-    <?php endif; ?>
+    <div class="am-topbar-right">
+      <a href="<?php echo Url::to(['login/index']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-user"></i>&nbsp 登陆</button></a>
+    </div>
   </div>
-</header>
-<div class="wrap">
-<?= $content ?>
+<?php else: ?>
+  <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav">
+     <li><a href="<?php echo Url::to(['site/index'])?>">主页</a></li>
+      <li><a href="<?php echo Url::to(['news/index']) ?>">news</a></li>
+      <li><a href="<?php echo URl::to(['forum/index']) ?>">论坛</a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">更多<span class="am-icon-caret-down"></span>
+        </a>
+        <ul id="dashboard" class="am-dropdown-content am-padding-0" style= "background-color: #fafafa; border: none;">
+          <li class="am-active am-dropdown-header">dashboard</li>
+          <li class="am-active"><a href="<?php echo Url::to(['dashboard/index']) ?>">个人信息</a></li>
+          <li class="am-active" ><a href="<?php echo Url::to(['team/index']) ?>">战队之家</a></li>
+          <li class="am-active"><a href="<?php echo Url::to(['supporting-files/index']) ?>">文件下载</a></li>
+          <li class="am-active"><a href="<?php echo Url::to(['online-compile/index']) ?>">代码提交</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="am-topbar-right">
+      <a href="<?php echo Url::to(['login/logout']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-paper-plane"></i>&nbsp&nbsp<?=Yii::$app->user->identity->realname?>&nbsp&nbsp登出</button></a>
+    </div>
+  </div>
+<?php endif; ?>
 </div>
+
+</header>
+<div class="content">
+<?=$content ?>
+</div>
+ <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+    <a href="#top" title="">
+          <i class="am-gotop-icon am-icon-hand-o-up"></i>
+    </a>
+</div>
+
 <footer class="footer" >
-  <p>© 2015 <a href="http://www.yunshipei.com" target="_blank"><?php echo $title;?></a> 
-  Licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">Web license</a>. by the ts17web Team.</p>
+  <p>© 2016 <a href="#" target="_blank"><?php echo $this->title;?></a> 
+  Licensed<a href="#" target="_blank"> Web license</a>. by the ts17web Team.</p>
 </footer>
 
-
-
-
-
-<div class="am-modal am-modal-prompt" tabindex='-1' id='temp'>
-    <div class="am-modal-dialog" id='login'>
-    <?php $form = ActiveForm::begin(['id' => 'login-form','action'=>'index.php?r=login/index']); ?>
-        <div class="am-modal-hd">Login</div>
-        <input type="text" class="am-modal-prompt-input " id="loginform-username" name="LoginForm[username]"  placeholder="your username" data-validation-message="username required" required/>
-        <input type="password" class="am-modal-prompt-input"  id='loginform-password' name="LoginForm[password]" placeholder="your password" data-validation-message="password required" required/>
-        <div class="am-modal-footer">     
-            <span class="am-modal-btn"  data-am-modal-confirm id='Login'> login</span>
-            <span class="am-modal-btn"  data-am-modal-cancel id='Forget'>cancel</span>
-        </div>
-    <?php ActiveForm::end(); ?>
-    </div>
-
-</div>
-  <?php if(!\Yii::$app->user->isGuest): ?>
-    <div id='right' class="am-offcanvas ">
-      <div class='am-offcanvas-bar am-offcanvas-bar-flip'>
-        <div class="am-offcanvas-content ">
-          <p>welcome <span class="am-text-xl am-text-success"><?=Yii::$app->user->identity->username ?></span></p>
-          <p>距离初赛还有<span class="am-text-xxl am-text-warning" >33</span>天</p>
-          <p>距离决赛还有<span class="am-text-xxl am-text-warning">66</span>天</p>
-
-        </div> 
-      </div>
-    </div>
-  <?php endif ?>
-
-
-<script type="text/javascript">
-
-
-$('#Login').on('click',function(){
-    $('#login-form').submit();
-})
-
-$('#Forget').on('click',function(){
-    alert('写一个找回密码的页面');
-})
-$('#'+$(document).attr('title')).addClass('am-active');
+<script>
 </script>
-
 
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
