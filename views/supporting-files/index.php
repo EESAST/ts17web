@@ -45,7 +45,7 @@ use yii\helpers\Url;
           </thead>
           <tbody>
             <?php 
-            	$dir="files/Package";
+            	$dir="files/package";
             	list_file($dir);				
 
             ?>
@@ -96,7 +96,7 @@ use yii\helpers\Url;
           </thead>
           <tbody>
             <?php 
-            	$dir="files/Rules";
+            	$dir="files/rules";
             	list_file($dir);				
             ?>
           </tbody>
@@ -120,7 +120,7 @@ use yii\helpers\Url;
           </thead>
           <tbody>
             <?php 
-            	$dir="files/SampleAi";
+            	$dir="files/sampleai";
             	list_file($dir);				
             ?>
           </tbody>
