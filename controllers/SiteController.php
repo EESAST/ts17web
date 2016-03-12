@@ -9,7 +9,6 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\News;
-
 class SiteController extends Controller
 {
     public function behaviors()
@@ -54,6 +53,7 @@ class SiteController extends Controller
         if(Yii::$app->user->isGuest){
         */
         $news = News::find()->orderBy('addedat')->all();
+        
         return $this->render('index',['news'=>$news]);
         /*
         }

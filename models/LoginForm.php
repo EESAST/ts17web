@@ -15,7 +15,7 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = true;
-
+    public $verifyCode; 
     private $_user = false;
 
     public function attributeLabels()
@@ -38,7 +38,9 @@ class LoginForm extends Model
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
-            ['password', 'validatePassword'],
+            ['password', 'validatePassword'], 
+            ['verifyCode', 'required'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
