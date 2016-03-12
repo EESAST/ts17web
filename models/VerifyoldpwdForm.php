@@ -19,19 +19,20 @@ class VerifyoldpwdForm extends Model
     public function attributeLabels()
     {
         return [
+            'verifypwd' => 'verifypwd',
             'newpwd' => 'newpwd',
-            'verifynewpwd' => 'verifynewpwd'
+            'verifynewpwd' => 'verifynewpwd',
         ];
     }
 
-    public function updatepwd()
+/*
+    public function rules()
     {
-        var_dump($this->getErrors());
-        $user=User::findByUsername(Yii::$app->user->identity->username);
-        $user->password = $this->newpwd;//Yii::$app->getSecurity()->generatePasswordHash($model->newpwd);
-        if($user->update(false)){
-            return $user;
-        }
-        return null;
+        return [
+            [['newpwd','verifynewpwd'], 'string'],
+            ['verifynewpwd', 'compare', 'compareAttribute' => 'newpwd', 'message' => '两次输入的密码不一致'],
+            ['newpwd', 'min' => 6],
+        ];
     }
+    */
 }
