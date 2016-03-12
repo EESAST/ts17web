@@ -2,6 +2,7 @@
 use app\doc\widgets\myActiveForm;
 use yii\helpers\Html;
 ?>
+<br/>
 <div>
 <br/>
       <div class="am-fl"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
@@ -33,7 +34,7 @@ use yii\helpers\Html;
         <?= $form->field($model, 'studentnumber',['placeholder'=>'请输入您的学号(例:2015012345)']) ?>
 
         
-        <?= Html::submitButton('Save', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'register-button']) ?>
+        <?= Html::submitButton('保存修改', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'register-button']) ?>
     
     <?php myActiveForm::end(); ?>
 </div>

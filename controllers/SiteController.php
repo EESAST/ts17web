@@ -52,7 +52,7 @@ class SiteController extends Controller
         /*
         if(Yii::$app->user->isGuest){
         */
-        $news = News::find()->orderBy('addedat')->all();
+        $news = News::find()->orderBy('addedat DESC')->all();
         
         return $this->render('index',['news'=>$news]);
         /*

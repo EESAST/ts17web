@@ -16,7 +16,7 @@ class OnlineCompileController extends Controller
         if(Yii::$app->user->isGuest)
             return $this->render('/site/index');
         if (User::findByUsername(Yii::$app->user->identity->username)->teamname=="")
-            return $this->render('/team/error',['message'=>'You cannot compile a sourcecode before joining a team.']);
+            return $this->render('/team/error',['message'=>'<h2><br/><br/>你还没有加入任何一个战队呢!<br/><br/></h2>']);
         $model = new UploadForm();
         if (Yii::$app->request->isPost) {
             $model->sourcecode = UploadedFile::getInstance($model, 'sourcecode');

@@ -11,7 +11,7 @@ $this->title = 'Forum';
 <div class="am-g">
     <div class="am-u-sm-12 am-u-lg-9 am-u-md-9">
         <table class="am-table am-table-striped am-table-hover table-main">
-            <button class="am-btn am-btn-default am-btn-block"><span class="am-text-lg">全部帖子</span></button>
+            <a href="<?php echo Url::to(['forum/index','kinds'=>'all'])?>"><button class="am-btn am-btn-default am-btn-block"><span class="am-text-lg">全部帖子</span></button></a>
             <thead>
               <tr>
                 <th width="10%"><?php echo $sort->link('kinds')?></th>

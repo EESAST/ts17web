@@ -12,7 +12,7 @@ use app\assets\MyAppAsset1;
 AppAsset::register($this);
 MyAppAsset::register($this);
 MyAppAsset1::register($this);
-$title='Eatting in Tsinghua'
+$this->title='Stellar Craft'
 ?>
 
 <?php $this->beginPage() ?>
@@ -95,7 +95,7 @@ $title='Eatting in Tsinghua'
       </li>
     </ul>
     <div class="am-topbar-right">
-      <a href="<?php echo Url::to(['login/logout']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-paper-plane"></i>&nbsp 登出</button></a>
+      <a href="<?php echo Url::to(['login/logout']) ?>"><button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><i class="am-icon-paper-plane"></i>&nbsp&nbsp<?=Yii::$app->user->identity->realname?>&nbsp&nbsp登出</button></a>
     </div>
   </div>
 <?php endif; ?>
@@ -112,8 +112,8 @@ $title='Eatting in Tsinghua'
 </div>
 
 <footer class="footer" >
-  <p>© 2015 <a href="#" target="_blank"><?php echo $title;?></a> 
-  Licensed<a href="#" target="_blank">Web license</a>. by the ts17web Team.</p>
+  <p>© 2016 <a href="#" target="_blank"><?php echo $this->title;?></a> 
+  Licensed<a href="#" target="_blank"> Web license</a>. by the ts17web Team.</p>
 </footer>
 
 <script>
