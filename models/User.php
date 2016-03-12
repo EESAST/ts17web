@@ -45,6 +45,9 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'password', 'email', 'realname', 'school',
                 'class', 'studentnumber', 'status', 'created_at', 'updated_at', 'group'], 'required'],
 
+            //unique
+            ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已被注册'],
+            ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已被注册'],
 
             //data type and requirements
             [['username', 'password', 'email', 'realname', 'school',
@@ -133,10 +136,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function login()//登录
     {
-
         return Yii::$app->user->login($this->getUser(), 0);
-
-        return false;
     }
 
     public function getUser()

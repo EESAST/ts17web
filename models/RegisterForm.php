@@ -22,8 +22,8 @@ class RegisterForm extends Model
     public $studentnumber;
     public $school;
     public $class;
-    private $_user = false;
     public $verifyCode;
+    private $_user = false;
 
     public function attributeLabels()
     {
@@ -52,10 +52,8 @@ class RegisterForm extends Model
                 ['school', 'required', 'message' => '学校不能为空'],
                 ['class', 'required', 'message' => '院系班级不能为空'],
                 ['studentnumber', 'required', 'message' => '学生证号不能为空'],
-
-                //unique
-                ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已被注册'],
-                ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已被注册'],
+                ['verifyCode', 'required'],
+                ['verifyCode', 'captcha'],
 
                 //double check password
                 ['password2', 'compare', 'compareAttribute' => 'password', 'message' => '两次输入的密码不一致'],
@@ -66,14 +64,11 @@ class RegisterForm extends Model
                 ['password', 'string', 'min' => 6],
                 ['school', 'string', 'min' => 2, 'max' => 10],
                 ['email', 'email', 'message' => '请检查您的电子邮件地址'],
-                ['verifyCode', 'required'],
-                ['verifyCode', 'captcha'],
+
             ];
     }
     public function register()
     {
-        $this->validate();
-        var_dump($this->getErrors());
         if ($this->validate()) {
             $user = new User();
             $user->username = $this->username;
