@@ -66,7 +66,7 @@ function likefunc(forumid, userid){
         </div>
     </section>
 <article class="am-comment-success">
-<img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48">	
+<img src="touxiang/".<?=$forum->author?>.".png" onerror="this.src='images/star4.png'" alt="" class="am-comment-avatar" width="48" height="48">
 <div class="am-comment-main">
   <header class="am-comment-hd">
      <div class="am-comment-meta">
@@ -109,7 +109,7 @@ function likefunc(forumid, userid){
         <?php if(!$forum->reply==0): ?>
         <?php foreach ($detailforums as $detailforum): ?>
           <li id="<?=$detailforum->author?>" class="am-comment">
-            <a href="#"><img src="images/avatar.jpg" alt="" class="am-comment-avatar" width="48" height="48"></a>
+            <img src="touxiang/".<?=$detailforum->author?>.".png" onerror="this.src='images/star4.png'" alt="" class="am-comment-avatar" width="48" height="48">
              <div class="am-comment-main">
               <header class="am-comment-hd">
                     <div class="am-comment-meta">

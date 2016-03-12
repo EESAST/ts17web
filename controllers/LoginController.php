@@ -28,7 +28,7 @@ class LoginController extends \yii\web\Controller
 
         $model = new LoginForm();
        if ($model->load(Yii::$app->request->post()) &&$model->login()) {
-            return $this->redirect(['/site/index']);
+            return $this->redirect(['site/index']);
             //登陆之后直接跳转到site
         }
         return $this->render('index', [

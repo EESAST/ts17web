@@ -53,8 +53,8 @@ class RegisterForm extends Model
                 ['studentnumber', 'required', 'message' => '学生证号不能为空'],
 
                 //unique
-           //     ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已被注册'],
-             //   ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已被注册'],
+                ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已被注册'],
+                ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '邮箱已被注册'],
 
                 //double check password
                 ['password2', 'compare', 'compareAttribute' => 'password', 'message' => '两次输入的密码不一致'],

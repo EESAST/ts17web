@@ -45,9 +45,6 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'password', 'email', 'realname', 'school',
                 'class', 'studentnumber', 'status', 'created_at', 'updated_at', 'group'], 'required'],
 
-            //unique
-            ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '此用户名已被注册'],
-            ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => '此邮箱已被注册'],
 
             //data type and requirements
             [['username', 'password', 'email', 'realname', 'school',
