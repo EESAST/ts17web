@@ -4,10 +4,14 @@ $this->title = 'Supporting-files';
 function list_file($dir){
 	$list=scandir($dir);
 	foreach ($list as $file) {
+    if($file!='.DS_Store'){
+
+    
 		$file_url=$dir.'/'.$file;
 		$update_time=filectime($file_url);
 		$file_size=round(filesize($file_url)/1024);
 		if(!is_dir($file_url))echo "<tr><td>$file</td><td>".date('M,d,Y G:i',$update_time)."</td><td>$file_size KB</td><td><a href='$file_url'><i class='am-icon-download'></i></a></td></tr>";
+  }
 	}
 }
 
@@ -27,7 +31,7 @@ use yii\helpers\Url;
       <li class="am-active"><a href="#tab1">选手包</a></li>
       <li><a href="#tab2">3D回放器</a></li>
       <li><a href="#tab3">游戏规则</a></li>
-      <li><a href="#tab4">Sample Ai</a></li>
+      <?php //<li><a href="#tab4">Sample Ai</a></li> ?>
     </ul>
     <div class="am-tabs-bd">
       <div class="am-tab-panel am-fade am-in am-active" id="tab1">
