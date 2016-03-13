@@ -5,6 +5,8 @@
 /* @var $model app\models\LoginForm */
 
 use yii\helpers\Html;
+
+use yii\helpers\Url;
 use app\doc\widgets\myActiveForm;
 use yii\captcha\Captcha;
 
@@ -42,7 +44,9 @@ $this->title = 'Login';
 
         <?= Html::submitButton('登陆', ['class' => 'am-btn am-btn-primary am-btn-block', 'name' => 'login-button']) ?>
     <p></p>
-    <div class="am-fr"><a href="#"><p>忘记密码?</p></a></div>
+
+    <div class="am-fr"><a href="<?php echo Url::to(['contact/index'])?>"><p>忘记密码?</p></a></div>
+
     <?php myActiveForm::end(); ?>
 </div>
 <br/>
