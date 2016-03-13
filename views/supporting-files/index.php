@@ -4,10 +4,14 @@ $this->title = 'Supporting-files';
 function list_file($dir){
 	$list=scandir($dir);
 	foreach ($list as $file) {
+    if($file!='.DS_Store'){
+
+    
 		$file_url=$dir.'/'.$file;
 		$update_time=filectime($file_url);
 		$file_size=round(filesize($file_url)/1024);
 		if(!is_dir($file_url))echo "<tr><td>$file</td><td>".date('M,d,Y G:i',$update_time)."</td><td>$file_size KB</td><td><a href='$file_url'><i class='am-icon-download'></i></a></td></tr>";
+  }
 	}
 }
 
