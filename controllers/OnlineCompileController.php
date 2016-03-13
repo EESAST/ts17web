@@ -13,6 +13,7 @@ class OnlineCompileController extends Controller
     public $layout = 'main1';
     public function actionIndex()
     {
+        return $this->redirect(['site/index']);
         if(Yii::$app->user->isGuest)
             return $this->render('/site/index');
         if (User::findByUsername(Yii::$app->user->identity->username)->teamname=="")
