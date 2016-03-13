@@ -31,7 +31,7 @@ use yii\helpers\Url;
       <li class="am-active"><a href="#tab1">选手包</a></li>
       <li><a href="#tab2">3D回放器</a></li>
       <li><a href="#tab3">游戏规则</a></li>
-      <li><a href="#tab4">Sample Ai</a></li>
+      <?php //<li><a href="#tab4">Sample Ai</a></li> ?>
     </ul>
     <div class="am-tabs-bd">
       <div class="am-tab-panel am-fade am-in am-active" id="tab1">
