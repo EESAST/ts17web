@@ -8,9 +8,6 @@ use app\models\RegisterForm;
 use yii\web\UploadedFile;
 
 
-
-
-
 class RegisterController extends \yii\web\Controller
 {
 
@@ -24,21 +21,21 @@ class RegisterController extends \yii\web\Controller
             ],
         ];
     }
+
     public function actionIndex()
     {
-        if (!\Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest) {
             return $this->redirect(['site/index']);
         }
 
         $model = new RegisterForm();
-        if ($model->load(Yii::$app->request->post()) )
-        {
-            if(($model->register())) {
-            $model->login();
-            return $this->redirect(['site/index']);
-        }
-        }
+        if ($model->load(Yii::$app->request->post())) {
+            if (($model->register())) {
+                $model->login();
+                return $this->redirect(['site/index']);
+            }
 
+        }
         return $this->render('index', ['model' => $model,]);
     }
 
