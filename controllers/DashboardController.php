@@ -71,7 +71,7 @@ class DashboardController extends \yii\web\Controller
 
 		$user=User::findByUsername(Yii::$app->user->identity->username);
 		$user->pic=$a;
-		$link = mysqli_connect("localhost","root","root","ts17web") or die("Could not connect database");
+		$link = mysqli_connect("localhost","root","tttsss17","ts18web") or die("Could not connect database");
 		if(mysqli_query($link,"UPDATE user SET pic = '$a'  WHERE username = '$user->username'")){
 
 			return $this->redirect(['dashboard/index',['model'=>$user]]);

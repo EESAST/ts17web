@@ -6,6 +6,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Html;
+
 
 /**
  * This is the model class for table "forum".
@@ -48,5 +50,14 @@ class DetailForum extends \yii\db\ActiveRecord
             'reply' => 'Reply',
             'created_at' => 'Created At',
         ];
+    }
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->reply = Html::encode($this->reply);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

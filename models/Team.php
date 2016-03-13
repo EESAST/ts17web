@@ -1,6 +1,7 @@
 <?php
 namespace app\models;
 use Yii;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "team".
@@ -55,5 +56,21 @@ class Team extends \yii\db\ActiveRecord
             'key' => Yii::t('app', '密钥'),
             'status' => Yii::t('app', '成员'),
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->teamname = Html::encode($this->teamname);
+            $this->leadername = Html::encode($this->leadername);
+            $this->member1name = Html::encode($this->member1name);
+            $this->member2name = Html::encode($this->member2name);
+            $this->member3name = Html::encode($this->member3name);
+            $this->slogan = Html::encode($this->slogan);
+            $this->key = Html::encode($this->key);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

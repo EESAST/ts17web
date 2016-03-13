@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "User".
@@ -166,6 +167,12 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     public function beforeSave($insert){//生成AuthKey
+        $this->username = Html::encode($this->username);
+        $this->email = Html::encode($this->email);
+        $this->school = Html::encode($this->school);
+        $this->class = Html::encode($this->class);
+        $this->realname = Html::encode($this->realname);
+        $this->teamname = Html::encode($this->teamname);
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
                 $this->authKey = \Yii::$app->security->generateRandomString();

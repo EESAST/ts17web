@@ -176,7 +176,7 @@ function likefunc(forumid, userid){
         <ul class="am-list blog-list">
 
             <?php foreach ($forums as $forum): ?>
-                <li><a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->id])?>"><?= $forum->theme ?></a></li>
+                <li><a href="<?php echo Url::to(['forum/detail-forum','id'=>$forum->id])?>"><?= Html::encode($forum->theme) ?></a></li>
             <?php endforeach; ?>
         
         </ul>

@@ -82,9 +82,11 @@ class RegisterForm extends Model
             $user->updated_at = date("Y-m-d H:i:s");
             $user->status = 1;
             $user->group = 'player';
+            $user->save(true);
             if ($user->save(true)) {//true调用User里的rules方法进行二次验证
                 return $user;
             }
+            else var_dump($user->errors);
             return null;
         }
     }

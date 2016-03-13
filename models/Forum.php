@@ -5,6 +5,8 @@
 namespace app\models;
 
 use Yii;
+use app\models\HtmlPurifier;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "forum".
@@ -55,4 +57,15 @@ class Forum extends \yii\db\ActiveRecord
             'updated_at' =>'updated_at',
         ];
     }
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->theme = Html::encode($this->theme);
+            $this->content = Html::encode($this->content);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
