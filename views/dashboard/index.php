@@ -38,7 +38,7 @@ use yii\helpers\Url;
         <br/>
         <div class="am-input-group am-input-group-danger">
             <span class="am-input-group-label"><i class="am-icon-users am-icon-fw"></i></span>
-            <input type="text" class="am-form-field" disabled="disabled" value="<?= "班级： " . $model->email ?>">
+            <input type="text" class="am-form-field" disabled="disabled" value="<?= "班级： " . $model->class ?>">
         </div>
         <br/>
         <div class="am-input-group am-input-group-danger">

@@ -19,6 +19,16 @@ $this->title = 'Stellar Craft'
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html style="height: 100%">
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?84f0dc85b6e66130472d225cbbcdb6a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -130,7 +140,7 @@ $this->title = 'Stellar Craft'
                             <li class="am-active"><a  href="<?php echo Url::to(['team/index']) ?>">战队之家</a></li>
                             <li class="am-active"><a  href="<?php echo Url::to(['supporting-files/index']) ?>">文件下载</a>
                             </li>
-                            <li class="am-active"><a  href="<?php echo Url::to(['online-compile/index']) ?>">代码提交</a>
+                            <li class="am-active"><a  href="<?php echo Url::to(['onlineCompile/index']) ?>">代码提交</a>
                             </li>
                         </ul>
                         <script>

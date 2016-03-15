@@ -121,6 +121,7 @@ class ForumController extends \yii\web\Controller
         $topquery = Forum::find()->orderBy($sort1->orders)
             ->limit(2)
             ->all();//用来置顶2个点赞量最高的
+
         $news = News::find()->orderBy('addedat')->all();
         return $this->render('index', [
             'new'=>$news[0],

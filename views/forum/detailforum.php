@@ -17,7 +17,7 @@ function likefunc(forumid, userid){
     $("#jindutiao").fadeIn(400).html('<i class="am-icon-spinner am-icon-spin" style="display: inline-block"></i>');
     $.ajax({
         type: "POST",
-        url: "../controllers/changeLike.php",
+        url: "../controllers/ChangeLikeController.php",
         data: dataString,
         cache: false,
         success: function(result){
@@ -92,7 +92,7 @@ function likefunc(forumid, userid){
     </div>
   </header>
   <div class="am-comment-bd">
-  	<p><?=$forum->content ?></p>
+  	<p><pre><?=$forum->content ?></pre></p>
   </div>
 </div>
 <br/>
@@ -122,7 +122,7 @@ function likefunc(forumid, userid){
                     </div>
                </header>
               <div class="am-comment-bd">
-              		<p><?=$detailforum->reply?></p>
+              		<p><pre><?=$detailforum->reply?></pre></p>
               </div>
             </div>
            <?php if(!\Yii::$app->user->isGuest&&\Yii::$app->user->identity->username===$detailforum->author):?>
