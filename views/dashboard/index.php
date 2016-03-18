@@ -85,7 +85,7 @@ use yii\helpers\Url;
 <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
 
     <div class="am-modal-dialog"
-    ">
+    >
     <div class="am-modal-hd">更换头像
         <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
     </div>

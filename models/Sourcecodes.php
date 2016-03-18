@@ -9,8 +9,8 @@ use Yii;
  *
  * @property integer $id
  * @property string $team
- * @property string $uploadedby
- * @property string $uploadedat
+ * @property string $uploaded_by
+ * @property string $uploaded_at
  */
 
 class Sourcecodes extends \yii\db\ActiveRecord
@@ -29,9 +29,9 @@ class Sourcecodes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['team', 'uploadedby', 'uploadedat'], 'required'],
-            [['uploadedat'], 'safe'],
-            [['team', 'uploadedby'], 'string', 'max' => 50]
+            [['team', 'uploaded_by', 'uploaded_at'], 'required'],
+            [['uploaded_at'], 'safe'],
+            [['team', 'uploaded_by'], 'string', 'max' => 50]
         ];
     }
 
@@ -44,8 +44,8 @@ class Sourcecodes extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'team' => Yii::t('app', 'Team'),
-            'uploadedby' => Yii::t('app', 'Uploadedby'),
-            'uploadedat' => Yii::t('app', 'Uploadedat'),
+            'uploaded_by' => Yii::t('app', 'Uploaded by'),
+            'uploaded_at' => Yii::t('app', 'Uploaded at'),
         ];
     }
 }

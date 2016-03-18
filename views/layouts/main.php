@@ -140,7 +140,7 @@ $this->title = 'Stellar Craft'
                             <li class="am-active"><a  href="<?php echo Url::to(['team/index']) ?>">战队之家</a></li>
                             <li class="am-active"><a  href="<?php echo Url::to(['supporting-files/index']) ?>">文件下载</a>
                             </li>
-                            <li class="am-active"><a  href="<?php echo Url::to(['onlineCompile/index']) ?>">代码提交</a>
+                            <li class="am-active"><a  href="<?php echo Url::to(['online-compile/index']) ?>">代码提交</a>
                             </li>
                         </ul>
                         <script>
