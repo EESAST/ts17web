@@ -168,6 +168,24 @@ class ForumController extends \yii\web\Controller
             $forum->updated_at = $model->created_at;
 			$forum->save(true);
 
+            $url = 'https://hooks.slack.com/services/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';
+            $options = array(
+                'http' => array(
+                'header'  => "Content-type: application/json; charset=utf-8",
+                'method'  => 'POST',
+                'content' => json_encode(array('attachments'=>
+                    array(array('fallback'=>'论坛有状况',
+                            'pretext'=>'论坛 '.$forum->kinds.'区 有新帖子',
+                            'author_name'=>'作者:'.$forum->author,
+                            'title'=>'主题:'.$forum->theme,
+                            'title_link'=>'http://eesast.com/ts17web/web/index.php?r=forum%2Fdetail-forum&id='.$forum->id,
+                            'text'=>'内容:'.$forum->content
+                            )))
+                )
+                )
+            );
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
             return $this->redirect(['index']);
 
         } else {
