@@ -142,6 +142,8 @@ $this->title = 'Stellar Craft'
                             </li>
                             <li class="am-active"><a  href="<?php echo Url::to(['online-compile/index']) ?>">代码提交</a>
                             </li>
+                            <li class="am-active"><a  href="<?php echo Url::to(['battle/index']) ?>">在线对战</a>
+                            </li>
                         </ul>
                         <script>
                             $('ul li:lt(2)').hover(function(){

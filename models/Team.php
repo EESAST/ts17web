@@ -73,4 +73,15 @@ class Team extends \yii\db\ActiveRecord
             return false;
         }
     }
+
+    public static function findByTeamname($teamname)
+    {
+        $team = Team::find()->where(array('teamname' => $teamname))->asArray()->one();
+        if ($team) {
+            return new static($team);
+        }
+        return null;
+    }
+
+
 }
