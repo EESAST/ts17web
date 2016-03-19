@@ -30,9 +30,9 @@
             <?= $form->field($model, 'teamname')->dropDownList($teamnames, [
                 'prompt' => '请选择对战队伍',
                 'onchange'=>'
-                    $.post("index.php?r=battle/site&teamname='.'"+$(this).val(),function(data){
-                    $("#row-battle-form-enemycode").html(data);
-                });',
+                    $.post("index.php?r=battle/site&teamname='.'"+$("#battleform-teamname option:selected").text(),function(data){
+                        $("select#battleform-enemycode").html(data);
+                    });',
                 ])->label('请选择对战队伍', ['class' => 'sr-only']) ?>
 
             <?= $form->field($model, 'enemycode')->dropDownList($model->getTeamcodes($model->teamname), ['prompt' => '请选择队伍代码'])->label('请选择队伍代码', ['class' => 'sr-only']) ?>

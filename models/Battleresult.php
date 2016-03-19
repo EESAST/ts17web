@@ -41,7 +41,7 @@ class Battleresult extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'team1' => Yii::t('app', '挑战者'),
             'team2' => Yii::t('app', '对战者'),
-            'battletime' => Yii::t('app', '对战时间'),
+            'battle_at' => Yii::t('app', '对战时间'),
             'result' => Yii::t('app', '比赛结果'),
         ];
     }

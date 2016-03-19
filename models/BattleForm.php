@@ -33,10 +33,5 @@ class BattleForm extends \yii\db\ActiveRecord
         return $teamcodes;
     }
 
-    public function getCityList($pid)
-    {
-        $model = City::findAll(array('pid'=>$pid));
-        return ArrayHelper::map($model, 'id', 'name');
-    }
 }
 ?>

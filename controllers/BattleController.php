@@ -42,11 +42,9 @@ class BattleController extends Controller
         //别的队伍的代码
         $otherscodes = Sourcecodes::find()->where("team<>'$myteamname'")->select('uploaded_at')->orderBy('uploaded_at DESC')->column();
 
-
-
         //对战结果
         $results1 = Battleresult::find();
-
+        //对战结果分页器
         $pagination = new Pagination([
             'defaultPageSize' => 5,
             'totalCount' => $results1->count(),
@@ -58,12 +56,12 @@ class BattleController extends Controller
         $model = New BattleForm();
         //上传文件$model,
         return $this->render('index', [
-            'model'=>$model,
-            'mycodes'=>$mycodes,
-            'teamnames'=>$teamnames,
-            'otherscodes' => $otherscodes,
-            'results'=>$results,
-            'pagination'=>$pagination,
+            'model'=>$model,//表单
+            'mycodes'=>$mycodes,//我已上传成功的代码
+            'teamnames'=>$teamnames,//已上传代码的队伍，除掉自己所在的队伍
+            'otherscodes' => $otherscodes,//别的队伍的代码
+            'results'=>$results,//对战结果
+            'pagination'=>$pagination,//对战结果分页器
             ]);
     }
 
