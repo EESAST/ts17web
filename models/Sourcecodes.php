@@ -49,4 +49,8 @@ class Sourcecodes extends \yii\db\ActiveRecord
         ];
     }
 
+    public function echovalue(){
+        return $this->$id.'号，上传于'.$this->$uploaded_at;
+    }
+
 }

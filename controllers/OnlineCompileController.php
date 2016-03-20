@@ -26,18 +26,12 @@ class OnlineCompileController extends Controller
         $model = new UploadForm();
         if (Yii::$app->request->isPost) {
             $model->sourcecode = UploadedFile::getInstance($model, 'sourcecode');
-            if ($model->upload()) {
+            if ($id=$model->upload()) {
                 //上传成功就render到uploadsuccess页面
-                return $this->render('uploadsuccess');
+                return $this->render('uploadsuccess',['id'=>$id]);
             }
         }
-/*
-        $connection = \Yii::$app->db;
-        $teamname = User::findByUsername(Yii::$app->user->identity->username)->teamname;
-        $command = $connection->createCommand('SELECT id FROM sourcecodes where team = '.'\''.$teamname.'\'');
 
-        $indexs = $nextindex = $command->queryall();
-*/
         //上传文件$model,
         return $this->render('index', ['model' => $model]);//,'indexs'=>$indexs]);
     }

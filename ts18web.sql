@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2016 at 02:33 PM
+-- Generation Time: Mar 20, 2016 at 07:41 AM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -31,7 +31,9 @@ USE `ts18web`;
 CREATE TABLE IF NOT EXISTS `battleresult` (
   `id` int(11) NOT NULL,
   `team1` varchar(128) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `ai1` int(5) NOT NULL DEFAULT '0',
   `team2` varchar(128) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `ai2` int(5) NOT NULL DEFAULT '0',
   `battle_at` datetime NOT NULL,
   `result` varchar(128) COLLATE utf8mb4_bin NOT NULL DEFAULT ''
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
@@ -40,13 +42,13 @@ CREATE TABLE IF NOT EXISTS `battleresult` (
 -- Dumping data for table `battleresult`
 --
 
-INSERT INTO `battleresult` (`id`, `team1`, `team2`, `battle_at`, `result`) VALUES
-(1, '哈哈哈', '呵呵呵', '2016-03-19 00:00:00', '哈哈哈 获胜'),
-(2, '发达了空间发', '啊师傅', '2016-03-19 00:20:00', '发达了空间发 编译错误，啊师傅 编译成功'),
-(3, '看见了似的', '恐惧阿斯顿', '2016-03-19 19:00:40', '看见了似的 编译错误，恐惧阿斯顿 编译错误'),
-(4, 'fads ', 'ljaskdfj', '2016-03-20 00:00:00', 'fads 获胜'),
-(5, 'fdsafas', '阿斯顿发撒的', '2016-03-31 00:00:00', '阿斯顿发撒的 获胜'),
-(6, '阿斯顿发', '阿斯顿发尾服务', '2016-04-07 00:00:00', '阿斯顿发尾服务 获胜');
+INSERT INTO `battleresult` (`id`, `team1`, `ai1`, `team2`, `ai2`, `battle_at`, `result`) VALUES
+(1, '哈哈哈', 0, '呵呵呵', 0, '2016-03-19 00:00:00', '哈哈哈 获胜'),
+(2, '发达了空间发', 0, '啊师傅', 0, '2016-03-19 00:20:00', '发达了空间发 编译错误，啊师傅 编译成功'),
+(3, '看见了似的', 0, '恐惧阿斯顿', 0, '2016-03-19 19:00:40', '看见了似的 编译错误，恐惧阿斯顿 编译错误'),
+(4, 'fads ', 0, 'ljaskdfj', 0, '2016-03-20 00:00:00', 'fads 获胜'),
+(5, 'fdsafas', 0, '阿斯顿发撒的', 0, '2016-03-31 00:00:00', '阿斯顿发撒的 获胜'),
+(6, '阿斯顿发', 0, '阿斯顿发尾服务', 0, '2016-04-07 00:00:00', '阿斯顿发尾服务 获胜');
 
 -- --------------------------------------------------------
 
@@ -304,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `sourcecodes` (
   `team` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `uploaded_by` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `uploaded_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `sourcecodes`
@@ -313,32 +315,17 @@ CREATE TABLE IF NOT EXISTS `sourcecodes` (
 INSERT INTO `sourcecodes` (`id`, `team`, `uploaded_by`, `uploaded_at`) VALUES
 (1, '我最帅队', 'lzhbrian', '2016-03-18 08:04:00'),
 (2, '我最帅队', 'lzhbrian', '2016-03-18 08:04:18'),
-(3, 'fasdfasdf', 'lllbrian', '2016-03-18 08:06:08'),
-(4, 'fasdfasdf', 'lllbrian', '2016-03-18 08:06:08'),
-(5, 'fasdfasdf', 'lllbrian', '2016-03-18 08:15:58'),
-(6, 'fasdfasdf', 'lllbrian', '2016-03-18 08:22:43'),
-(7, 'fasdfasdf', 'lllbrian', '2016-03-18 08:24:36'),
-(8, 'fasdfasdf', 'lllbrian', '2016-03-18 08:29:26'),
-(9, 'fasdfasdf', 'lllbrian', '2016-03-18 08:31:48'),
-(10, 'fasdfasdf', 'lllbrian', '2016-03-18 08:32:04'),
-(11, 'fasdfasdf', 'lllbrian', '2016-03-18 08:32:37'),
-(12, 'fasdfasdf', 'lllbrian', '2016-03-18 08:32:39'),
-(13, 'fasdfasdf', 'lllbrian', '2016-03-18 08:32:44'),
-(14, 'fasdfasdf', 'lllbrian', '2016-03-18 08:36:10'),
-(15, 'fasdfasdf', 'lllbrian', '2016-03-18 08:36:13'),
-(16, 'fasdfasdf', 'lllbrian', '2016-03-18 08:37:27'),
-(17, 'fasdfasdf', 'lllbrian', '2016-03-18 08:41:18'),
-(18, 'fasdfasdf', 'lllbrian', '2016-03-18 08:42:31'),
-(19, 'fasdfasdf', 'lllbrian', '2016-03-18 08:44:49'),
-(20, 'fasdfasdf', 'lllbrian', '2016-03-18 09:11:25'),
-(21, 'fasdfasdf', 'lllbrian', '2016-03-18 09:11:41'),
-(22, 'fasdfasdf', 'lllbrian', '2016-03-18 09:32:26'),
-(23, 'fasdfasdf', 'lllbrian', '2016-03-18 09:32:47'),
-(24, 'fasdfasdf', 'lllbrian', '2016-03-18 09:32:50'),
-(25, 'fasdfasdf', 'lllbrian', '2016-03-18 09:33:40'),
 (26, '我最帅队', 'lzhbrian', '2016-03-18 04:17:49'),
 (27, '我最帅队', 'lzhbrian', '2016-03-19 07:55:05'),
-(28, '我最帅队', 'lzhbrian', '2016-03-19 12:32:45');
+(28, '我最帅队', 'lzhbrian', '2016-03-19 12:32:45'),
+(29, '我是一个队', 'testuser', '2016-03-19 04:14:59'),
+(30, '我是一个队', 'testuser', '2016-03-19 04:15:21'),
+(31, '我是一个队', 'testuser', '2016-03-19 04:15:37'),
+(32, '我是一个队', 'testuser', '2016-03-19 05:06:21'),
+(33, '我是一个队', 'testuser', '2016-03-19 05:06:29'),
+(34, '我是一个队', 'testuser', '2016-03-20 03:48:14'),
+(35, '我是一个队', 'testuser', '2016-03-20 03:48:59'),
+(36, '我的好的话我队', 'lllbrian', '2016-03-20 05:56:14');
 
 -- --------------------------------------------------------
 
@@ -355,19 +342,22 @@ CREATE TABLE IF NOT EXISTS `team` (
   `member3name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
   `slogan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `key` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `status` tinyint(4) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `status` tinyint(4) NOT NULL,
+  `battled_time` int(5) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `team`
 --
 
-INSERT INTO `team` (`id`, `teamname`, `leadername`, `member1name`, `member2name`, `member3name`, `slogan`, `key`, `status`) VALUES
-(2, '嘿我真的好想你', 'fanchengze', 'fcz', '', '', '呵呵呵', '嘿嘿嘿', 1),
-(3, '我的队伍最帅', 'test3', '', '', '', '哈哈哈', 'passkey', 1),
-(6, 'fsa', 'sda', 'fas', '', '', 'asd', 'asd', 1),
-(7, 'afsd', 'asdffnghn', 'hfg', '', '', 'asdf', '', 1),
-(8, '我最帅队', 'lzhbrian', '', '', '', '呵呵呵', 'password', 1);
+INSERT INTO `team` (`id`, `teamname`, `leadername`, `member1name`, `member2name`, `member3name`, `slogan`, `key`, `status`, `battled_time`) VALUES
+(2, '嘿我真的好想你', 'fanchengze', 'fcz', '', '', '呵呵呵', '嘿嘿嘿', 1, 0),
+(3, '我的队伍最帅', 'test3', '', '', '', '哈哈哈', 'passkey', 1, 0),
+(6, 'fsa', 'sda', 'fas', '', '', 'asd', 'asd', 1, 0),
+(7, 'afsd', 'asdffnghn', 'hfg', '', '', 'asdf', '', 1, 0),
+(8, '我最帅队', 'lzhbrian', '呵呵呵发卡量设计的', '', '', '呵呵呵', 'password', 2, 7),
+(10, '我是一个队', 'testuser', '', '', '', 'fqwfqef', 'qfqwfq', 1, 0),
+(11, '我的好的话我队', 'lllbrian', '', '', '', '可能放假啊我', '会计法那可是对方', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -392,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `group` enum('admin','player') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -400,13 +390,13 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `realname`, `school`, `class`, `studentnumber`, `pic`, `authKey`, `accessToken`, `teamname`, `status`, `created_at`, `updated_at`, `group`) VALUES
 (9, 'username', '$2y$13$DeRxktOcMhejzgzRsVEHTeINMIbVfd7FD1sZ73bEZ4qkDCNMFcrDi', 'email3', '胡昌然', '清华大学', '无42', 2014011111, '1', 'KgR0qN7fzjlu9UkCxQgmkDFwQE3qc_gH', '', NULL, 1, '2016-01-27 14:29:35', '2016-01-27 14:29:35', 'player'),
-(10, 'lllbrian', '$2y$13$5H0Z9QZKnUbSfQqfcB2kReZyzF3snW42b/qY0qVZCc9RUzgaMF9pG', 'lzhbrian@email', '林', '清华', '电子系无42', 2014, '2', 'XF1thgVEyPqnLFDSPv2xN3zS2hhXrSGi', '', '', 1, '2016-01-27 16:18:19', '2016-03-18 08:05:38', 'player'),
+(10, 'lllbrian', '$2y$13$5H0Z9QZKnUbSfQqfcB2kReZyzF3snW42b/qY0qVZCc9RUzgaMF9pG', 'lzhbrian@email', '林', '清华', '电子系无42', 2014, '2', 'XF1thgVEyPqnLFDSPv2xN3zS2hhXrSGi', '', '我的好的话我队', 1, '2016-01-27 16:18:19', '2016-03-20 05:55:43', 'player'),
 (11, 'dddd', '$2y$13$9CYoh0dFJ7mVaTyXHJ3y7elw90U/517XHcwc/DwPv.mOnygSggdmW', 'd', 'dd', 'd', 'd', 0, '1', 'VZVF0P60KzZ4PT3CE5PRflDOyLKASQpE', '', NULL, 1, '2016-01-27 16:19:28', '2016-01-27 16:19:28', 'player'),
 (12, 'test5', '$2y$13$WNAaNzgA74uj3Fh3qZCjPuubn28p4i.Kc5FojNQUT.IijdS9ry0dC', 'j', 'j', 'jj', 'j', 0, '1', 'wzWQJ4ojE4x38TiqDJqc2gi7paDKWNY9', '', NULL, 1, '2016-01-27 16:20:57', '2016-01-27 16:20:57', 'player'),
 (13, 'test7', '$2y$13$FEkdN9tO/nFArjm66W4kwOuo8UKqjEjKa0aNb4sbK1BzzxhetXQbS', 'dlzhbrian@gmail.com', '林子恒', '清华', 'w43', 2014011000, '1', 'XxealDI_uqjL-dBL_126Z42UBn-Fk6Yj', '', NULL, 1, '2016-01-30 13:43:47', '2016-01-30 13:43:47', 'player'),
 (15, 'testtest', '$2y$13$3T/goqu.zzItVf0nMG/mTuDtvWf6B11WU2oQn3EV9NRHmPsWOJLPW', 'email@email.com', 'k', 'lsdaf', 'l', 2000, '1', '5iXMBvAdttWC6AegdBlHloUv2XpDUXk0', '', NULL, 1, '2016-02-01 11:50:46', '2016-02-01 11:50:46', 'player'),
 (16, 'testtesttest', '$2y$13$7P/162Are4/dc0wBiV0qtOCHzjJpm1U.6g4KcLxFo42s085ns9BYO', 'email@email.com1', 'real', 'sis', 'asdf', 20123, '1', 'ravFilSvkQIhzGkawzdQyJXVt5keJS_k', '', NULL, 1, '2016-02-01 14:02:43', '2016-02-01 14:02:43', 'player'),
-(17, 'testuser', '$2y$13$BFJO9rfWJgcLTNEXTm.2ZOfTAml/vgc6ZvSlV8.rxNfkdBDrNv1h.', 'email.email@email.com', 'jldksajlfk', 'lkfjsadkl', 'kfjalsk', 29321893, '1', 'MEpuXlb7zAtiwYKbhd6pgm01ldIj1RUM', '', NULL, 1, '2016-02-01 14:37:42', '2016-02-01 14:37:42', 'player'),
+(17, 'testuser', '$2y$13$BFJO9rfWJgcLTNEXTm.2ZOfTAml/vgc6ZvSlV8.rxNfkdBDrNv1h.', 'email.email@email.com', 'jldksajlfk', 'lkfjsadkl', 'kfjalsk', 29321893, '1', 'MEpuXlb7zAtiwYKbhd6pgm01ldIj1RUM', '', '我是一个队', 1, '2016-02-01 14:37:42', '2016-03-19 16:07:32', 'player'),
 (18, 'testabtmefor', '$2y$13$.yIv8DtbXRi3nR9u5yLZLukIjOUkaK3PrJ1LaZ1MU4XoqYSMd6FUW', 'test@email.com', 'real', 'sdlkj', 'flksjda', 3029183, '1', '_HpXCeHCww9T0lZcs7EXKGYxbxeOYqFM', '', NULL, 1, '2016-02-02 03:20:16', '2016-02-02 03:20:16', 'player'),
 (19, 'testtestuser', '$2y$13$JCqK7csSHtyH7hs6mbjxKOOuAKUV2FFrZf/bpIXT/6YeZjd/jJ9Ai', 'email.email@email.emal', 'lsadjk', 'kfjalsk', 'lkfjaslkd', 1821739, '1', '9_OfOvr2llgwJB8xajdaqIWrP6lpuKs2', '', NULL, 1, '2016-02-06 13:14:19', '2016-02-06 13:14:19', 'player'),
 (20, 'hahaha', '$2y$13$jpnQEnNda8DoQsfhdiYxeO6gDU1TlMuJ8nxxl616LSLPa0taQA4tS', 'lz@g.com', '林子恒', '清华大学', '电子工程系－无42', 2014011054, '1', 'pzsHWBIIyVvpspoNDLnllmhWnFHqi0yn', '', NULL, 1, '2016-02-23 14:58:21', '2016-02-23 14:58:21', 'player'),
@@ -419,7 +409,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `realname`, `school`,
 (27, 'sadfsdfas', '$2y$13$ptQ8.Sd07UGifZYgNCL8COuVUNNaHM94R0F1RkUs5pGyrvRxQYuQ.', 'fsdfa@fewfa.fsfda', 'wqfeqf', 'wqfeewqf', 'wefqf', 34124312, '1', 'iNNeWUwztMCYjQ4d3A9vFZPhnaH7LrPB', '', NULL, 1, '2016-03-12 07:23:00', '2016-03-12 07:23:00', 'player'),
 (28, 'wqefqwef', '$2y$13$rMni022g5hrasP8/ai/4kuKdc7Ef8BYWnbMrXSeBYQIXPyP0CkXqW', 'flkadsjfl@lfjdsa.fsdf', 'ifhwf', 'iuhfiewufh', 'iufhwiufwe', 128731263, '1', 'A1ls7Iq5TUyHe00r15K_j0QGklBkfQJC', '', NULL, 1, '2016-03-12 07:23:54', '2016-03-12 07:23:54', 'player'),
 (29, 'kghjgjh', '$2y$13$yUOsvE7W1RLLtupjMDF4kOMmCcGmU572E1ydRv847rWo9///znl12', 'gkjhgkhj@jhfhg.kjhj', 'jufh', 'jhgfjgh', 'tfhgjf', 1, '1', '85K42FKPTOIfxBH1RpFPydp_cRHFD8XO', '', '', 1, '2016-03-12 11:58:13', '2016-03-12 11:58:13', 'player'),
-(30, 'lzhbrian', '$2y$13$LzrnGKIRHLs9itbifxACUOK0d6yqW6hBYv/VcgOiPHsRv1ZXehVMi', 'lzhbrian@gmail.com', '林子恒', '清华大学', '电子工程系－无42', 2014011054, '5', '2SudDw8vMYuONfs7uUx27QzNEx0qFxFe', '', '我最帅队', 1, '2016-03-12 17:40:42', '2016-03-18 08:00:36', 'player');
+(30, 'lzhbrian', '$2y$13$yNJ925H5vzVDAlsA5nlYSeAcmClIbuIBnqDYzaasriXWJPWwgBj3S', 'lzhbrian@gmail.com', '林子恒', '清华大学', '电子工程系－无42', 2014011054, '5', '2SudDw8vMYuONfs7uUx27QzNEx0qFxFe', '', '我最帅队', 1, '2016-03-12 17:40:42', '2016-03-18 08:00:36', 'player'),
+(31, '呵呵呵发卡量设计的', '$2y$13$nliK2Ex8PBunpOoetAJowe5rudy5E8R.tTNowuD8LfJTicbViI7BW', 'slakdfjl@lkjfdslk.fsadf', 'fanskjfn', 'nkfjdsnajk', 'kjdnfksjdn', 49281327, '1', '95pNUy6WKdHhjuzztZfpGj4UJHUsTlmG', '', '我最帅队', 1, '2016-03-20 05:58:01', '2016-03-20 05:58:13', 'player');
 
 --
 -- Indexes for dumped tables
@@ -507,17 +498,17 @@ ALTER TABLE `newss`
 -- AUTO_INCREMENT for table `sourcecodes`
 --
 ALTER TABLE `sourcecodes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -9,7 +9,7 @@ class BattleForm extends \yii\db\ActiveRecord
 {
 
     public $mycode;
-    public $teamname;
+    public $enemyteam;
     public $enemycode;
 
     public function rules()
@@ -29,7 +29,7 @@ class BattleForm extends \yii\db\ActiveRecord
 
     public function getTeamcodes($teamname){
 
-        $teamcodes = Sourcecodes::find()->where(['team'=>$teamname])->select('uploaded_at')->orderBy('uploaded_at DESC')->column();
+        $teamcodes = Sourcecodes::find()->where(['team'=>$teamname])->orderBy('uploaded_at DESC')->all();
         return $teamcodes;
     }
 

@@ -41,7 +41,7 @@ class UploadForm extends Model
             //先在数据库中insert一条数据，然后再命名文件
             $this->sourcecode->saveAs('uploads/' .$newsourcecode->id.'.'.$this->sourcecode->extension);
 
-            return true;
+            return $newsourcecode->id;
         } else {
             return false;
         }

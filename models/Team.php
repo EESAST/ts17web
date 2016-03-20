@@ -15,6 +15,7 @@ use yii\helpers\Html;
  * @property string $slogan
  * @property string $key
  * @property integer $status
+ * @property integer $battled_time
  */
 class Team extends \yii\db\ActiveRecord
 {
@@ -55,6 +56,7 @@ class Team extends \yii\db\ActiveRecord
             'slogan' => Yii::t('app', '简介'),
             'key' => Yii::t('app', '密钥'),
             'status' => Yii::t('app', '成员'),
+            'battled_time' => Yii::t('app', '本日对战次数'),
         ];
     }
 

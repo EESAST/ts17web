@@ -31,13 +31,19 @@ class BattleController extends Controller
         if ($myteamname=="")
             return $this->render('/team/error',['message'=>'<h2>你还没有加入任何一个战队呢!</h2>']);
 
-        $team = Team::findByTeamname($myteamname);
+        //$myteam = Team::findByTeamname($myteamname);
+        $myteam = Team::findOne(['teamname'=> $myteamname]);
 
         //我已上传成功的代码
-        $mycodes = Sourcecodes::find()->where(['team'=>$myteamname])->select('uploaded_at')->orderBy('uploaded_at DESC')->column();
+        $mycodes = Sourcecodes::find()->where(['team'=>$myteamname])->orderBy('uploaded_at DESC')->all();
+        $mycodes2 = $mycodes;
+        foreach ($mycodes2 as $mycode) {
+             $mycode->uploaded_at = $mycode->id.'号，上传于'.$mycode->uploaded_at;
+         } 
         
         //已上传代码的队伍，除掉自己所在的队伍
-        $teamnames = Sourcecodes::find()->select('team')->where("team<>'$myteamname'")->distinct()->orderBy('uploaded_at DESC')->column();
+        $teamnames = Sourcecodes::find()->select('team')->where("team<>'$myteamname'")->distinct()->orderBy('uploaded_at DESC');
+        $teams = Team::find()->where(['teamname'=>$teamnames])->all();
         
         //别的队伍的代码
         $otherscodes = Sourcecodes::find()->where("team<>'$myteamname'")->select('uploaded_at')->orderBy('uploaded_at DESC')->column();
@@ -55,10 +61,29 @@ class BattleController extends Controller
         //表单
         $model = New BattleForm();
         //上传文件$model,
+
+        if ($model->load(Yii::$app->request->post())) {
+            if($myteam->battled_time<10){//如果对战次数还没到10次
+                $myteam->battled_time++;
+                $myteam->save(false);
+
+                //写入result表
+                /*
+                $newresult = New Battleresult();
+                $model->mycode = Html::encode($_POST['BattleForm']['mycode']);
+                $model->enemyteam = Html::encode($_POST['BattleForm']['enemyteam']);
+                $model->enemycode = Html::encode($_POST['BattleForm']['enemycode']);
+                $newresult->ai2=$model->enemycode;
+                $newresult->save(false);
+                */
+            }
+        }
+
         return $this->render('index', [
             'model'=>$model,//表单
-            'mycodes'=>$mycodes,//我已上传成功的代码
-            'teamnames'=>$teamnames,//已上传代码的队伍，除掉自己所在的队伍
+            'myteam'=>$myteam,//
+            'mycodes'=>$mycodes2,//我已上传成功的代码
+            'teams'=>$teams,//已上传代码的队伍，除掉自己所在的队伍
             'otherscodes' => $otherscodes,//别的队伍的代码
             'results'=>$results,//对战结果
             'pagination'=>$pagination,//对战结果分页器
@@ -68,11 +93,11 @@ class BattleController extends Controller
     public function actionSite($teamname)
     {
         $model = new BattleForm();
-        $model = $model->getTeamcodes($teamname);
+        $codes = $model->getTeamcodes($teamname);
 
-        foreach($model as $value)//=>$name)
+        foreach($codes as $value)//=>$name)
         {
-            echo Html::tag('option',Html::encode($value));//,array('value'=>$value));
+            echo Html::tag('option',Html::encode($value->id.'号，上传于'.$value->uploaded_at),array('value'=>$value->id));//,array('value'=>$value));
         }
     }
 

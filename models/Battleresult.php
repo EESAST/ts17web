@@ -8,7 +8,9 @@ use yii\helpers\Html;
  *
  * @property integer $id
  * @property string $team1
+ * @property string $ai1
  * @property string $team2
+ * @property string $ai2
  * @property string $battle_at
  * @property string $result
  */
@@ -51,7 +53,7 @@ class Battleresult extends \yii\db\ActiveRecord
         if (parent::beforeSave($insert)) {
             $this->team1 = Html::encode($this->team1);
             $this->team2 = Html::encode($this->team2);
-            $this->battletime = Html::encode($this->battletime);
+            $this->battle_at = Html::encode($this->battle_at);
             $this->result = Html::encode($this->result);
             return true;
         } else {

@@ -32,18 +32,19 @@ class DashboardController extends \yii\web\Controller
         
     	$model = new VerifyoldpwdForm();
        	if ($model->load(Yii::$app->request->post()) ){
-            $model->verifypwd = Html::endcode($_POST['VerifyoldpwdForm']['verifypwd']);
+            $model->verifypwd = Html::encode($_POST['VerifyoldpwdForm']['verifypwd']);
             $model->newpwd = Html::encode($_POST['VerifyoldpwdForm']['newpwd']);
-            $model->verifynewpwd = Html::endcode($_POST['VerifyoldpwdForm']['verifynewpwd']);
+            $model->verifynewpwd = Html::encode($_POST['VerifyoldpwdForm']['verifynewpwd']);
 
        		if(Yii::$app->getSecurity()->validatePassword($model->verifypwd, $user->password)){
         		$newpwd = Yii::$app->getSecurity()->generatePasswordHash($model->newpwd);
-                $username = $user->username;
 
-        		$link = mysqli_connect("localhost","root","tttsss17","ts18web") or die("Could not connect database");
-				if(mysqli_query($link,"UPDATE user SET password = '$newpwd'  WHERE username = '$username'")){
-            		return $this->redirect(['site/index']);//(['dashboard/index']);
-        		}
+                $user = User::findOne(['username'=>$user->username]);
+                
+                $user->password = $newpwd;
+                $user->save(false);
+
+                return $this->redirect(['site/index']);
        		}
         }
         return $this->render('verifyoldpwd', [
