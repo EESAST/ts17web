@@ -63,22 +63,21 @@ class BattleController extends Controller
         //上传文件$model,
 
         if ($model->load(Yii::$app->request->post())) {
-            if($myteam->battled_time<10){//如果对战次数还没到10次
+            if($myteam->battled_time<100){//如果对战次数还没到10次
                 $myteam->battled_time++;
                 $myteam->save(false);
 
-                //写入result表
-                /*
-                $newresult = New Battleresult();
-                $model->mycode = Html::encode($_POST['BattleForm']['mycode']);
-                $model->enemyteam = Html::encode($_POST['BattleForm']['enemyteam']);
-                $model->enemycode = Html::encode($_POST['BattleForm']['enemycode']);
-                $newresult->ai2=$model->enemycode;
-                $newresult->save(false);
-                */
+                $model->myteam = $myteamname;
+                //我方代码编号
+                $model->mycode = $_POST['BattleForm']['mycode'];
+                //敌方队伍名称
+                $model->enemyteam = $_POST['BattleForm']['enemyteam'];
+                //敌方代码编号
+                $model->enemycode = $_POST['BattleForm']['enemycode'];               
+                $result = $model->battle();
             }
         }
-
+        
         return $this->render('index', [
             'model'=>$model,//表单
             'myteam'=>$myteam,//
