@@ -1,0 +1,12 @@
+INFO - [0 @ 0.000000] game seed = 372131480
+INFO - [5001 @ 50.018954] ****GAME END****
+INFO - [5001 @ 50.019011] WINNER = 0
+INFO - [5001 @ 50.019092] clean up
+INFO - [Mar 24 15:43:34] quit.
+[100%] Built target ai
+Scanning dependencies of target ai
+[ 20%] Building CXX object CMakeFiles/ai.dir/ai/ai.cpp.o
+[ 40%] Linking CXX shared library libai.so
+[100%] Built target ai
+ERROR - [Mar 24 16:24:16] "/root/ts17/1.so" is not a valid AI.
+INFO - [Mar 24 16:24:16] quit.

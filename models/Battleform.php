@@ -50,8 +50,9 @@ class BattleForm extends \yii\db\ActiveRecord
     socket_write($socket,$this->myteam.'  ', strlen($this->myteam)+2);
     socket_write($socket,$this->enemyteam.'  ', strlen($this->enemyteam)+2);
     socket_write($socket,$this->mycode.'  ', strlen($this->mycode)+2);
-    socket_write($socket,$this->enemycode, strlen($this->enemycode)+2);
-     return "Request sent.";
+    socket_write($socket,$this->enemycode.'  ', strlen($this->enemycode)+2);
+    socket_write($socket,$this->id,strlen($this->id)+2); 
+    return "Request sent.";
     }
 
 }

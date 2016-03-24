@@ -1,6 +1,6 @@
 ﻿#include "teamstyle17.h"
 #include <stdio.h>
-sdlfkjdlsxclbvlcxjvlj
+
 const Status *status = NULL;
 
 void AIMain() {
@@ -9,10 +9,13 @@ void AIMain() {
     status = GetStatus();
     Move(status->objects[0].id, speed);
     while (GetTime()<5000) {
-        Move(status->objects[0].id, speed);
+        unsigned i = 100;
+        while (i--) {
+            Move(status->objects[0].id, speed);
+        }
         ++count;
     }
-    printf("Move test result: avg=%.4fms", 50000.0 / count);
+    printf("Move test result: avg=%.4fms", 500.0 / count);
     while (1);
 }
 
