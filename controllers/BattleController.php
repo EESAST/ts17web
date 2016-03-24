@@ -80,7 +80,7 @@ class BattleController extends Controller
                 $result->team2=Team::findOne(['id'=> $model->enemyteam])->teamname;
                 $result->ai2=$model->enemycode;
                 $result->battle_at=date("Y-m-d H:i:s");
-                $result->result='编译中';
+                $result->result='对战中';
                 $result->save();
                 
                 $model->id=$result->id;

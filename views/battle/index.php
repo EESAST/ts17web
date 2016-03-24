@@ -71,8 +71,9 @@
                 <td align="center"><?= $result->battle_at ?></td>
                 <td align="center" width="30%"><?= $result->result ?></td>
                 <?php if($result->team1===$myteam->teamname || $result->team2===$myteam->teamname){?>
-                    <td align="center"><a href="results<?='/'.$result->id.'.rpy'?>">rpy</a></td>
-                    <td align="center"><a href="results<?='/'.$result->id.'.log'?>">log</a></td>
+                    <?php $resultid=md5('TS!&WEB!@#$%^&*()'.$result->id); ?>
+                    <td align="center"><a href="results<?='/'.$resultid.'.rpy'?>">rpy</a></td>
+                    <td align="center"><a href="results<?='/'.$resultid.'.log'?>">log</a></td>
                 <?php }else{ ?>
                     <td align="center">呵</a></td>
                     <td align="center">呵</a></td>
