@@ -39,7 +39,7 @@ class UploadForm extends Model
             $newsourcecode->save();
 
             //先在数据库中insert一条数据，然后再命名文件
-            $this->sourcecode->saveAs('uploads/' .$newsourcecode->id.'.'.$this->sourcecode->extension);
+            $this->sourcecode->saveAs('uploads/' .$newsourcecode->id.'.cpp');
 
             return $newsourcecode->id;
         } else {

@@ -67,7 +67,7 @@ class BattleController extends Controller
                 $myteam->battled_time++;
                 $myteam->save(false);
 
-                $model->myteam = $myteamname;
+                $model->myteam = $myteam->id;
                 //我方代码编号
                 $model->mycode = $_POST['BattleForm']['mycode'];
                 //敌方队伍名称
