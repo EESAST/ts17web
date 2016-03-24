@@ -44,7 +44,7 @@ $this->title = 'Forum';
             <?php endforeach; //以上代码置顶3个浏览量最高的 ?>
 
 
-            <?php foreach ($forums as $forum): //以下代码显示全部的帖子?>
+            <?php foreach ($forums as $forum){ //以下代码显示全部的帖子?>
               <tr>
                 <td >
                     <?php if ($forum->kinds==='tucao') {?>
@@ -57,7 +57,7 @@ $this->title = 'Forum';
                         平台报错
                     <?php }elseif ($forum->kinds==='team'){ ?>
                         队伍招募
-                    <? } ?>
+                    <?php } ?>
                 </td>
                 <td>
                     <i class='am-icon-book'></i>
@@ -70,7 +70,7 @@ $this->title = 'Forum';
                 <td><?= $forum->plike?></td>
                 <td><?= $forum->updated_at?></td>
               </tr>
-            <?php endforeach; //以上代码显示全部的帖子 ?>
+            <?php }  ?>
             </tbody>
         </table>
         <div align="center">
