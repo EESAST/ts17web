@@ -58,6 +58,9 @@
         <td align="center"><b>ai号</b></th>
         <td align="center"><b>比赛时间</b></th>
         <td align="center"><b>对战结果</b></th>
+        <td align="center"><b>rpy文件</b></th>
+        <td align="center"><b>log文件</b></th>
+
         <?php foreach ($results as $result) { ?>
             <tr>
                 <td align="center"><?= $result->id ?></td>
@@ -67,6 +70,13 @@
                 <td align="center"><?= $result->ai2 ?></td>
                 <td align="center"><?= $result->battle_at ?></td>
                 <td align="center" width="30%"><?= $result->result ?></td>
+                <?php if($result->team1===$myteam->teamname){?>
+                    <td align="center"><a href="results<?='/'.$result->id.'.rpy'?>"><?=$result->id.'.rpy'?></a></td>
+                    <td align="center"><a href="results<?='/'.$result->id.'.log'?>"><?=$result->id.'.log'?></a></td>
+                <?php }else{ ?>
+                    <td align="center">呵</a></td>
+                    <td align="center">呵</a></td>
+                <?php } ?>
             </tr>
         <?php } ?>
     </table>
