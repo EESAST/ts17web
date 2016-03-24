@@ -74,7 +74,6 @@ class BattleController extends Controller
                 $model->enemyteam = $_POST['BattleForm']['enemyteam'];
                 //敌方代码编号
                 $model->enemycode = $_POST['BattleForm']['enemycode'];               
-                $re = $model->battle();
                 
                 $result = new Battleresult();
                 $result->team1=$myteamname;
