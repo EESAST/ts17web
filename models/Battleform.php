@@ -7,7 +7,7 @@ use app\models\Sourcecodes;
 
 class BattleForm extends \yii\db\ActiveRecord
 {
-
+    public $id;
     public $myteam;
     public $mycode;
     public $enemyteam;

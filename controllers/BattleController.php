@@ -84,7 +84,9 @@ class BattleController extends Controller
                 $result->battle_at=date("Y-m-d H:i:s");
                 $result->result='编译中';
                 $result->save();
-
+                
+                $model->id=$result->id;
+                $re = $model->battle();
                 return $this->redirect(['index']);
             }
         }
