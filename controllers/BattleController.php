@@ -52,7 +52,7 @@ class BattleController extends Controller
         $results1 = Battleresult::find();
         //对战结果分页器
         $pagination = new Pagination([
-            'defaultPageSize' => 5,
+            'defaultPageSize' => 20,
             'totalCount' => $results1->count(),
         ]);
         $results = $results1->orderBy('battle_at DESC')->offset($pagination->offset)

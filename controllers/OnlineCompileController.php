@@ -29,7 +29,7 @@ class OnlineCompileController extends Controller
         //上传文件
         $model = new UploadForm();
         if (Yii::$app->request->isPost) {
-            if ($myteam->uploaded_time<5) {
+            if ($myteam->uploaded_time<50) {
                 $myteam->uploaded_time++;
                 $myteam->save(false);
 

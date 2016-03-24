@@ -12,7 +12,7 @@ use yii\helpers\html;
     </div>
     <br/><br/>
     <div align="center">
-    <h3 width="90%">每个队伍每天最多上传5次<br/>你们今天已经上传了<?=$myteam->uploaded_time?>次<br/></h3>
+    <h3 width="90%">每个队伍每天最多上传50次<br/>你们今天已经上传了<?=$myteam->uploaded_time?>次<br/></h3>
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
         <div class="am-form-group am-form-file">
             <div>
