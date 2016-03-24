@@ -70,7 +70,7 @@ $this->title = 'Forum';
                 <td><?= $forum->plike?></td>
                 <td><?= $forum->updated_at?></td>
               </tr>
-            <?php endforeach; //以上代码显示全部的帖子?>
+            <?php endforeach; //以上代码显示全部的帖子 ?>
             </tbody>
         </table>
         <div align="center">
