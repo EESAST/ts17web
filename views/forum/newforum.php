@@ -17,7 +17,7 @@ use yii\captcha\Captcha;
         'id' => 'forum-form',
         'options' => ['class' => 'am-form'],
         'fieldConfig' => [
-            'template' => "{input}",
+            'template' => "{input}{error}",
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>

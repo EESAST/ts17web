@@ -22,7 +22,7 @@
             'id' => 'login-form',
             'options' => ['class' => 'am-form'],
             'fieldConfig' => [
-                'template' => "{input}",
+                'template' => "{input}{error}",
             ],
         ]); ?>
         <?= $form->field($model, 'username', ['placeholder' => '请输入您的用户名']) ?>
