@@ -30,11 +30,11 @@ class OnlineCompileController extends Controller
         $model = new UploadForm();
         if (Yii::$app->request->isPost) {
             if ($myteam->uploaded_time<50) {
-                $myteam->uploaded_time++;
-                $myteam->save(false);
 
                 $model->sourcecode = UploadedFile::getInstance($model, 'sourcecode');
                 if ($id=$model->upload()) {
+                    $myteam->uploaded_time++;
+                    $myteam->save(false);
                     //上传成功就render到uploadsuccess页面
                     return $this->render('uploadsuccess',['id'=>$id]);
                 }
