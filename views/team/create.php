@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 ?>
 <br/><br/>
-<?
+<?php
 $this->title = Yii::t('app', '创建队伍');
 ?>
 <div class="team-create">

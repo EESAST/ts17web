@@ -4,7 +4,7 @@ $this->title = 'Supporting-files';
 function list_file($dir){
 	$list=scandir($dir);
 	foreach ($list as $file) {
-    if($file!='.DS_Store'){
+    if($file!='.DS_Store' && $file!='.com.apple.timemachine.supported'){
 
     
 		$file_url=$dir.'/'.$file;

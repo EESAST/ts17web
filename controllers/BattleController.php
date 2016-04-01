@@ -63,7 +63,7 @@ class BattleController extends Controller
         //上传文件$model,
 
         if ($model->load(Yii::$app->request->post())) {
-            if($myteam->battled_time<50){//如果对战次数还没到10次
+            if($myteam->battled_time<100){//如果对战次数还没到10次
                 $myteam->battled_time++;
                 $myteam->save(false);
 
@@ -79,6 +79,7 @@ class BattleController extends Controller
                 $result->ai1=$model->mycode;
                 $result->team2=Team::findOne(['id'=> $model->enemyteam])->teamname;
                 $result->ai2=$model->enemycode;
+		date_default_timezone_set('PRC'); 
                 $result->battle_at=date("Y-m-d H:i:s");
                 $result->result='对战中';
                 $result->save();
@@ -87,6 +88,8 @@ class BattleController extends Controller
                 $re = $model->battle();
                 return $this->redirect(['index']);
             }
+	else print("哥们你对战太多次了<br>明天再来吧~");
+	die();
         }
         
         return $this->render('index', [

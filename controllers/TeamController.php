@@ -68,6 +68,7 @@ class TeamController extends Controller
      */
     public function actionCreate()
     {
+	return $this->redirect(['index']);
         $searchModel = new TeamSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         if (Yii::$app->user->identity->teamname!=null){//Èç¹û¸ÃÓÃ»§¼ÓÈë¶ÓÎé£¬Ôò·µ»ØÖ÷Ò³
@@ -117,7 +118,8 @@ class TeamController extends Controller
         }
     }
     public function actionJoin($id){
-        $input  = new Team;
+        return $this->redirect(['index']);
+	$input  = new Team;
         $team=Team::findOne(['id'=>$id]);
         if($input->load(Yii::$app->request->post())) {
             $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
@@ -149,6 +151,7 @@ class TeamController extends Controller
 
     public function actionDelete($id)
     {
+	return $this->redirect(['index']);
         $model = $this->findModel($id);
         $user = User::findone(['username'=>Yii::$app->user->identity->username]);
         if ($model->leadername!=$user->username&&$user->group!='admin') return $this->render('error',['message'=>'只有队长才可以删除队伍啊']);
@@ -161,6 +164,7 @@ class TeamController extends Controller
     }
     public function actionQuit($id)
     {
+	return $this->redirect(['index']);
         $model = $this->findModel($id);
         $user = User::findOne(['username'=>Yii::$app->user->identity->username]);
 

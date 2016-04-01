@@ -48,9 +48,6 @@ use yii\helpers\Url;
         <?php  
         if(Yii::$app->user->identity->teamname!=null) 
             echo Html::a(Yii::t('app', '我要到我的战队看看'), ['view','id'=>$info], ['class' => 'am-btn am-btn-success am-btn-block']);
-        else
-            echo Html::a(Yii::t('app', '算了，还是创建队伍吧'), ['create'], ['class' => 'am-btn am-btn-success am-btn-block']);
-
          ?>
     </p>
     

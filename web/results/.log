@@ -1,12 +1,9 @@
-INFO - [0 @ 0.000000] game seed = 372131480
-INFO - [5001 @ 50.018954] ****GAME END****
-INFO - [5001 @ 50.019011] WINNER = 0
-INFO - [5001 @ 50.019092] clean up
-INFO - [Mar 24 15:43:34] quit.
-[100%] Built target ai
-Scanning dependencies of target ai
-[ 20%] Building CXX object CMakeFiles/ai.dir/ai/ai.cpp.o
-[ 40%] Linking CXX shared library libai.so
-[100%] Built target ai
-ERROR - [Mar 24 16:24:16] "/root/ts17/1.so" is not a valid AI.
-INFO - [Mar 24 16:24:16] quit.
+<h1>AI 1 Compile Information</h1><pre>
+</pre><h1>AI 2 Compile Information</h1><pre>
+INFO - [0 @ 0.000000] game seed = 4194376316
+WARNING - [1505 @ 15.074983] logic is 2 rounds slower than main timer, trying to sync by pausing ...
+WARNING - [4106 @ 41.086803] logic is 2 rounds slower than main timer, trying to sync by pausing ...
+INFO - [5001 @ 50.013014] ****GAME END****
+INFO - [5001 @ 50.013165] WINNER = 0
+INFO - [5001 @ 50.013347] clean up
+INFO - [Mar 24 17:28:24] quit.

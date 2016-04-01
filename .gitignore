@@ -31,3 +31,7 @@ phpunit.phar
 
 # Files
 /web/files
+
+/web/uploads
+/web/results
+/web/first_round_code

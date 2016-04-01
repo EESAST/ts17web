@@ -15,7 +15,7 @@ class UploadForm extends Model
     public function rules()
     {
         return [
-            [['sourcecode'], 'file', 'skipOnEmpty' => false, 'extensions' => 'c,cpp','maxSize'=>1024*1024],
+            [['sourcecode'], 'file', 'skipOnEmpty' => false, 'extensions' => 'c,cpp','maxSize'=>1024*1024,'checkExtensionByMimeType'=>false],
         ];
     }
 
@@ -35,7 +35,8 @@ class UploadForm extends Model
             $user = User::findByUsername(Yii::$app->user->identity->username);
             $newsourcecode->team = $user->teamname;
             $newsourcecode->uploaded_by = $user->username;
-            $newsourcecode->uploaded_at = date("Y/m/d h:i:s");
+	date_default_timezone_set('PRC'); 
+            $newsourcecode->uploaded_at = date("Y/m/d H:i:s");
             $newsourcecode->save();
 
             //先在数据库中insert一条数据，然后再命名文件

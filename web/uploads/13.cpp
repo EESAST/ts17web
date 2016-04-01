@@ -1,284 +1,235 @@
-﻿#include "teamstyle17.h"
-#include<random>
+#include "teamstyle17.h"
+#include <iostream>
+#include <cmath>
 
-int ai_num=1;//1号AI专攻护盾+1级瞬移食用目标生物或玩家，2号2级生命+瞬移1级+5级生命,3号5级longAttack+5级生命
+using namespace std;
 
-int time=-1;
-int longattack_target=-1;
-const Map *map=NULL;
-const Status *status=NULL;
+const int INFTY = 0x7fffffff;
+const Position CENTER = { kMapSize / 2, kMapSize / 2, kMapSize / 2 };
+const double THRES_DEVOUR = 800;
+const double THRES_BOSS_DEFENSE = 1000;
+const double THRES_BOSS_ATTACK = 2000;
+const double THRES_OPPONENT_DEFENSE = 1200;
+const double THRES_OPPONENT_ATTACK = 1500;
+double COS_THRES_ENERGY = 0.5;
+double COS_THRES_AE = 0;
 
-int power(int x,int y)
+int last_time = 0;
+int cooldown = 0;
+
+void moveTo(int id, Position curr_pos, Position target_pos, double maxSpeed = kMaxMoveSpeed)
 {
-	if (y==0) return 1;
-	int sum=x;
-	for (int i=1;i<y;++i) sum*=x;
-	return sum;
-};
-
-int eat_player(int distance)
-{
-	if (distance==0) return -1;
-	for (int i=0;i<map->objects_number;++i)
-	{
-		if (map->objects[i].type!=PLAYER) continue;
-		if (map->objects[i].team_id==status->team_id) continue;
-		if (double(map->objects[i].radius)/double(status->objects[0].radius)<kEatableRatio)
-			if (Distance(map->objects[i].pos,status->objects[0].pos)<distance)
-				return i;
-	};
-	return -1;
-}
-
-int longattack_player(int distance)
-{
-	//if (distance==0) return -1;
-	for (int i=0;i<map->objects_number;++i)
-	{
-		if (map->objects[i].type!=PLAYER) continue;
-		if (map->objects[i].team_id==-2) continue;
-		if (map->objects[i].team_id==status->team_id) continue;
-		//if (map->objects[i].shield_time>=time) continue;
-		if (Distance(map->objects[i].pos,status->objects[0].pos)<distance)
-				return i;
-	};
-	return -1;
-}
-
-int cost(SkillType skill)
-{
-	if (status->objects[0].skill_level[skill]==0)
-	{
-		int sum=0;
-		for (int i=0;i<kSkillTypes;++i) 
-			if (status->objects[0].skill_level[i]!=0) ++sum;
-		return power(2,sum)*kBasicSkillPrice[skill];
-		
-	};
-	return power(2,status->objects[0].skill_level[skill])*kBasicSkillPrice[skill];
-};
-
-bool upgradeskill() 
-{
-	//printf("%d\n",status->objects[0].skill_level[SHIELD]);
-	  
-	if (status->objects[0].skill_level[SHORT_ATTACK]<5)
-		{
-			if (status->objects[0].ability>=cost(LONG_ATTACK))
-			{
-				UpgradeSkill(-1,LONG_ATTACK);
-				return true;
-			}
-		}
-		
-		if (status->objects[0].skill_level[HEALTH_UP]<5)
-		{
-			if (status->objects[0].ability>=cost(HEALTH_UP))
-			{
-				UpgradeSkill(-1,HEALTH_UP);
-				return true;
-			}
-			else return false;
-		}
-		if (status->objects[0].skill_level[VISION_UP]<5)
-		{
-			if (status->objects[0].ability>=cost(VISION_UP))
-			{
-				UpgradeSkill(-1,VISION_UP);
-				return true;
-			}
-			else return false;
-		}
-		return false;
-};
-
-
-bool useskill()
-{
-	int enemy;
-	if ((status->objects[0].skill_level[SHORT_ATTACK]!=0)&&(status->objects[0].skill_cd[SHORT_ATTACK]==0))
-	{
-		enemy=longattack_player(kShortAttackRange[status->objects[0].skill_level[SHORT_ATTACK]]);
-		if (enemy!=-1)
-		{
-			ShortAttack(status->objects[0].id);
-			return true;
-		}
-	};
-
-	if ((status->objects[0].skill_level[SHORT_ATTACK]!=0)&&(status->objects[0].skill_cd[SHORT_ATTACK]==0))
-	{
-		enemy=longattack_player(kShortAttackRange[status->objects[0].skill_level[SHORT_ATTACK]]+5*kMaxMoveSpeed);
-		if (enemy!=-1)
-		{
-			Position speed;
-			Position pos=map->objects[enemy].pos;
-			speed.x=-100*(status->objects[0].pos.x-pos.x);
-			speed.y=-100*(status->objects[0].pos.y-pos.y);
-			speed.z=-100*(status->objects[0].pos.z-pos.z);
-			Move(status->objects[0].id,speed);
-			return true;
-		}
-	};
-
-
-	return false;
-};
-
-int danger_move()
-{
-	for (int i=0;i<map->objects_number;++i)
-	{
-		if (map->objects[i].type!=PLAYER) continue;
-		if (map->objects[i].team_id==-2) 
-		{ if (Distance(map->objects[i].pos,status->objects[0].pos)>=5*kMaxMoveSpeed) continue;};
-		if (map->objects[i].team_id==status->team_id) continue;
-		if (Distance(map->objects[i].pos,status->objects[0].pos)<=10*kMaxMoveSpeed) 
-			if (double(status->objects[0].radius)/double(map->objects[i].radius)<kMaxMoveSpeed)
-			return i;
+	Speed speed;
+	speed.x = target_pos.x - curr_pos.x;
+	speed.y = target_pos.y - curr_pos.y;
+	speed.z = target_pos.z - curr_pos.z;
+	if (speed.x == 0 && speed.y == 0 && speed.z == 0) {
+		speed.x = rand() % 5 + 1;
+		speed.y = rand() % 5 + 1;
+		speed.z = rand() % 5 + 1;
 	}
-	return -1;
-};
+	double length = sqrt(speed.x * speed.x + speed.y * speed.y + speed.z * speed.z);
+	speed.x = speed.x * maxSpeed / length;
+	speed.y = speed.y * maxSpeed / length;
+	speed.z = speed.z * maxSpeed / length;
+	Move(id, speed);
+}
 
-int find_ENERGY()
+void fuzzyMoveTo(int id, Position curr_pos, Position target_pos, double maxSpeed = kMaxMoveSpeed)
 {
-	int ans_ENERGY=-1,ans_ADVANCED_ENERGY=-1,dis=10000000;
-	for (int i=0;i<map->objects_number;++i)
-	{
-		if (map->objects[i].type==ENERGY) 
-		{
-			if (ans_ADVANCED_ENERGY!=-1) continue;
-			int temp=Distance(map->objects[i].pos,status->objects[0].pos);
-			if (temp<dis)
-			{
-				dis=temp;
-				ans_ENERGY=i;
-			};
-			continue;
-		};
-		if (map->objects[i].type==ADVANCED_ENERGY)
-		{
-			printf("AI3 find a ADVANCED_ENERGY\n");
-			if (ans_ADVANCED_ENERGY==-1)
-			{
-				ans_ADVANCED_ENERGY=i;
-				dis=Distance(map->objects[i].pos,status->objects[0].pos);
-				continue;
-			};
-			int temp=Distance(map->objects[i].pos,status->objects[0].pos);
-			if (temp<dis)
-			{
-				dis=temp;
-				ans_ADVANCED_ENERGY=i;
-			};
-		};
-	};
-	if (ans_ADVANCED_ENERGY!=-1) return ans_ADVANCED_ENERGY;
-	else return ans_ENERGY;
-};
+	Speed speed;
+	speed.x = (target_pos.x - curr_pos.x) * (rand() % 10 + 1);
+	speed.y = (target_pos.y - curr_pos.y) * (rand() % 10 + 1);
+	speed.z = (target_pos.z - curr_pos.z) * (rand() % 10 + 1);
+	double length = sqrt(speed.x * speed.x + speed.y * speed.y + speed.z * speed.z);
+	speed.x = speed.x * maxSpeed / length;
+	speed.y = speed.y * maxSpeed / length;
+	speed.z = speed.z * maxSpeed / length;
+	Move(id, speed);
+}
 
-int find_enemy()
+void moveAgainst(int id, Position curr_pos, Position obj_pos, int maxSpeed = kMaxMoveSpeed)
 {
-	for (int i=0;i<map->objects_number;++i)
-	{
-		if (map->objects[i].type!=PLAYER) continue;
-		if (double(map->objects[i].radius)/double(status->objects[0].radius)<kEatableRatio) return i;
-	};
-	return -1;
+	moveTo(id, obj_pos, curr_pos, maxSpeed);
+}
 
-};
-
-int enemy_id(int id)
+void fuzzyMoveAgainst(int id, Position curr_pos, Position obj_pos, int maxSpeed = kMaxMoveSpeed)
 {
-	for (int i=0;i<map->objects_number;++i)
-	{
-		if (map->objects[i].id!=id) continue;
-		return i;
-	};
-};
+	fuzzyMoveTo(id, obj_pos, curr_pos, maxSpeed);
+}
 
+bool inEdge(Position pos, double radius, double threshold = 100) {
+	if (pos.x - radius < threshold || kMapSize - pos.x - radius < threshold)
+		return true;
+	if (pos.y - radius < threshold || kMapSize - pos.y - radius < threshold)
+		return true;
+	if (pos.z - radius < threshold || kMapSize - pos.z - radius < threshold)
+		return true;
+	return false;
+}
 
-void move()
+double Dist(Position p1, Position p2)
 {
-	if (status->objects[0].long_attack_casting==0) longattack_target=-1;
-	if (longattack_target!=-1)
-	{
-		int enemy=enemy_id(longattack_target);
-		if (map->objects[enemy].shield_time>=status->objects[0].long_attack_casting);
-		Position pos=map->objects[enemy].pos;
-		if (Distance(pos,status->objects[0].pos)>=kLongAttackRange[status->objects[0].skill_level[LONG_ATTACK]]-kMaxMoveSpeed*2)
-		{
-			Position speed;
-			speed.x=-100*(status->objects[0].pos.x-pos.x);
-			speed.y=-100*(status->objects[0].pos.y-pos.y);
-			speed.z=-100*(status->objects[0].pos.z-pos.z);
-			Move(status->objects[0].id,speed);
-			return;
-		};
-	};
-	int danger=danger_move();
-	if (danger!=-1)
-	{
-		Position speed;
-		speed.x=100*(status->objects[0].pos.x-map->objects[danger].pos.x);
-		speed.y=100*(status->objects[0].pos.y-map->objects[danger].pos.y);
-		speed.z=100*(status->objects[0].pos.z-map->objects[danger].pos.z);
-		Move(status->objects[0].id,speed);
-		return;
-	};
-	int enemy=find_enemy();
-	if (enemy!=-1)
-	{
-		Position speed;
-		speed.x=-100*(status->objects[0].pos.x-map->objects[enemy].pos.x);
-		speed.y=-100*(status->objects[0].pos.y-map->objects[enemy].pos.y);
-		speed.z=-100*(status->objects[0].pos.z-map->objects[enemy].pos.z);
-		Move(status->objects[0].id,speed);
-		return;
-	};
-	int ENERGY=find_ENERGY();
-	if (ENERGY!=-1)
-	{
-		Position speed;
-		speed.x=-100*(status->objects[0].pos.x-map->objects[ENERGY].pos.x);
-		speed.y=-100*(status->objects[0].pos.y-map->objects[ENERGY].pos.y);
-		speed.z=-100*(status->objects[0].pos.z-map->objects[ENERGY].pos.z);
-		Move(status->objects[0].id,speed);
-		return;
-	};
-	Position speed;
-	speed.x=-100*(status->objects[0].pos.x-(kMapSize>>1));
-	speed.y=-100*(status->objects[0].pos.y-(kMapSize>>1));
-	speed.z=-100*(status->objects[0].pos.z-(kMapSize>>1));
-	Move(status->objects[0].id,speed);
-	return;
+	return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y) + (p1.z - p2.z) * (p1.z - p2.z));
+}
 
-};
+double cosine(Position curr_pos, Position target_pos, Speed speed)
+{
+	double length1 = sqrt((target_pos.x - curr_pos.x) * (target_pos.x - curr_pos.x) + (target_pos.y - curr_pos.y) * (target_pos.y - curr_pos.y) + (target_pos.z - curr_pos.z) * (target_pos.z - curr_pos.z));
+	double length2 = sqrt(speed.x * speed.x + speed.y * speed.y + speed.z * speed.z);
+	if (length1 == 0 || length2 == 0)
+		return 1;
+	double innerProduct = (target_pos.x - curr_pos.x) * speed.x + (target_pos.y - curr_pos.y) * speed.y + (target_pos.z - curr_pos.z) * speed.z;
+	return innerProduct / (length1 * length2);
+}
 
+const int powerof2[] = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 };
 
-void AIMain() {
-	//int i = rand() % 9;
-	const int now=GetTime();
-	if (now==time) return;
-	else time=now;
-	map = GetMap();
-	status = GetStatus();
-	if (!upgradeskill())
-		if (!useskill())
-			move();
+void tryUpgradeSkills(const PlayerObject& self)
+{
+	int ability = self.ability;
+	int cost = INFTY;
+	SkillType skill;
+	while (true) {
+		if (self.skill_level[HEALTH_UP] < 3 ||
+			(self.skill_level[SHORT_ATTACK] == kMaxSkillLevel && self.skill_level[DASH] == kMaxSkillLevel && self.skill_level[HEALTH_UP] < kMaxSkillLevel)) {
+			cost = powerof2[self.skill_level[HEALTH_UP]];
+			skill = HEALTH_UP;
+		}
+		else if (self.skill_level[SHORT_ATTACK] < kMaxSkillLevel) {
+			if (self.skill_level[SHORT_ATTACK] == 0)
+				cost = powerof2[1];
+			else
+				cost = powerof2[self.skill_level[SHORT_ATTACK]];
+			skill = SHORT_ATTACK;
+		}
+		else if (self.skill_level[DASH] < kMaxSkillLevel) {
+			if (self.skill_level[DASH] == 0)
+				cost = powerof2[2];
+			else
+				cost = powerof2[self.skill_level[DASH]];
+			skill = DASH;
+		}
+		else if (self.skill_level[VISION_UP] < kMaxSkillLevel) {
+			COS_THRES_ENERGY = 0.3;
+			COS_THRES_AE = 0.6;
+			if (self.skill_level[VISION_UP] == 0)
+				cost = powerof2[4];
+			else
+				cost = powerof2[self.skill_level[VISION_UP] + 1];
+			skill = VISION_UP;
+		}
+		else {
+			COS_THRES_ENERGY = 0.15;
+			COS_THRES_AE = 1;
+		}
+		if (ability >= cost) {
+			UpgradeSkill(self.id, skill);
+			cost = INFTY;
+			ability -= cost;
+		}
+		else {
+			break;
+		}
+	}
+}
+
+void AIMain()
+{
+	const Status* status = GetStatus();
+	PlayerObject self = status->objects[0];
+	int curr_time = GetTime();
+	if (curr_time - last_time > 0) {
+		if (curr_time % 50 == 0)
+			tryUpgradeSkills(self);
+		const Map* map = GetMap();
+		Position curr_pos = status->objects[0].pos;
+		double curr_radius = status->objects[0].radius;
+		Speed curr_speed = status->objects[0].speed;
+		bool moved = false;
+		bool attacked = false;
+		for (int i = 0; i < map->objects_number; ++i) {
+			Object object = map->objects[i];
+			if (curr_time - last_time > cooldown && object.type == ENERGY && !moved) {
+				if (cosine(curr_pos, object.pos, curr_speed) > COS_THRES_ENERGY) {
+					moveTo(self.id, curr_pos, object.pos);
+					moved = true;
+					last_time = curr_time;
+					cooldown = rand() % 3;
+				}
+			}
+			else if (object.type == ADVANCED_ENERGY) {
+				if (cosine(curr_pos, object.pos, curr_speed) > COS_THRES_AE) {
+					moveTo(self.id, curr_pos, object.pos);
+					moved = true;
+					last_time = curr_time;
+					cooldown = rand() % 5;
+				}
+			}
+			else if (object.type == PLAYER && object.id != self.id) {
+				if (!attacked && Dist(curr_pos, object.pos) - curr_radius - object.radius < kShortAttackRange[self.skill_level[SHORT_ATTACK]] && self.skill_cd[SHORT_ATTACK] == 0) {
+					attacked = true;
+					ShortAttack(self.id);
+				}
+				if ((self.health < 0.7 * self.max_health) || (object.radius > curr_radius * 1.05 && Dist(curr_pos, object.pos) - curr_radius < THRES_OPPONENT_DEFENSE)) {
+					if (!attacked && self.skill_level[DASH] > 0 && self.skill_cd[DASH] == 0)
+						Dash(self.id);
+					cooldown = 25;
+					moveAgainst(self.id, curr_pos, object.pos, kMaxMoveSpeed + kDashSpeed[self.skill_level[DASH]]);
+					moved = true;
+					last_time = curr_time;
+					break;
+				}
+				if (object.radius < curr_radius * 0.95 && Dist(curr_pos, object.pos) - curr_radius < THRES_OPPONENT_ATTACK) {
+					if (!attacked && self.skill_level[DASH] > 0 && self.skill_cd[DASH] == 0)
+						Dash(self.id);
+					cooldown = 15;
+					moveTo(self.id, curr_pos, object.pos, kMaxMoveSpeed + kDashSpeed[self.skill_level[DASH]]);
+					moved = true;
+					last_time = curr_time;
+					break;
+				}
+			}
+			else if (object.type == BOSS) {
+				if (!attacked && Dist(curr_pos, object.pos) - curr_radius - object.radius < kShortAttackRange[self.skill_level[SHORT_ATTACK]] && self.skill_cd[SHORT_ATTACK] == 0) {
+					ShortAttack(self.id);
+					attacked = true;
+				}
+				if (object.radius > curr_radius && Dist(curr_pos, object.pos) - curr_radius < THRES_BOSS_DEFENSE) {
+					fuzzyMoveAgainst(self.id, curr_pos, object.pos);
+					moved = true;
+					last_time = curr_time;
+					cooldown = 10;
+					break;
+				}
+				if (object.radius < curr_radius * 0.8 && Dist(curr_pos, object.pos) - curr_radius < THRES_BOSS_ATTACK) {
+					moveTo(self.id, curr_pos, object.pos);
+					moved = true;
+					last_time = curr_time;
+					cooldown = 15;
+					break;
+				}
+			}
+			else if (object.type == DEVOUR && Dist(curr_pos, object.pos) - curr_radius < THRES_DEVOUR) {
+			   	fuzzyMoveAgainst(self.id, curr_pos, object.pos);
+				moved = true;
+				last_time = curr_time;
+				cooldown = 10;
+				break;
+			}
+			if (inEdge(curr_pos, curr_radius)) {
+				fuzzyMoveTo(self.id, curr_pos, CENTER);
+				moved = true;
+				last_time = curr_time;
+				cooldown = 20;
+				break;
+			}
+		}
+		if (curr_time - last_time > cooldown && !moved) {
+			fuzzyMoveTo(self.id, curr_pos, CENTER);
+			last_time = curr_time;
+			cooldown = 5;
+		}
+	}
 	
-
-
-
-	/*switch (i) {
-	case 0:map = GetMap(); break;
-	case 1:status = GetStatus(-1); break;
-	case 2:LongAttack(-1, 1); break;
-	case 3:ShortAttack(-1); break;
-	case 4:Shield(-1); break;
-	case 5:Teleport(-1, { double(rand() % kMapSize), double(rand() % kMapSize), double(rand() % kMapSize) }); break;
-	case 6:UpgradeSkill(-1, SkillType(rand() % kSkillTypes)); break;
-	case 7:GetTime(); break;
-	default:Move(-1, { double(rand() % kMapSize), double(rand() % kMapSize), double(rand() % kMapSize) });
-	}*/
 }

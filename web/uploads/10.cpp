@@ -1,9 +1,9 @@
 ﻿#include "teamstyle17.h"
 #include<random>
 
-int ai_num=1;//1号AI专攻护盾+1级瞬移食用目标生物或玩家，2号专攻远程攻击
+int ai_num=1;//1号AI专攻护盾+1级瞬移食用目标生物或玩家，2号2级生命+瞬移1级+5级生命
 
-int time;
+int time1;
 const Map *map=NULL;
 const Status *status=NULL;
 
@@ -15,18 +15,19 @@ int power(int x,int y)
 	return sum;
 };
 
-/*int eat_player(int distance)
+int eat_player(int distance)
 {
+	if (distance==0) return -1;
 	for (int i=0;i<map->objects_number;++i)
 	{
 		if (map->objects[i].type!=PLAYER) continue;
 		if (map->objects[i].team_id==status->team_id) continue;
-		if (double(map->objects[i].radius)/double(status->objects[0].r)<kEatableRatio)
+		if (double(map->objects[i].radius)/double(status->objects[0].radius)<kEatableRatio)
 			if (Distance(map->objects[i].pos,status->objects[0].pos)<distance)
 				return i;
 	};
 	return -1;
-}*/
+}
 
 int cost(SkillType skill)
 {
@@ -44,33 +45,7 @@ int cost(SkillType skill)
 bool upgradeskill() 
 {
 	//printf("%d\n",status->objects[0].skill_level[SHIELD]);
-	   /* if ((eat_player(kTeleportMaxDistance[1])!=-1)&&(status->objects[0].skill_level[TELEPORT]==0))
-		{
-			if (status->objects[0].ability>=cost(TELEPORT))
-			{
-				UpgradeSkill(-1,TELEPORT);
-				return true;
-			};
-		}*/
-		if (status->objects[0].skill_level[SHIELD]<5)
-		{
-			//printf("%d %d\n",cost(SHIELD),status->objects[0].ability);
-			if (status->objects[0].ability>=cost(SHIELD))
-			{
-				UpgradeSkill(-1,SHIELD);
-				return true;
-			}
-			else return false;
-		}
-		/*if (status->objects[0].skill_level[TELEPORT]<5)
-		{
-			if (status->objects[0].ability>=cost(TELEPORT))
-			{
-				UpgradeSkill(-1,TELEPORT);
-				return true;
-			}
-			else return false;
-		}*/
+		
 		if (status->objects[0].skill_level[HEALTH_UP]<5)
 		{
 			if (status->objects[0].ability>=cost(HEALTH_UP))
@@ -80,6 +55,16 @@ bool upgradeskill()
 			}
 			else return false;
 		}
+		if (status->objects[0].skill_level[SHIELD]<5)
+		{
+			if (status->objects[0].ability>=cost(SHIELD))
+			{
+				UpgradeSkill(-1,SHIELD);
+				return true;
+			}
+			else return false;
+		}
+		return false;
 		if (status->objects[0].skill_level[VISION_UP]<5)
 		{
 			if (status->objects[0].ability>=cost(VISION_UP))
@@ -104,6 +89,7 @@ bool danger_shield()
 	};
 	return false;
 };
+
 bool useskill()
 {
 	if (status->objects[0].skill_level[SHIELD]!=0)
@@ -112,15 +98,6 @@ bool useskill()
 			Shield(-1);
 			return true;
 		};
-		/*int enemy=eat_player(kTeleportMaxDistance[status->objects[0].skill_level[TELEPORT]]);
-	if (enemy!=-1)
-	{
-		if (status->objects[0].skill_level[TELEPORT]!=0)
-		{
-			Teleport(status->objects[0].id,map->objects[enemy].pos);
-			return true;
-		};
-	};*/
 	return false;
 };
 
@@ -133,7 +110,7 @@ int danger_move()
 		{ if (Distance(map->objects[i].pos,status->objects[0].pos)>=5*kMaxMoveSpeed) continue;};
 		if (map->objects[i].team_id==status->team_id) continue;
 		if (Distance(map->objects[i].pos,status->objects[0].pos)<=10*kMaxMoveSpeed) 
-			if (double(status->objects[0].radius)/double(map->objects[i].radius)<kEatableRatio)
+			if (double(status->objects[0].radius)/double(map->objects[i].radius)<kMaxMoveSpeed)
 			return i;
 	}
 	return -1;
@@ -157,7 +134,7 @@ int find_ENERGY()
 		};
 		if (map->objects[i].type==ADVANCED_ENERGY)
 		{
-			printf("AI1 find a ADVANCED_ENERGY\n");
+			printf("AI2 a ADVANCED_ENERGY\n");
 			if (ans_ADVANCED_ENERGY==-1)
 			{
 				ans_ADVANCED_ENERGY=i;
@@ -176,7 +153,6 @@ int find_ENERGY()
 	else return ans_ENERGY;
 };
 
-
 int find_enemy()
 {
 	for (int i=0;i<map->objects_number;++i)
@@ -187,7 +163,6 @@ int find_enemy()
 	return -1;
 
 };
-
 
 void move()
 {
@@ -233,17 +208,11 @@ void move()
 
 void AIMain() {
 	//int i = rand() % 9;
-	const int now=GetTime();
-	if (now==time) return;
-	else time=now;
-	map = GetMap();
-	status = GetStatus();
-	if (!upgradeskill())
-		if (!useskill())
-			move();
-	
-
-
+	Position p;
+	p.x = rand() % 100 - 50;
+	p.y = rand() % 100 - 50;
+	p.z = rand() % 100 - 50;
+	Move(-1, p);
 
 	/*switch (i) {
 	case 0:map = GetMap(); break;
@@ -257,4 +226,3 @@ void AIMain() {
 	default:Move(-1, { double(rand() % kMapSize), double(rand() % kMapSize), double(rand() % kMapSize) });
 	}*/
 }
-

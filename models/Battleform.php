@@ -46,12 +46,17 @@ class BattleForm extends \yii\db\ActiveRecord
     if ($result === false) {
         $SELECT["feedback_negative"][] = "socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
       }
-    socket_write($socket,'b  ',3);
-    socket_write($socket,$this->myteam.'  ', strlen($this->myteam)+2);
-    socket_write($socket,$this->enemyteam.'  ', strlen($this->enemyteam)+2);
-    socket_write($socket,$this->mycode.'  ', strlen($this->mycode)+2);
-    socket_write($socket,$this->enemycode.'  ', strlen($this->enemycode)+2);
-    socket_write($socket,$this->id,strlen($this->id)+2); 
+if(socket_write($socket,'b??',3))
+    sleep(0.01);  
+if(socket_write($socket,$this->myteam.'??', strlen($this->myteam)+2))
+    sleep(0.01);
+if(socket_write($socket,$this->enemyteam.'??', strlen($this->enemyteam)+2))
+    sleep(0.01);   
+if(socket_write($socket,$this->mycode.'??', strlen($this->mycode)+2))
+    sleep(0.01);    
+if(socket_write($socket,$this->enemycode.'??', strlen($this->enemycode)+2))
+    sleep(0.01);    
+socket_write($socket,$this->id.'#',strlen($this->id)+1); 
     return "Request sent.";
     }
 
