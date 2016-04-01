@@ -129,6 +129,7 @@ $this->title = 'Stellar Craft'
                 <ul class="am-nav am-nav-pills am-topbar-nav">
                     <li><a href="<?php echo Url::to(['site/index']) ?>">主页</a></li>
                     <li><a href="<?php echo URl::to(['forum/index']) ?>">论坛</a></li>
+                    <li><a href="<?php echo URl::to(['firstroundsubmit/index']) ?>">初赛代码提交</a></li>
                     <li class="am-dropdown" data-am-dropdown>
                         <a class="am-dropdown-toggle" data-am-dropdown-toggle >更多<span
                                 class="am-icon-caret-down"></span>

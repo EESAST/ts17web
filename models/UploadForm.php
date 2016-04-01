@@ -47,5 +47,28 @@ class UploadForm extends Model
             return false;
         }
     }
+
+    public function upload_first_round(){
+        if ($this->validate()) {
+            
+            $newcode = new Firstroundcodes();
+
+            $user = User::findByUsername(Yii::$app->user->identity->username);
+            $myteam = Team::findOne(['teamname'=> $user->teamname]);
+            $newcode->teamid = $myteam->id;
+            $newcode->teamname = $myteam->teamname;
+            $newcode->uploaded_by = $user->username;
+            $newcode->uploaded_at = date("Y/m/d H:i:s");
+            if($newcode->save()){
+                //以队伍编号命名文件
+                $this->sourcecode->saveAs('first_round_codes/' .$newcode->teamid.'.cpp');
+                return $newcode->id;
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
 }
 ?>

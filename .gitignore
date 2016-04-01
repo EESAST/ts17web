@@ -34,4 +34,4 @@ phpunit.phar
 
 /web/uploads
 /web/results
-/web/first_round_code
+/web/first_round_codes
