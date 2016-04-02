@@ -8,6 +8,7 @@ use app\models\Sourcecodes;
 use yii\web\UploadedFile;
 use app\models\User;
 use app\models\Team;
+use app\models\Firstroundcodes;
 
 class FirstroundsubmitController extends Controller
 {
@@ -37,7 +38,15 @@ class FirstroundsubmitController extends Controller
                 }
             }
         }
+
+        $alreadysubmit=Firstroundcodes::find()->where(array('teamid'=>$myteam->id))->exists();
+
         //上传文件$model,
-        return $this->render('index', ['model' => $model]);//,'indexs'=>$indexs]);
+        return $this->render('index', [
+            'model' => $model,
+            'alreadysubmit'=>$alreadysubmit,
+            'myteam'=>$myteam,
+            ]
+        );//,'indexs'=>$indexs]);
     }
 }
