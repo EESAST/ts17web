@@ -20,6 +20,7 @@ class BattleController extends Controller
     
     public function actionIndex()
     {
+        return $this->render('site/index');
 
         //没登录就回到主页
         if(Yii::$app->user->isGuest)
@@ -105,6 +106,7 @@ class BattleController extends Controller
 
     public function actionSite($teamname)
     {
+        return $this->render('/site/index');
         $model = new BattleForm();
         $codes = $model->getTeamcodes($teamname);
 

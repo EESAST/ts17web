@@ -14,7 +14,7 @@ class OnlineCompileController extends Controller
     public $layout = 'main1';
     public function actionIndex()
     {
-
+return $this->render('/site/index');
         //没登录就回到主页
         if(Yii::$app->user->isGuest)
             return $this->render('/site/index');
