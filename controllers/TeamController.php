@@ -104,6 +104,7 @@ class TeamController extends Controller
      */
     public function actionUpdate($id)
     {
+        return $this->redirect(['index']);
         $model = $this->findModel($id);
         $user = User::findByUsername(Yii::$app->user->identity->username);
         if ($model->leadername!=$user->username&&$user->group!='admin') return $this->render('error',['message'=>'Error:Only Team leader can update status.']);
