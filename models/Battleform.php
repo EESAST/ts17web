@@ -36,7 +36,7 @@ class BattleForm extends \yii\db\ActiveRecord
 
     public function battle()
     {
-    $address = '59.66.141.24';
+    $address = 'localhost';
     $service_port = 8001;
     $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
     if ($socket === false) {
