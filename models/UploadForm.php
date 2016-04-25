@@ -70,5 +70,27 @@ class UploadForm extends Model
         return false;
     }
 
+    public function upload_final_round(){
+        if ($this->validate()) {
+            
+            $newcode = new Finalroundcodes();
+
+            $user = User::findByUsername(Yii::$app->user->identity->username);
+            $myteam = Team::findOne(['teamname'=> $user->teamname]);
+            $newcode->teamid = $myteam->id;
+            $newcode->teamname = $myteam->teamname;
+            $newcode->uploaded_by = $user->username;
+            $newcode->uploaded_at = date("Y/m/d H:i:s");
+            if($newcode->save()){
+                //以队伍编号命名文件
+                $this->sourcecode->saveAs('ts17webhhh_final_round_codes_hhh/' .$newcode->teamid.'.cpp');
+                return $newcode->id;
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
 }
 ?>
