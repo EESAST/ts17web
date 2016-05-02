@@ -63,7 +63,7 @@ class BattleController extends Controller
         //上传文件$model,
 
         if ($model->load(Yii::$app->request->post())) {
-            if($myteam->battled_time<100){//如果对战次数还没到10次
+            if($myteam->battled_time<150){//如果对战次数还没到10次
                 $myteam->battled_time++;
                 $myteam->save(false);
 
