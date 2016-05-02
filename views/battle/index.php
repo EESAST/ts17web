@@ -19,7 +19,7 @@
     <br/>
     <br/>
     <div class="row" align="center">
-        <h2 width="90%">五一大放送!!!<br/>每个队伍每天最多对战150次<br/>你们今天已经对战了<?=$myteam->battled_time?>次<br/></h2>
+        <h2 width="90%">五一大放送!!!<br/>每个队伍每天最多对战200次<br/>你们今天已经对战了<?=$myteam->battled_time?>次<br/></h2>
         <div class="battle-form">
             <?php $form = ActiveForm::begin([
                 'action' => ['index'],
