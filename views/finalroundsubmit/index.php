@@ -19,17 +19,7 @@ use yii\helpers\html;
     <?php }?>
     <br/>
     <div>
-    <?php $form = ActiveForm::begin([
-            'options' => ['enctype' => 'multipart/form-data'],
-            'fieldConfig' => [
-                'template' => "{input}\n<div>{error}</div>",
-                'labelOptions' => ['class' => 'col-lg-1 control-label'],
-            ]
-        ,]) ?>
-        <?= $form->field($model, 'sourcecode')->fileInput() ?>
-        
-        <button class="am-btn am-btn-success am-btn-xs">提交</button>&nbsp*仅保留最后一次提交的代码
-    <?php ActiveForm::end() ?>
+
     </div>
 
 </div>
